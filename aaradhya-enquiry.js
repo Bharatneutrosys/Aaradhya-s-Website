@@ -1,6 +1,7 @@
 (function () {
   const NETLIFY_FORM_SELECTOR = 'form[data-netlify="true"], form[netlify]';
   const pendingSubmits = new WeakSet();
+  let documentSubmitBound = false;
 
   function isNepaliPage() {
     return document.documentElement.lang === 'ne';
@@ -111,7 +112,6 @@
       'color:#fff',
       'box-shadow:0 22px 60px rgba(0,0,0,0.35)',
       'backdrop-filter:blur(18px)',
-      'font:600 0.88rem/1.5 Montserrat, Arial, sans-serif',
       'opacity:0',
       'pointer-events:none',
       'transform:translate(-50%,14px)',
@@ -123,6 +123,10 @@
 
   function showToast(message) {
     const toast = ensureToast();
+    toast.style.font = copy(
+      '600 0.88rem/1.5 Montserrat, Arial, sans-serif',
+      "600 0.88rem/1.6 'Noto Sans Devanagari', 'Nirmala UI', Arial, sans-serif"
+    );
     toast.textContent = message;
     toast.style.opacity = '1';
     toast.style.transform = 'translate(-50%,0)';
@@ -196,14 +200,20 @@
   }
 
   function initNetlifyForms() {
+    if (!documentSubmitBound) {
+      document.addEventListener('submit', handleNetlifySubmit, true);
+      documentSubmitBound = true;
+    }
+
     document.querySelectorAll(NETLIFY_FORM_SELECTOR).forEach(form => {
       if (form.dataset.ajaxSubmitBound === 'true') return;
       form.dataset.ajaxSubmitBound = 'true';
       form.addEventListener('submit', handleNetlifySubmit, true);
     });
-
-    document.addEventListener('submit', handleNetlifySubmit, true);
   }
+
+  document.addEventListener('submit', handleNetlifySubmit, true);
+  documentSubmitBound = true;
 
   function initActionButtons() {
     document.querySelectorAll('button:not([type])').forEach(button => {

@@ -7,6 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet" />
 <style>
   :root {
     --slate: #22382f;
@@ -1255,6 +1256,27 @@
     .lang-switch { margin-left: auto; padding: 3px; gap: 2px; }
     .lang-switch a { min-height: 26px; padding: 0 7px; font-size: 0.6rem; letter-spacing: 0.01em; }
     .nav-toggle { width: 42px; height: 42px; margin-left: 0; }
+    .booking-tab,
+    .nav-cta,
+    .qs-btn,
+    .form-submit,
+    .booking-cta,
+    .primary-link,
+    .secondary-link,
+    .package-cta {
+      line-height: 1.35;
+      white-space: normal;
+      text-align: center;
+    }
+    .form-label,
+    .qs-label,
+    .footer-heading,
+    .stat-label { line-height: 1.45; }
+    .hero-title,
+    .section-title,
+    .modal-title,
+    .card-title,
+    .dest-name { overflow-wrap: anywhere; }
     section { padding: 72px 20px; }
     .hero { min-height: 92vh; min-height: 92svh; padding-top: 116px; }
     .hero-title { font-size: 2.55rem; }
@@ -2128,7 +2150,7 @@
   </div>
 
   <div class="footer-bottom">
-    <div class="footer-copy">&copy; २०२५ Aaradhya Travels and Tours Pvt. Ltd. सर्वाधिकार सुरक्षित।</div>
+    <div class="footer-copy">&copy; २०२६ Aaradhya Travels and Tours Pvt. Ltd. सर्वाधिकार सुरक्षित।</div>
     <div class="footer-socials">
       <a href="https://www.facebook.com/AaradhyaTravel" class="social-link" title="फेसबुक" aria-label="फेसबुक" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 8.4V6.7c0-.8.4-1.2 1.3-1.2h1.6V2.7c-.8-.1-1.6-.2-2.4-.2-2.6 0-4.3 1.6-4.3 4.5v1.4H7.5v3.1h2.7v8h3.3v-8h2.7l.4-3.1H14Z"/></svg></a>
       <a href="https://wa.me/9779841395391" class="social-link" title="ह्वाट्सएप" aria-label="ह्वाट्सएप" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3a8.7 8.7 0 0 0-7.5 13.1L3.4 21l5-1.3A8.7 8.7 0 1 0 12 3Zm0 15.7c-1.4 0-2.7-.4-3.8-1.1l-.3-.2-2 .5.5-2-.2-.3A7 7 0 1 1 12 18.7Zm3.9-5.2c-.2-.1-1.2-.6-1.4-.7-.2-.1-.4-.1-.5.1l-.7.8c-.1.2-.3.2-.5.1-1.4-.7-2.3-1.5-3-2.9-.1-.2 0-.4.1-.5l.4-.5c.1-.1.1-.3.2-.4v-.4c-.1-.1-.5-1.2-.7-1.6-.2-.4-.4-.4-.5-.4h-.5c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 2 0 1.2.8 2.3.9 2.4.1.2 1.7 2.7 4.2 3.7.6.3 1 .4 1.4.5.6.2 1.1.2 1.5.1.5-.1 1.2-.5 1.4-1 .2-.5.2-1 .1-1.1 0-.2-.2-.3-.4-.4Z"/></svg></a>
@@ -2159,7 +2181,7 @@
     if (notesField) notesField.value = '';
     const submitBtn = document.querySelector('.form-submit');
     if (submitBtn) {
-      submitBtn.textContent = 'Send Inquiry - We Respond Within 24 Hours';
+      submitBtn.textContent = 'सोधपुछ पठाउनुहोस् - हामी २४ घण्टाभित्र जवाफ दिन्छौं';
       submitBtn.style.background = 'var(--gold)';
       submitBtn.style.color = 'var(--slate)';
     }
@@ -2187,13 +2209,13 @@
   const slides = document.querySelectorAll('.carousel-slide');
   const dots = document.querySelectorAll('.cdot');
   const slideMeta = [
-    { title: 'Swayambhunath, Kathmandu' },
-    { title: 'Everest Base Camp, Khumbu' },
-    { title: 'Langtang Valley, Nepal' },
-    { title: 'Annapurna Massif, Pokhara' },
-    { title: 'Himalayan Foothills, Nepal' },
-    { title: 'Temple Journey, South Asia' },
-    { title: 'Island Escape, Curated Worldwide' },
+    { title: 'स्वयम्भू, काठमाडौं' },
+    { title: 'एभरेस्ट बेस क्याम्प, खुम्बु' },
+    { title: 'लाङटाङ उपत्यका, नेपाल' },
+    { title: 'अन्नपूर्ण हिमश्रृंखला, पोखरा' },
+    { title: 'हिमाली फेदी, नेपाल' },
+    { title: 'तीर्थयात्रा, दक्षिण एसिया' },
+    { title: 'समुद्री विश्राम, विश्वभर' },
   ];
   let current = 0;
   let carouselTimer;

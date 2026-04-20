@@ -883,7 +883,7 @@
 
   @media (max-width: 640px) {
     nav { gap: 8px; padding: 6px max(12px, env(safe-area-inset-right)) 6px max(12px, env(safe-area-inset-left)); justify-content: flex-start; }
-    nav.scrolled { padding: 6px 16px; }
+    nav.scrolled { padding: 6px max(12px, env(safe-area-inset-right)) 6px max(12px, env(safe-area-inset-left)); }
     .nav-links {
       top: calc(100% + 56px);
       max-height: calc(100vh - 132px);
@@ -917,6 +917,24 @@
     .lang-switch { margin-left: auto; padding: 3px; gap: 2px; }
     .lang-switch a { min-height: 26px; padding: 0 7px; font-size: 0.6rem; letter-spacing: 0.01em; }
     .nav-toggle { width: 42px; height: 42px; margin-left: 0; }
+    .qs-btn,
+    .nav-cta,
+    .form-submit,
+    .booking-cta,
+    .package-cta {
+      line-height: 1.35;
+      white-space: normal;
+      text-align: center;
+    }
+    .form-label,
+    .qs-label,
+    .footer-heading,
+    .stat-label { line-height: 1.45; }
+    .hero-title,
+    .section-title,
+    .modal-title,
+    .card-title,
+    .dest-name { overflow-wrap: anywhere; }
     section { padding: 72px 20px; }
     .hero { min-height: 92vh; min-height: 92svh; padding-top: 116px; }
     .hero-title { font-size: 2.55rem; }
