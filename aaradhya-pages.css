@@ -31,9 +31,9 @@ a { color: inherit; }
 
 nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-  padding: 6px 42px; display: flex; justify-content: space-between; align-items: center;
-  gap: 22px;
-  background: rgba(255, 253, 247, 0.96);
+  padding: 6px 34px; display: flex; justify-content: space-between; align-items: center;
+  gap: 18px;
+  background: rgba(249, 244, 233, 0.97);
   backdrop-filter: blur(18px) saturate(1.18);
   -webkit-backdrop-filter: blur(18px) saturate(1.18);
   border-bottom: 1px solid rgba(184, 148, 94, 0.22);
@@ -42,17 +42,17 @@ nav {
 .nav-logo {
   font-family: 'Playfair Display', serif; font-size: 1.25rem; letter-spacing: 0.05em;
   color: var(--slate); text-decoration: none; display: flex; gap: 12px; align-items: center;
-  margin-right: 28px;
+  margin-right: 16px;
   flex: 0 0 auto;
 }
 .brand-mark {
-  width: auto;
-  height: auto;
-  max-height: 78px;
+  width: 76px;
+  height: 76px;
+  max-height: none;
   max-width: none;
-  padding: 0;
-  object-fit: contain;
-  clip-path: inset(4% 5%);
+  object-fit: cover;
+  object-position: 26% 50%;
+  clip-path: none;
   display: block;
   background: transparent;
   border: 0;
@@ -68,22 +68,22 @@ nav {
 }
 .nav-logo .brand-primary {
   color: var(--slate);
-  font-size: 1.45rem;
+  font-size: 1.42rem;
   font-weight: 600;
-  letter-spacing: 0.035em;
+  letter-spacing: 0.04em;
 }
 .nav-logo .brand-secondary {
   color: #8d6933;
   font-family: 'Montserrat', sans-serif;
-  font-size: 0.78rem;
+  font-size: 0.73rem;
   font-weight: 700;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.09em;
   text-transform: uppercase;
 }
-.nav-links { display: flex; list-style: none; gap: clamp(12px, 1.05vw, 22px); align-items: center; justify-content: center; flex: 1 1 auto; }
+.nav-links { display: flex; list-style: none; gap: clamp(9px, 0.82vw, 18px); align-items: center; justify-content: center; flex: 1 1 auto; }
 .nav-links a {
   color: var(--slate); text-decoration: none; text-transform: uppercase;
-  font-size: 0.82rem; font-weight: 700; letter-spacing: 0.07em;
+  font-size: 0.76rem; font-weight: 700; letter-spacing: 0.065em;
   transition: color 0.25s ease;
 }
 .nav-links a:hover, .nav-links a.active { color: #8d6933; }
@@ -141,6 +141,7 @@ nav {
 footer .lang-switch { background: rgba(255,250,240,0.1); border-color: rgba(216,185,129,0.3); }
 footer .lang-switch a { color: var(--off-white); }
 footer .lang-switch a.active { color: var(--slate); }
+footer .nav-logo .brand-mark { width: 68px; height: 68px; }
 .nav-toggle {
   display: none;
   width: 44px;
@@ -236,6 +237,43 @@ section { padding: 105px 60px; }
 .price { color: var(--slate); font-size: 1.45rem; font-weight: 500; margin: 18px 0 22px; }
 .price small { display: block; color: var(--muted); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; margin-top: 3px; }
 .section-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+.category-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 28px;
+}
+.category-nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  padding: 10px 14px;
+  border-radius: 6px;
+  border: 1px solid rgba(141,105,51,0.34);
+  color: #735522;
+  background: rgba(255,250,240,0.56);
+  text-decoration: none;
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.category-nav a:hover { background: rgba(216,185,129,0.2); }
+.content-note {
+  padding: 22px 24px;
+  border-radius: 8px;
+  border: 1px solid rgba(184,148,94,0.28);
+  background: rgba(255,250,240,0.72);
+  color: var(--muted);
+  line-height: 1.75;
+  font-size: 0.88rem;
+  box-shadow: 0 16px 42px rgba(34,56,47,0.12);
+}
+.section-divider {
+  padding-top: 54px;
+  border-top: 1px solid rgba(184,148,94,0.22);
+  margin-top: 58px;
+}
 
 .band {
   padding: 52px 60px; background: linear-gradient(135deg, var(--slate), var(--evergreen));
@@ -485,8 +523,8 @@ footer a { color: var(--text-light); }
   }
   .nav-logo { flex: 1 1 auto; font-size: 0.95rem; line-height: 1.2; gap: 8px; margin-right: 0; min-width: 0; max-width: none; overflow: hidden; }
   .nav-logo .brand-lines { min-width: 0; }
-  .brand-mark { flex: 0 0 auto; max-height: 56px; padding: 0; clip-path: inset(4% 5%); }
-  footer .brand-mark { max-height: 52px; }
+  .brand-mark { flex: 0 0 auto; width: 58px; height: 58px; padding: 0; clip-path: none; }
+  footer .brand-mark, footer .nav-logo .brand-mark { width: 54px; height: 54px; }
   .nav-logo .brand-primary,
   .nav-logo .brand-secondary { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .nav-logo .brand-primary { font-size: 1.08rem; }

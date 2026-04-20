@@ -47,10 +47,10 @@
   /* NAV */
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-    padding: 6px 42px;
+    padding: 6px 34px;
     display: flex; align-items: center; justify-content: space-between;
-    gap: 22px;
-    background: rgba(255, 253, 247, 0.96);
+    gap: 18px;
+    background: rgba(249, 244, 233, 0.97);
     backdrop-filter: blur(18px) saturate(1.18);
     -webkit-backdrop-filter: blur(18px) saturate(1.18);
     border-bottom: 1px solid rgba(184, 148, 94, 0.22);
@@ -70,17 +70,18 @@
     font-size: 1.35rem; font-weight: 500; letter-spacing: 0.05em;
     color: var(--slate); text-decoration: none;
     display: flex; align-items: center; gap: 12px;
-    margin-right: 28px;
+    margin-right: 16px;
     flex: 0 0 auto;
   }
   .brand-mark {
-    width: auto;
-    height: auto;
-    max-height: 78px;
+    width: 76px;
+    height: 76px;
+    max-height: none;
     max-width: none;
     padding: 0;
-    object-fit: contain;
-    clip-path: inset(4% 5%);
+    object-fit: cover;
+    object-position: 26% 50%;
+    clip-path: none;
     display: block;
     background: transparent;
     border: 0;
@@ -95,23 +96,23 @@
     line-height: 0.96;
   }
   .nav-logo .brand-primary {
-    font-size: 1.5rem;
+    font-size: 1.42rem;
     font-weight: 600;
     letter-spacing: 0.035em;
     color: var(--slate);
   }
   .nav-logo .brand-secondary {
     font-family: 'Montserrat', sans-serif;
-    font-size: 0.8rem;
+    font-size: 0.73rem;
     font-weight: 600;
     letter-spacing: 0.08em;
     text-transform: uppercase;
     color: #8d6933;
   }
   .logo-ornament { font-size: 0.9rem; color: var(--gold); opacity: 0.7; }
-  .nav-links { display: flex; gap: clamp(12px, 1.05vw, 22px); list-style: none; align-items: center; justify-content: center; flex: 1 1 auto; }
+  .nav-links { display: flex; gap: clamp(9px, 0.82vw, 18px); list-style: none; align-items: center; justify-content: center; flex: 1 1 auto; }
   .nav-links a {
-    font-size: 0.82rem; font-weight: 700; letter-spacing: 0.07em;
+    font-size: 0.76rem; font-weight: 700; letter-spacing: 0.065em;
     text-transform: uppercase; color: var(--slate);
     text-decoration: none; position: relative;
     transition: color 0.3s ease;
@@ -926,7 +927,7 @@
     padding: 80px 60px 40px;
   }
   footer .nav-logo { gap: 15px; align-items: center; }
-  footer .brand-mark { max-height: 68px; max-width: none; }
+  footer .brand-mark { width: 68px; height: 68px; max-height: none; max-width: none; }
   footer .nav-logo .brand-primary { color: var(--off-white); }
   footer .nav-logo .brand-secondary { color: var(--gold-light); }
   .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1.5fr; gap: 60px; margin-bottom: 64px; }
@@ -1230,8 +1231,8 @@
     }
     .nav-logo { flex: 1 1 auto; font-size: 0.95rem; line-height: 1.2; min-width: 0; max-width: none; gap: 8px; margin-right: 0; overflow: hidden; }
     .nav-logo .brand-lines { min-width: 0; }
-    .brand-mark { flex: 0 0 auto; max-height: 56px; padding: 0; clip-path: inset(4% 5%); }
-    footer .brand-mark { max-height: 52px; }
+    .brand-mark { flex: 0 0 auto; width: 58px; height: 58px; padding: 0; clip-path: none; }
+    footer .brand-mark { width: 54px; height: 54px; }
     .nav-logo .brand-primary,
     .nav-logo .brand-secondary { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     .nav-logo .brand-primary { font-size: 1.08rem; }
@@ -1395,10 +1396,9 @@
   </a>
   <ul class="nav-links">
     <li><a href="nepal-packages.html">Nepal</a></li>
-    <li><a href="international-tours.html">International</a></li>
-    <li><a href="services.html">Services</a></li>
+    <li><a href="international-tours.html">International</a></li><li><a href="adventure-trips.html">Adventure</a></li>
     <li><a href="tirtha-yatra.html">Pilgrimage</a></li>
-    <li><a href="healing-wellbeing.html">Healing</a></li>
+    <li><a href="services.html">Services</a></li>
     <li><a href="offers.html">Offers</a></li>
     <li><a href="about.html">About</a></li>
     <li><a href="contact.html">Contact</a></li>
@@ -2240,6 +2240,6 @@
 
   carouselTimer = setInterval(nextSlide, 5500);
  </script>
-<script src="aaradhya-enquiry.js?v=netlify-ajax-20260420"></script>
+<script src="aaradhya-enquiry.js?v=netlify-ajax-20260420-formfix2"></script>
 </body>
 </html>
