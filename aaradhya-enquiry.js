@@ -215,37 +215,4 @@
     initMobileNav();
   }
 
-  document.addEventListener('submit', event => {
-    const form = event.target;
-    if (!form.matches('form')) return;
-    event.preventDefault();
-
-    const button = form.querySelector('[type="submit"], .btn, .form-submit');
-    const ctx = contextFromElement(form);
-    submitEnquiry({
-      type: 'Contact form enquiry',
-      title: ctx.item || 'Travel plan request',
-      page: ctx.page,
-      url: ctx.url,
-      fields: collectFields(form)
-    }, { form, button, statusTarget: form });
-  });
-
-  document.addEventListener('click', event => {
-    const button = event.target.closest('form .btn[type="button"]');
-    if (!button) return;
-
-    const form = button.closest('form');
-    if (form) {
-      event.preventDefault();
-      const ctx = contextFromElement(form);
-      submitEnquiry({
-        type: 'Contact form enquiry',
-        title: ctx.item || 'Travel plan request',
-        page: ctx.page,
-        url: ctx.url,
-        fields: collectFields(form)
-      }, { form, button, statusTarget: form });
-    }
-  });
 })();

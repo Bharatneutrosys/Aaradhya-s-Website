@@ -944,31 +944,32 @@
       <button class="modal-close" onclick="closeModal()">&times;</button>
     </div>
     <div class="modal-body">
-      <div class="modal-form">
+      <form class="modal-form" name="contact" method="POST" data-netlify="true">
+        <input type="hidden" name="form-name" value="contact" />
         <div class="form-row">
           <div class="form-field">
             <label class="form-label">Full Name</label>
-            <input class="form-input" type="text" placeholder="Your name" />
+            <input class="form-input" name="full_name" type="text" placeholder="Your name" />
           </div>
           <div class="form-field">
             <label class="form-label">Email Address</label>
-            <input class="form-input" type="email" placeholder="your@email.com" />
+            <input class="form-input" name="email" type="email" placeholder="your@email.com" />
           </div>
         </div>
         <div class="form-row">
           <div class="form-field">
             <label class="form-label">Phone Number</label>
-            <input class="form-input" type="tel" placeholder="+1 234 567 8900" />
+            <input class="form-input" name="phone" type="tel" placeholder="+1 234 567 8900" />
           </div>
           <div class="form-field">
             <label class="form-label">Preferred Date</label>
-            <input class="form-input" type="date" />
+            <input class="form-input" name="preferred_date" type="date" />
           </div>
         </div>
         <div class="form-row">
           <div class="form-field">
             <label class="form-label">Number of Guests</label>
-            <select class="form-input">
+            <select class="form-input" name="guests">
               <option>1 Person</option>
               <option>2 Persons</option>
               <option>3-5 Persons</option>
@@ -978,7 +979,7 @@
           </div>
           <div class="form-field">
             <label class="form-label">Tour Duration</label>
-            <select class="form-input">
+            <select class="form-input" name="duration">
               <option>7-10 Days</option>
               <option>11-14 Days</option>
               <option>15-20 Days</option>
@@ -988,10 +989,10 @@
         </div>
         <div class="form-field">
           <label class="form-label">Special Requests</label>
-          <textarea class="form-input" rows="3" placeholder="Any special requirements, dietary needs, or notes..."></textarea>
+          <textarea class="form-input" name="message" rows="3" placeholder="Any special requirements, dietary needs, or notes..."></textarea>
         </div>
-        <button class="form-submit" onclick="submitInquiry()">Send Inquiry - We Respond Within 24 Hours</button>
-      </div>
+        <button class="form-submit" type="submit">Send Inquiry - We Respond Within 24 Hours</button>
+      </form>
     </div>
   </div>
 </div>
@@ -1052,12 +1053,13 @@
     <p class="hero-sub">Premium Nepal adventures and international holidays designed with local insight, careful planning, and warm end-to-end support.</p>
 
     <!-- PILL SEARCH BAR -->
-    <div class="quick-search">
+    <form class="quick-search" name="holidays" method="POST" data-netlify="true">
+      <input type="hidden" name="form-name" value="holidays" />
       <div class="qs-field">
         <svg class="qs-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
         <div class="qs-inner">
           <span class="qs-label">Where to?</span>
-          <input class="qs-value" list="destination-options" placeholder="Destination" autocomplete="off" />
+          <input class="qs-value" name="destination" list="destination-options" placeholder="Destination" autocomplete="off" />
           <datalist id="destination-options">
             <option value="Everest Region"></option>
             <option value="Annapurna Circuit"></option>
@@ -1074,14 +1076,14 @@
         <svg class="qs-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
         <div class="qs-inner">
           <span class="qs-label">When?</span>
-          <input type="text" class="qs-value" placeholder="Travel Date" onfocus="this.type='date'" onblur="if(!this.value)this.type='text'" />
+          <input type="text" class="qs-value" name="travel_date" placeholder="Travel Date" onfocus="this.type='date'" onblur="if(!this.value)this.type='text'" />
         </div>
       </div>
       <div class="qs-field">
         <svg class="qs-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
         <div class="qs-inner">
           <span class="qs-label">Tour Type</span>
-          <select class="qs-value">
+          <select class="qs-value" name="tour_type">
             <option value="" disabled selected hidden>Select type</option>
             <option>Trekking</option>
             <option>City Tour</option>
@@ -1091,11 +1093,11 @@
           </select>
         </div>
       </div>
-      <button class="qs-btn" onclick="openModal('Tour Inquiry','Your Custom Journey')">
+      <button class="qs-btn" type="submit">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
         Search
       </button>
-    </div>
+    </form>
   </div>
 
   <div class="scroll-indicator">
@@ -1436,7 +1438,7 @@
       </div>
       <div class="contact-detail">
         <svg class="contact-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-        <div class="contact-text"><a href="mailto:info@aaradhyatravels.com">info@aaradhyatravels.com</a></div>
+        <div class="contact-text"><a href="contact.html">info@aaradhyatravels.com</a></div>
       </div>
       <a class="booking-cta" href="contact.html">&#10022; &nbsp; Travel Inquiry</a>
     </div>
@@ -1447,7 +1449,7 @@
     <div class="footer-socials">
       <a href="https://www.facebook.com/AaradhyaTravel" class="social-link" title="Facebook" aria-label="Facebook" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 8.4V6.7c0-.8.4-1.2 1.3-1.2h1.6V2.7c-.8-.1-1.6-.2-2.4-.2-2.6 0-4.3 1.6-4.3 4.5v1.4H7.5v3.1h2.7v8h3.3v-8h2.7l.4-3.1H14Z"/></svg></a>
       <a href="https://wa.me/9779841395391" class="social-link" title="WhatsApp" aria-label="WhatsApp" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3a8.7 8.7 0 0 0-7.5 13.1L3.4 21l5-1.3A8.7 8.7 0 1 0 12 3Zm0 15.7c-1.4 0-2.7-.4-3.8-1.1l-.3-.2-2 .5.5-2-.2-.3A7 7 0 1 1 12 18.7Zm3.9-5.2c-.2-.1-1.2-.6-1.4-.7-.2-.1-.4-.1-.5.1l-.7.8c-.1.2-.3.2-.5.1-1.4-.7-2.3-1.5-3-2.9-.1-.2 0-.4.1-.5l.4-.5c.1-.1.1-.3.2-.4v-.4c-.1-.1-.5-1.2-.7-1.6-.2-.4-.4-.4-.5-.4h-.5c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 2 0 1.2.8 2.3.9 2.4.1.2 1.7 2.7 4.2 3.7.6.3 1 .4 1.4.5.6.2 1.1.2 1.5.1.5-.1 1.2-.5 1.4-1 .2-.5.2-1 .1-1.1 0-.2-.2-.3-.4-.4Z"/></svg></a>
-      <a href="mailto:info@aaradhyatravels.com" class="social-link" title="Email" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2Z"/><path d="m22 6-10 7L2 6"/></svg></a>
+      <a href="contact.html" class="social-link" title="Email" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2Z"/><path d="m22 6-10 7L2 6"/></svg></a>
     </div>
   </div>
 </footer>
@@ -1481,26 +1483,6 @@
     if (e.target === document.getElementById('modal')) closeModal();
   });
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
-
-  async function submitInquiry() {
-    const btn = document.querySelector('.form-submit');
-    const modalForm = document.querySelector('.modal-form');
-    const fields = window.collectAaradhyaFields ? window.collectAaradhyaFields(modalForm) : {};
-    const tag = document.getElementById('modalTag')?.textContent || 'Travel Inquiry';
-    const title = document.getElementById('modalTitle')?.textContent || 'Aaradhya Travels and Tours';
-    let result = { ok: false };
-    if (window.submitAaradhyaEnquiry) {
-      result = await window.submitAaradhyaEnquiry({
-        type: tag,
-        title,
-        fields
-      }, { button: btn, statusTarget: modalForm });
-    }
-    btn.textContent = result.ok ? 'Enquiry Sent' : 'Try Again';
-    btn.style.background = result.ok ? 'var(--evergreen)' : 'var(--gold)';
-    btn.style.color = result.ok ? 'var(--off-white)' : 'var(--slate)';
-    if (result.ok) setTimeout(closeModal, 1800);
-  }
 
   // Parallax on   // CAROUSEL
   const slides = document.querySelectorAll('.carousel-slide');

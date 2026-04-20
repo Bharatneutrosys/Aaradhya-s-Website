@@ -1295,31 +1295,32 @@
       <button class="modal-close" onclick="closeModal()">&times;</button>
     </div>
     <div class="modal-body">
-      <div class="modal-form">
+      <form class="modal-form" name="contact" method="POST" data-netlify="true">
+        <input type="hidden" name="form-name" value="contact" />
         <div class="form-row">
           <div class="form-field">
             <label class="form-label">पूरा नाम</label>
-            <input class="form-input" type="text" placeholder="तपाईंको नाम" />
+            <input class="form-input" name="full_name" type="text" placeholder="तपाईंको नाम" />
           </div>
           <div class="form-field">
             <label class="form-label">इमेल ठेगाना</label>
-            <input class="form-input" type="email" placeholder="तपाईंको इमेल" />
+            <input class="form-input" name="email" type="email" placeholder="तपाईंको इमेल" />
           </div>
         </div>
         <div class="form-row">
           <div class="form-field">
             <label class="form-label">फोन नम्बर</label>
-            <input class="form-input" type="tel" placeholder="+1 234 567 8900" />
+            <input class="form-input" name="phone" type="tel" placeholder="+1 234 567 8900" />
           </div>
           <div class="form-field">
             <label class="form-label">मनपर्ने मिति</label>
-            <input class="form-input" type="date" />
+            <input class="form-input" name="preferred_date" type="date" />
           </div>
         </div>
         <div class="form-row">
           <div class="form-field">
             <label class="form-label">यात्रु संख्या</label>
-            <select class="form-input">
+            <select class="form-input" name="guests">
               <option>१ जना</option>
               <option>२ जना</option>
               <option>३-५ जना</option>
@@ -1329,7 +1330,7 @@
           </div>
           <div class="form-field">
             <label class="form-label">यात्रा अवधि</label>
-            <select class="form-input">
+            <select class="form-input" name="duration">
               <option>७-१० दिन</option>
               <option>११-१४ दिन</option>
               <option>१५-२० दिन</option>
@@ -1339,10 +1340,10 @@
         </div>
         <div class="form-field">
           <label class="form-label">विशेष अनुरोध</label>
-        <textarea class="form-input" id="modalNotes" rows="3" placeholder="विशेष आवश्यकता, खाना सम्बन्धी चाहना वा अन्य टिप्पणी..."></textarea>
+        <textarea class="form-input" id="modalNotes" name="message" rows="3" placeholder="विशेष आवश्यकता, खाना सम्बन्धी चाहना वा अन्य टिप्पणी..."></textarea>
         </div>
-        <button class="form-submit" onclick="submitInquiry()">सोधपुछ पठाउनुहोस् - हामी २४ घण्टाभित्र जवाफ दिन्छौं</button>
-      </div>
+        <button class="form-submit" type="submit">सोधपुछ पठाउनुहोस् - हामी २४ घण्टाभित्र जवाफ दिन्छौं</button>
+      </form>
     </div>
   </div>
 </div>
@@ -1420,40 +1421,41 @@
           <span><strong>उडान भाडा सोधपुछ</strong> आन्तरिक, अन्तर्राष्ट्रिय, समूह र व्यावसायिक मार्गका लागि।</span>
           <span>यात्रा विवरण पठाउनुहोस्, हाम्रो टोलीले उपलब्ध उत्तम भाडा विकल्पहरू पठाउनेछ।</span>
         </div>
-        <div class="quick-search">
+        <form class="quick-search" name="flights" method="POST" data-netlify="true">
+          <input type="hidden" name="form-name" value="flights" />
           <div class="qs-field">
             <svg class="qs-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 16l20-8-8 20-3-9-9-3z"/></svg>
             <div class="qs-inner">
               <span class="qs-label">कहाँबाट उड्ने</span>
-              <input class="qs-value" id="flightFrom" placeholder="काठमाडौं" autocomplete="off" />
+              <input class="qs-value" id="flightFrom" name="flight_from" placeholder="काठमाडौं" autocomplete="off" />
             </div>
           </div>
           <div class="qs-field">
             <svg class="qs-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
             <div class="qs-inner">
               <span class="qs-label">कहाँ जाने</span>
-              <input class="qs-value" id="flightTo" placeholder="दुबई, दिल्ली, लन्डन" autocomplete="off" />
+              <input class="qs-value" id="flightTo" name="flight_to" placeholder="दुबई, दिल्ली, लन्डन" autocomplete="off" />
             </div>
           </div>
           <div class="qs-field">
             <svg class="qs-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
             <div class="qs-inner">
               <span class="qs-label">प्रस्थान</span>
-              <input type="text" class="qs-value" id="flightDeparture" placeholder="मिति" onfocus="this.type='date'" onblur="if(!this.value)this.type='text'" />
+              <input type="text" class="qs-value" id="flightDeparture" name="departure_date" placeholder="मिति" onfocus="this.type='date'" onblur="if(!this.value)this.type='text'" />
             </div>
           </div>
           <div class="qs-field">
             <svg class="qs-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M8 2v4M16 2v4M3 10h18M8 16h8"/></svg>
             <div class="qs-inner">
               <span class="qs-label">फिर्ता</span>
-              <input type="text" class="qs-value" id="flightReturn" placeholder="वैकल्पिक" onfocus="this.type='date'" onblur="if(!this.value)this.type='text'" />
+              <input type="text" class="qs-value" id="flightReturn" name="return_date" placeholder="वैकल्पिक" onfocus="this.type='date'" onblur="if(!this.value)this.type='text'" />
             </div>
           </div>
           <div class="qs-field">
             <svg class="qs-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
             <div class="qs-inner">
               <span class="qs-label">यात्रु</span>
-              <select class="qs-value" id="flightPassengers">
+              <select class="qs-value" id="flightPassengers" name="passengers">
                 <option value="" disabled selected hidden></option>
                 <option>१ यात्रु</option>
                 <option>२ यात्रु</option>
@@ -1467,7 +1469,7 @@
             <svg class="qs-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
             <div class="qs-inner">
               <span class="qs-label">क्याबिन वर्ग</span>
-              <select class="qs-value" id="flightClass">
+              <select class="qs-value" id="flightClass" name="cabin_class">
                 <option value="" disabled selected hidden></option>
                 <option>इकोनोमी</option>
                 <option>प्रिमियम इकोनोमी</option>
@@ -1480,21 +1482,21 @@
             <svg class="qs-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.08 4.18 2 2 0 0 1 4.06 2h3a2 2 0 0 1 2 1.72c.12.9.34 1.77.66 2.6a2 2 0 0 1-.45 2.11L8 9.7a16 16 0 0 0 6.3 6.3l1.27-1.27a2 2 0 0 1 2.11-.45c.83.32 1.7.54 2.6.66a2 2 0 0 1 1.72 1.98z"/></svg>
             <div class="qs-inner">
               <span class="qs-label">फोन / ह्वाट्सएप</span>
-              <input class="qs-value" id="flightPhone" type="tel" autocomplete="tel" />
+              <input class="qs-value" id="flightPhone" name="phone" type="tel" autocomplete="tel" />
             </div>
           </div>
           <div class="qs-field">
             <svg class="qs-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16v16H4z"/><path d="m22 6-10 7L2 6"/></svg>
             <div class="qs-inner">
               <span class="qs-label">इमेल</span>
-              <input class="qs-value" id="flightEmail" type="email" autocomplete="email" />
+              <input class="qs-value" id="flightEmail" name="email" type="email" autocomplete="email" />
             </div>
           </div>
-          <button class="qs-btn" onclick="handleFlightSearch(this)">
+          <button class="qs-btn" type="submit">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             भाडा विवरण माग्नुहोस्
           </button>
-        </div>
+        </form>
         <div class="booking-note">सोधपुछ मात्र: Aaradhya ले वेबसाइटबाट तुरुन्त प्रत्यक्ष भाडा जारी गर्दैन। हाम्रो टोलीले उपलब्धता जाँचेर विकल्प पठाउनेछ।</div>
       </div>
 
@@ -1503,12 +1505,13 @@
           <span><strong>बिदा यात्रा योजना</strong> नेपाल प्याकेज र अन्तर्राष्ट्रिय भ्रमणका लागि।</span>
           <span>तपाईंको योजना बताउनुहोस्; हामी मार्ग, होटल र बजेट मिलाउँछौं।</span>
         </div>
-        <div class="quick-search">
+        <form class="quick-search" name="holidays" method="POST" data-netlify="true">
+          <input type="hidden" name="form-name" value="holidays" />
           <div class="qs-field">
             <svg class="qs-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
             <div class="qs-inner">
               <span class="qs-label">कहाँ जाने?</span>
-              <input class="qs-value" id="quickDestination" list="destination-options" placeholder="गन्तव्य" autocomplete="off" />
+              <input class="qs-value" id="quickDestination" name="destination" list="destination-options" placeholder="गन्तव्य" autocomplete="off" />
               <datalist id="destination-options">
                 <option value="एभरेस्ट क्षेत्र"></option>
                 <option value="अन्नपूर्ण सर्किट"></option>
@@ -1525,14 +1528,14 @@
             <svg class="qs-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
             <div class="qs-inner">
               <span class="qs-label">यात्रा मिति</span>
-              <input type="text" class="qs-value" id="quickDate" placeholder="मिति" onfocus="this.type='date'" onblur="if(!this.value)this.type='text'" />
+              <input type="text" class="qs-value" id="quickDate" name="travel_date" placeholder="मिति" onfocus="this.type='date'" onblur="if(!this.value)this.type='text'" />
             </div>
           </div>
           <div class="qs-field">
             <svg class="qs-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
             <div class="qs-inner">
               <span class="qs-label">प्याकेज प्रकार</span>
-              <select class="qs-value" id="quickTourType">
+              <select class="qs-value" id="quickTourType" name="package_type">
                 <option value="" disabled selected hidden></option>
                 <option>एकल प्याकेज</option>
                 <option>जोडिएको प्याकेज</option>
@@ -1545,7 +1548,7 @@
             <svg class="qs-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
             <div class="qs-inner">
               <span class="qs-label">यात्रु</span>
-              <select class="qs-value" id="quickGuests">
+              <select class="qs-value" id="quickGuests" name="guests">
                 <option value="" disabled selected hidden></option>
                 <option>२ यात्रु</option>
                 <option>१ यात्रु</option>
@@ -1559,14 +1562,14 @@
             <svg class="qs-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
             <div class="qs-inner">
               <span class="qs-label">बिदा यात्राको रुचि</span>
-              <textarea class="qs-value qs-textarea" id="quickPreferences" placeholder="यात्रा शैली, प्याकेज संयोजन वा तीर्थयात्रा आवश्यकता..." autocomplete="off"></textarea>
+              <textarea class="qs-value qs-textarea" id="quickPreferences" name="preferences" placeholder="यात्रा शैली, प्याकेज संयोजन वा तीर्थयात्रा आवश्यकता..." autocomplete="off"></textarea>
             </div>
           </div>
-          <button class="qs-btn" onclick="handleQuickSearch(this)">
+          <button class="qs-btn" type="submit">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
             बिदा यात्रा योजना बनाउनुहोस्
           </button>
-        </div>
+        </form>
       </div>
     </div>
   </div>
@@ -1958,7 +1961,8 @@
     <h2>तपाईं के खोज्दै हुनुहुन्छ बताउनुहोस्।</h2>
     <p>आफ्नो मनपर्ने गन्तव्य, मिति, समूह संख्या, यात्रा शैली र महत्त्वपूर्ण कुरा बताउनुहोस्। Aaradhya ले स्पष्ट अर्को कदम र विचारपूर्ण सिफारिससहित जवाफ दिनेछ।</p>
   </div>
-  <form class="enquiry-form">
+  <form class="enquiry-form" name="contact" method="POST" data-netlify="true">
+    <input type="hidden" name="form-name" value="contact" />
     <div class="form-row">
       <div class="form-field">
         <label class="form-label">पूरा नाम</label>
@@ -2069,7 +2073,7 @@
       </div>
       <div class="contact-detail">
         <svg class="contact-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-        <div class="contact-text"><a href="mailto:info@aaradhyatravels.com">info@aaradhyatravels.com</a></div>
+        <div class="contact-text"><a href="contact-ne.html">info@aaradhyatravels.com</a></div>
       </div>
       <a class="booking-cta" href="contact-ne.html">&#10022; &nbsp; यात्रा सोधपुछ</a>
     </div>
@@ -2080,7 +2084,7 @@
     <div class="footer-socials">
       <a href="https://www.facebook.com/AaradhyaTravel" class="social-link" title="फेसबुक" aria-label="फेसबुक" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 8.4V6.7c0-.8.4-1.2 1.3-1.2h1.6V2.7c-.8-.1-1.6-.2-2.4-.2-2.6 0-4.3 1.6-4.3 4.5v1.4H7.5v3.1h2.7v8h3.3v-8h2.7l.4-3.1H14Z"/></svg></a>
       <a href="https://wa.me/9779841395391" class="social-link" title="ह्वाट्सएप" aria-label="ह्वाट्सएप" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3a8.7 8.7 0 0 0-7.5 13.1L3.4 21l5-1.3A8.7 8.7 0 1 0 12 3Zm0 15.7c-1.4 0-2.7-.4-3.8-1.1l-.3-.2-2 .5.5-2-.2-.3A7 7 0 1 1 12 18.7Zm3.9-5.2c-.2-.1-1.2-.6-1.4-.7-.2-.1-.4-.1-.5.1l-.7.8c-.1.2-.3.2-.5.1-1.4-.7-2.3-1.5-3-2.9-.1-.2 0-.4.1-.5l.4-.5c.1-.1.1-.3.2-.4v-.4c-.1-.1-.5-1.2-.7-1.6-.2-.4-.4-.4-.5-.4h-.5c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 2 0 1.2.8 2.3.9 2.4.1.2 1.7 2.7 4.2 3.7.6.3 1 .4 1.4.5.6.2 1.1.2 1.5.1.5-.1 1.2-.5 1.4-1 .2-.5.2-1 .1-1.1 0-.2-.2-.3-.4-.4Z"/></svg></a>
-      <a href="mailto:info@aaradhyatravels.com" class="social-link" title="इमेल" aria-label="इमेल"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2Z"/><path d="m22 6-10 7L2 6"/></svg></a>
+      <a href="contact-ne.html" class="social-link" title="इमेल" aria-label="इमेल"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2Z"/><path d="m22 6-10 7L2 6"/></svg></a>
     </div>
   </div>
 </footer>
@@ -2122,60 +2126,6 @@
       pane.classList.toggle('active', pane.dataset.bookingPane === tab);
     });
   }
-  async function handleQuickSearch(button) {
-    const destination = document.getElementById('quickDestination')?.value.trim();
-    const date = document.getElementById('quickDate')?.value;
-    const tourType = document.getElementById('quickTourType')?.value;
-    const guests = document.getElementById('quickGuests')?.value;
-    const preferences = document.getElementById('quickPreferences')?.value.trim();
-    const title = destination || 'Your Custom Journey';
-    if (window.submitAaradhyaEnquiry) {
-      await window.submitAaradhyaEnquiry({
-        type: 'Holiday package inquiry',
-        title,
-        fields: {
-          Destination: destination,
-          'Preferred date': date,
-          'Package type': tourType,
-          Guests: guests,
-          Preferences: preferences
-        }
-      }, {
-        button,
-        statusTarget: button?.closest('.booking-pane')
-      });
-    }
-  }
-  async function handleFlightSearch(button) {
-    const from = document.getElementById('flightFrom')?.value.trim();
-    const to = document.getElementById('flightTo')?.value.trim();
-    const departure = document.getElementById('flightDeparture')?.value;
-    const returning = document.getElementById('flightReturn')?.value;
-    const passengers = document.getElementById('flightPassengers')?.value;
-    const travellerClass = document.getElementById('flightClass')?.value;
-    const phone = document.getElementById('flightPhone')?.value.trim();
-    const email = document.getElementById('flightEmail')?.value.trim();
-    const title = [from, to].filter(Boolean).join(' to ') || 'Flight Fare Request';
-    if (window.submitAaradhyaEnquiry) {
-      await window.submitAaradhyaEnquiry({
-        type: 'Flight fare inquiry',
-        title,
-        fields: {
-          'Flight from': from,
-          'Flying to': to,
-          'Departure date': departure,
-          'Return date': returning,
-          Passengers: passengers,
-          'Cabin class': travellerClass,
-          'Phone / WhatsApp': phone,
-          Email: email
-        }
-      }, {
-        button,
-        statusTarget: button?.closest('.booking-pane')
-      });
-    }
-  }
   function closeModal() {
     document.getElementById('modal').classList.remove('active');
     document.body.style.overflow = '';
@@ -2184,26 +2134,6 @@
     if (e.target === document.getElementById('modal')) closeModal();
   });
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
-
-  async function submitInquiry() {
-    const btn = document.querySelector('.form-submit');
-    const modalForm = document.querySelector('.modal-form');
-    const fields = window.collectAaradhyaFields ? window.collectAaradhyaFields(modalForm) : {};
-    const tag = document.getElementById('modalTag')?.textContent || 'यात्रा सोधपुछ';
-    const title = document.getElementById('modalTitle')?.textContent || 'Aaradhya Travels and Tours';
-    let result = { ok: false };
-    if (window.submitAaradhyaEnquiry) {
-      result = await window.submitAaradhyaEnquiry({
-        type: tag,
-        title,
-        fields
-      }, { button: btn, statusTarget: modalForm });
-    }
-    btn.textContent = result.ok ? 'Enquiry Sent' : 'Try Again';
-    btn.style.background = result.ok ? 'var(--evergreen)' : 'var(--gold)';
-    btn.style.color = result.ok ? 'var(--off-white)' : 'var(--slate)';
-    if (result.ok) setTimeout(closeModal, 1800);
-  }
 
   // Parallax on   // CAROUSEL
   const slides = document.querySelectorAll('.carousel-slide');
