@@ -1308,11 +1308,11 @@
     <div class="modal-body">
       <form class="modal-form" name="contact" method="POST" data-netlify="true">
         <input type="hidden" name="form-name" value="contact" />
-        <input type="hidden" name="subject" value="New Contact Enquiry from Aaradhya Website" />
+        <input type="hidden" name="subject" value="New Contact Enquiry — Aaradhya Travels and Tours" />
         <input type="hidden" name="page_context" value="Homepage modal enquiry" />
         <div class="form-row">
           <div class="form-field">
-            <label class="form-label">Full Name</label>
+            <label class="form-label">Full Name *</label>
             <input class="form-input" name="name" type="text" placeholder="Your name" required />
           </div>
           <div class="form-field">
@@ -1322,7 +1322,7 @@
         </div>
         <div class="form-row">
           <div class="form-field">
-            <label class="form-label">Phone Number</label>
+            <label class="form-label">Phone Number *</label>
             <input class="form-input" name="phone" type="tel" placeholder="+1 234 567 8900" required />
           </div>
           <div class="form-field">
@@ -1353,7 +1353,7 @@
         </div>
         <div class="form-field">
           <label class="form-label">Special Requests</label>
-        <textarea class="form-input" id="modalNotes" name="message" rows="3" placeholder="Any special requirements, dietary needs, or notes..." required></textarea>
+        <textarea class="form-input" id="modalNotes" name="message" rows="3" placeholder="Any special requirements, dietary needs, or notes..."></textarea>
         </div>
         <button class="form-submit" type="submit">Send Inquiry - We Respond Within 24 Hours</button>
       </form>
@@ -1436,33 +1436,33 @@
         </div>
         <form class="quick-search" name="flights" method="POST" data-netlify="true">
           <input type="hidden" name="form-name" value="flights" />
-          <input type="hidden" name="subject" value="New Flight Enquiry from Aaradhya Website" />
+          <input type="hidden" name="subject" value="New Flight Enquiry — Aaradhya Travels and Tours" />
           <input type="hidden" name="page_context" value="Homepage flight fare enquiry" />
           <div class="qs-field">
             <svg class="qs-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
             <div class="qs-inner">
-              <span class="qs-label">Full Name</span>
+              <span class="qs-label">Full Name *</span>
               <input class="qs-value" name="name" placeholder="Your name" autocomplete="name" required />
             </div>
           </div>
           <div class="qs-field">
             <svg class="qs-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 16l20-8-8 20-3-9-9-3z"/></svg>
             <div class="qs-inner">
-              <span class="qs-label">Flight From</span>
+              <span class="qs-label">Flight From *</span>
               <input class="qs-value" id="flightFrom" name="flight_from" placeholder="Kathmandu" autocomplete="off" required />
             </div>
           </div>
           <div class="qs-field">
             <svg class="qs-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
             <div class="qs-inner">
-              <span class="qs-label">Flying To</span>
+              <span class="qs-label">Flying To *</span>
               <input class="qs-value" id="flightTo" name="flight_to" placeholder="Dubai, Delhi, London" autocomplete="off" required />
             </div>
           </div>
           <div class="qs-field">
             <svg class="qs-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
             <div class="qs-inner">
-              <span class="qs-label">Departure</span>
+              <span class="qs-label">Departure *</span>
               <input type="text" class="qs-value" id="flightDeparture" name="departure_date" placeholder="Date" onfocus="this.type='date'" onblur="if(!this.value)this.type='text'" required />
             </div>
           </div>
@@ -1490,7 +1490,7 @@
           <div class="qs-field">
             <svg class="qs-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.08 4.18 2 2 0 0 1 4.06 2h3a2 2 0 0 1 2 1.72c.12.9.34 1.77.66 2.6a2 2 0 0 1-.45 2.11L8 9.7a16 16 0 0 0 6.3 6.3l1.27-1.27a2 2 0 0 1 2.11-.45c.83.32 1.7.54 2.6.66a2 2 0 0 1 1.72 1.98z"/></svg>
             <div class="qs-inner">
-              <span class="qs-label">Phone / WhatsApp</span>
+              <span class="qs-label">Phone / WhatsApp *</span>
               <input class="qs-value" id="flightPhone" name="phone" type="tel" autocomplete="tel" required />
             </div>
           </div>
@@ -1523,33 +1523,26 @@
         </div>
         <form class="quick-search" name="holidays" method="POST" data-netlify="true">
           <input type="hidden" name="form-name" value="holidays" />
-          <input type="hidden" name="subject" value="New Holiday Enquiry from Aaradhya Website" />
+          <input type="hidden" name="subject" value="New Holiday Enquiry — Aaradhya Travels and Tours" />
           <input type="hidden" name="page_context" value="Homepage holiday planning enquiry" />
           <div class="qs-field">
             <svg class="qs-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
             <div class="qs-inner">
-              <span class="qs-label">Full Name</span>
+              <span class="qs-label">Full Name *</span>
               <input class="qs-value" name="name" placeholder="Your name" autocomplete="name" required />
             </div>
           </div>
           <div class="qs-field">
             <svg class="qs-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.08 4.18 2 2 0 0 1 4.06 2h3a2 2 0 0 1 2 1.72c.12.9.34 1.77.66 2.6a2 2 0 0 1-.45 2.11L8 9.7a16 16 0 0 0 6.3 6.3l1.27-1.27a2 2 0 0 1 2.11-.45c.83.32 1.7.54 2.6.66a2 2 0 0 1 1.72 1.98z"/></svg>
             <div class="qs-inner">
-              <span class="qs-label">Phone / WhatsApp</span>
+              <span class="qs-label">Phone / WhatsApp *</span>
               <input class="qs-value" name="phone" type="tel" autocomplete="tel" required />
-            </div>
-          </div>
-          <div class="qs-field">
-            <svg class="qs-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16v16H4z"/><path d="m22 6-10 7L2 6"/></svg>
-            <div class="qs-inner">
-              <span class="qs-label">Email</span>
-              <input class="qs-value" name="email" type="email" autocomplete="email" />
             </div>
           </div>
           <div class="qs-field">
             <svg class="qs-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
             <div class="qs-inner">
-              <span class="qs-label">Where to?</span>
+              <span class="qs-label">Where to? *</span>
               <input class="qs-value" id="quickDestination" name="destination" list="destination-options" placeholder="Destination" autocomplete="off" required />
               <datalist id="destination-options">
                 <option value="Everest Region"></option>
@@ -1566,7 +1559,7 @@
           <div class="qs-field">
             <svg class="qs-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
             <div class="qs-inner">
-              <span class="qs-label">Travel Date</span>
+              <span class="qs-label">Travel Date *</span>
               <input type="text" class="qs-value" id="quickDate" name="travel_date" placeholder="Date" onfocus="this.type='date'" onblur="if(!this.value)this.type='text'" required />
             </div>
           </div>
@@ -1583,11 +1576,11 @@
               </select>
             </div>
           </div>
-          <div class="qs-field wide-field">
+          <div class="qs-field">
             <svg class="qs-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
             <div class="qs-inner">
-              <span class="qs-label">Guests</span>
-              <select class="qs-value" id="quickGuests" name="guests">
+              <span class="qs-label">Guests *</span>
+              <select class="qs-value" id="quickGuests" name="guests" required>
                 <option value="" disabled selected hidden></option>
                 <option>2 Guests</option>
                 <option>1 Guest</option>
@@ -1595,6 +1588,13 @@
                 <option>6-10 Guests</option>
                 <option>10+ Guests</option>
               </select>
+            </div>
+          </div>
+          <div class="qs-field wide-field">
+            <svg class="qs-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16v16H4z"/><path d="m22 6-10 7L2 6"/></svg>
+            <div class="qs-inner">
+              <span class="qs-label">Email</span>
+              <input class="qs-value" name="email" type="email" autocomplete="email" />
             </div>
           </div>
           <div class="qs-field preference-field">
@@ -2002,15 +2002,15 @@
   </div>
   <form class="enquiry-form" name="contact" method="POST" data-netlify="true">
     <input type="hidden" name="form-name" value="contact" />
-    <input type="hidden" name="subject" value="New Contact Enquiry from Aaradhya Website" />
+    <input type="hidden" name="subject" value="New Contact Enquiry — Aaradhya Travels and Tours" />
     <input type="hidden" name="page_context" value="Homepage travel enquiry section" />
     <div class="form-row">
       <div class="form-field">
-        <label class="form-label">Full Name</label>
+        <label class="form-label">Full Name *</label>
         <input class="form-input" name="name" type="text" placeholder="Your name" required />
       </div>
       <div class="form-field">
-        <label class="form-label">Phone / WhatsApp</label>
+        <label class="form-label">Phone / WhatsApp *</label>
         <input class="form-input" name="phone" type="tel" placeholder="+977 98..." required />
       </div>
     </div>
@@ -2043,7 +2043,7 @@
     </div>
     <div class="form-field">
       <label class="form-label">Message / Special Requests</label>
-      <textarea class="form-input" name="message" placeholder="Write what you are looking for, preferred route, comfort level, budget range, or special needs." required></textarea>
+      <textarea class="form-input" name="message" placeholder="Write what you are looking for, preferred route, comfort level, budget range, or special needs."></textarea>
     </div>
     <button class="form-submit" type="submit">Send Inquiry</button>
   </form>
