@@ -1,0 +1,1544 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Aaradhya Travels and Tours - Your Gateway to the Roof of the World</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --slate: #22382f;
+    --slate-mid: #2e473d;
+    --slate-light: #4f6b5e;
+    --off-white: #fffaf0;
+    --cream: #f7efe1;
+    --gold: #b8945e;
+    --gold-light: #d8b981;
+    --gold-pale: #f5ead4;
+    --evergreen: #5f806f;
+    --evergreen-light: #7f9f8f;
+    --text-light: #f4fbf2;
+    --text-mid: #f2eadc;
+    --ink: #263c34;
+    --muted: #354a42;
+    --text-on-light: #263c34;
+    --muted-on-light: #40584e;
+    --text-on-dark: #fffaf0;
+    --muted-on-dark: #f2eadc;
+    --line: rgba(184, 148, 94, 0.24);
+    --shadow: 0 24px 80px rgba(34, 56, 47, 0.26);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Montserrat', sans-serif;
+    background:
+      radial-gradient(1200px 700px at 50% -10%, rgba(216,185,129,0.18), transparent 60%),
+      linear-gradient(180deg, #f5ead4 0%, #dfe9dd 46%, #f7efe1 100%);
+    color: var(--text-on-light);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    padding: 6px 42px;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 22px;
+    background: rgba(255, 253, 247, 0.96);
+    backdrop-filter: blur(18px) saturate(1.18);
+    -webkit-backdrop-filter: blur(18px) saturate(1.18);
+    border-bottom: 1px solid rgba(184, 148, 94, 0.22);
+    box-shadow: 0 16px 42px rgba(34, 56, 47, 0.12);
+    transition: all 0.5s ease;
+  }
+  nav.scrolled {
+    padding: 6px 42px;
+    background: rgba(255, 253, 247, 0.98);
+    backdrop-filter: blur(22px) saturate(1.18);
+    -webkit-backdrop-filter: blur(22px) saturate(1.18);
+    border-bottom: 1px solid rgba(184, 148, 94, 0.24);
+    box-shadow: 0 14px 36px rgba(34, 56, 47, 0.14);
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.35rem; font-weight: 500; letter-spacing: 0.05em;
+    color: var(--slate); text-decoration: none;
+    display: flex; align-items: center; gap: 12px;
+    margin-right: 28px;
+    flex: 0 0 auto;
+  }
+  .brand-mark {
+    width: auto;
+    height: auto;
+    max-height: 78px;
+    max-width: none;
+    padding: 0;
+    object-fit: contain;
+    clip-path: inset(4% 5%);
+    display: block;
+    background: transparent;
+    border: 0;
+    border-radius: 8px;
+    box-shadow: none;
+  }
+  .nav-logo .brand-lines {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2px;
+    line-height: 0.96;
+  }
+  .nav-logo .brand-primary {
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: 0.035em;
+    color: var(--slate);
+  }
+  .nav-logo .brand-secondary {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #8d6933;
+  }
+  .logo-ornament { font-size: 0.9rem; color: var(--gold); opacity: 0.7; }
+  .nav-links { display: flex; gap: clamp(12px, 1.05vw, 22px); list-style: none; align-items: center; justify-content: center; flex: 1 1 auto; }
+  .nav-links a {
+    font-size: 0.82rem; font-weight: 700; letter-spacing: 0.07em;
+    text-transform: uppercase; color: var(--slate);
+    text-decoration: none; position: relative;
+    transition: color 0.3s ease;
+  }
+  .nav-links a::after {
+    content: ''; position: absolute; bottom: -4px; left: 0; right: 0; height: 1px;
+    background: var(--gold); transform: scaleX(0); transition: transform 0.3s ease;
+  }
+  .nav-links a:hover { color: #8d6933; }
+  .nav-links a:hover::after { transform: scaleX(1); }
+  .nav-cta {
+    display: inline-flex; align-items: center; justify-content: center; min-height: 42px;
+    font-size: 0.64rem; font-weight: 600; line-height: 1; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--slate); background: var(--gold);
+    padding: 11px 18px; border: none; cursor: pointer; border-radius: 6px;
+    transition: all 0.3s ease; text-decoration: none;
+    box-shadow: 0 10px 28px rgba(194,163,111,0.2);
+    margin-left: 4px;
+    white-space: nowrap;
+    flex: 0 0 auto;
+  }
+  .nav-cta:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 16px 34px rgba(194,163,111,0.28); }
+  .lang-switch {
+    display: inline-flex; align-items: center; gap: 4px; flex: 0 0 auto;
+    padding: 4px; border: 1px solid rgba(141,105,51,0.24); border-radius: 6px;
+    background: rgba(255,250,240,0.62);
+  }
+  .lang-switch a {
+    display: inline-flex; align-items: center; justify-content: center; min-height: 28px;
+    padding: 0 9px; border-radius: 4px; color: var(--slate); font-size: 0.68rem;
+    font-weight: 700; letter-spacing: 0.08em; text-decoration: none; text-transform: uppercase;
+  }
+  .lang-switch a.active { background: var(--gold); color: var(--slate); }
+  .footer-lang { margin-top: 18px; }
+  footer .lang-switch { background: rgba(255,250,240,0.1); border-color: rgba(216,185,129,0.3); }
+  footer .lang-switch a { color: var(--off-white); }
+  footer .lang-switch a.active { color: var(--slate); }
+  .nav-toggle {
+    display: none;
+    width: 44px;
+    height: 44px;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 5px;
+    border: 1px solid rgba(141,105,51,0.28);
+    border-radius: 6px;
+    background: rgba(255,250,240,0.72);
+    color: var(--slate);
+    cursor: pointer;
+    flex: 0 0 auto;
+    transition: border-color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+  }
+  .nav-toggle span {
+    width: 20px;
+    height: 2px;
+    border-radius: 999px;
+    background: currentColor;
+    transition: transform 0.25s ease, opacity 0.25s ease;
+  }
+  .nav-toggle:hover {
+    border-color: rgba(141,105,51,0.46);
+    background: rgba(255,250,240,0.94);
+    box-shadow: 0 10px 24px rgba(34,56,47,0.1);
+  }
+  nav.nav-open .nav-toggle span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  nav.nav-open .nav-toggle span:nth-child(2) { opacity: 0; }
+  nav.nav-open .nav-toggle span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  /* HERO */
+  .hero {
+    position: relative; min-height: 94vh; min-height: 94svh;
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
+  }
+
+  /* CAROUSEL */
+  .carousel {
+    position: absolute; inset: 0; z-index: 0;
+  }
+  .carousel-slide {
+    position: absolute; inset: 0;
+    background-size: cover; background-position: center;
+    opacity: 0; transition: opacity 1.4s cubic-bezier(0.45, 0, 0.55, 1);
+    transform: scale(1.08);
+    transition: opacity 1.4s ease, transform 8s ease;
+  }
+  .carousel-slide.active {
+    opacity: 1; transform: scale(1);
+  }
+  .carousel-slide::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(
+      180deg,
+      rgba(34,56,47,0.3) 0%,
+      rgba(34,56,47,0.5) 42%,
+      rgba(34,56,47,0.76) 78%,
+      rgba(34,56,47,0.94) 100%
+    );
+  }
+  .carousel-slide::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(90deg, rgba(34,56,47,0.38), transparent 35%, rgba(34,56,47,0.26));
+  }
+
+  /* Carousel dots */
+  .carousel-dots {
+    position: absolute; bottom: 100px; left: 50%; transform: translateX(-50%);
+    display: flex; gap: 10px; z-index: 3;
+  }
+  .cdot {
+    width: 28px; height: 2px; background: rgba(255,255,255,0.3);
+    border: none; cursor: pointer; padding: 0; transition: all 0.4s ease;
+  }
+  .cdot.active { width: 48px; background: var(--gold); }
+
+  /* Carousel caption */
+  .carousel-caption {
+    position: absolute; bottom: 130px; right: 60px; z-index: 3;
+    text-align: right; opacity: 0; transition: opacity 0.8s ease;
+  }
+  .carousel-caption.visible { opacity: 1; }
+  .cc-num {
+    font-size: 0.6rem; font-weight: 700; letter-spacing: 0.3em;
+    color: var(--gold); text-transform: uppercase; margin-bottom: 4px;
+  }
+  .cc-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.9rem; color: rgba(255,250,240,0.86);
+    font-weight: 400; font-style: italic;
+  }
+
+  .hero-content {
+    position: relative; z-index: 2; text-align: center;
+    max-width: 900px; padding: 0 24px;
+    filter: drop-shadow(0 18px 42px rgba(0,0,0,0.28));
+  }
+  .hero-eyebrow {
+    font-size: 0.68rem; font-weight: 600; letter-spacing: 0.3em;
+    text-transform: uppercase; color: var(--gold);
+    margin-bottom: 28px;
+    display: flex; align-items: center; justify-content: center; gap: 16px;
+    opacity: 0; animation: fadeUp 1s 0.3s ease forwards;
+  }
+  .hero-eyebrow::before, .hero-eyebrow::after {
+    content: ''; display: block; width: 40px; height: 1px; background: var(--gold); opacity: 0.6;
+  }
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 7vw, 6rem);
+    font-weight: 400; line-height: 1.1; letter-spacing: -0.01em;
+    color: var(--off-white); margin-bottom: 28px;
+    opacity: 0; animation: fadeUp 1s 0.55s ease forwards;
+  }
+  .hero-title em { font-style: italic; color: var(--gold-light); }
+  .hero-sub {
+    font-size: 0.9rem; font-weight: 300; letter-spacing: 0.06em;
+    color: var(--text-mid); max-width: 480px; margin: 0 auto 56px;
+    line-height: 1.8;
+    opacity: 0; animation: fadeUp 1s 0.8s ease forwards;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* PILL SEARCH BAR */
+  .quick-search {
+    display: inline-flex; align-items: center;
+    background: rgba(34, 56, 47, 0.68);
+    backdrop-filter: blur(28px) saturate(1.4);
+    -webkit-backdrop-filter: blur(28px) saturate(1.4);
+    border: 1px solid rgba(216,185,129,0.34);
+    border-radius: 100px;
+    padding: 6px 6px 6px 6px;
+    gap: 0;
+    opacity: 0; animation: fadeUp 1s 1.05s ease forwards;
+    box-shadow: var(--shadow), inset 0 1px 0 rgba(255,255,255,0.08);
+  }
+  .qs-field {
+    padding: 13px 22px 13px 18px;
+    border: 1.5px solid rgba(216,185,129,0.72);
+    border-radius: 6px;
+    background: rgba(255,250,240,0.2);
+    display: flex; align-items: center; gap: 12px;
+    min-width: 180px; position: relative;
+    transition: border-color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+  }
+  .qs-field:focus-within {
+    border-color: rgba(216,185,129,0.95);
+    background: rgba(255,250,240,0.28);
+    box-shadow: 0 0 0 4px rgba(216,185,129,0.18), 0 12px 34px rgba(0,0,0,0.18);
+  }
+  .qs-icon {
+    color: var(--gold); flex-shrink: 0; opacity: 0.9;
+  }
+  .qs-inner { display: flex; flex-direction: column; gap: 7px; min-width: 0; width: 100%; }
+  .qs-label {
+    font-size: 0.56rem; font-weight: 700; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--gold); opacity: 0.85;
+    line-height: 1;
+  }
+  .qs-value {
+    font-size: 0.86rem; font-weight: 600;
+    background: none; border: none; color: #fffdf7;
+    font-family: 'Montserrat', sans-serif; cursor: text; outline: none;
+    padding: 0; line-height: 1.4;
+    width: 100%; min-width: 120px;
+    -webkit-appearance: none; appearance: none;
+  }
+  select.qs-value { cursor: pointer; }
+  .qs-value::placeholder { color: rgba(255,250,240,0.84); }
+  .qs-value option { background: var(--slate); color: var(--off-white); }
+  .qs-btn {
+    display: flex; align-items: center; gap: 10px;
+    padding: 14px 28px; background: var(--gold);
+    font-size: 0.68rem; font-weight: 700; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--slate);
+    border: none; cursor: pointer;
+    border-radius: 100px;
+    transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    white-space: nowrap;
+    box-shadow: 0 4px 20px rgba(184,153,106,0.3);
+    flex-shrink: 0;
+  }
+  .qs-btn:hover { background: var(--gold-light); transform: translateY(-1px) scale(1.02); box-shadow: 0 12px 32px rgba(194,163,111,0.38); }
+  .qs-btn svg { flex-shrink: 0; }
+
+  /* SCROLL INDICATOR */
+  .scroll-indicator {
+    position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+    opacity: 0; animation: fadeUp 1s 1.4s ease forwards; z-index: 2;
+  }
+  .scroll-indicator span {
+    font-size: 0.6rem; letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--text-light);
+  }
+  .scroll-line {
+    width: 1px; height: 50px; background: linear-gradient(to bottom, var(--gold), transparent);
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.3; transform: scaleY(0.7); }
+    50% { opacity: 1; transform: scaleY(1); }
+  }
+
+  /* SECTIONS */
+  section { padding: 128px 60px; }
+  .section-eyebrow {
+    font-size: 0.65rem; font-weight: 700; letter-spacing: 0.3em;
+    text-transform: uppercase; color: #735522;
+    display: flex; align-items: center; gap: 14px; margin-bottom: 20px;
+  }
+  .section-eyebrow::before {
+    content: ''; display: block; width: 30px; height: 1px; background: #8d6933;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 4vw, 3.8rem);
+    font-weight: 400; line-height: 1.15; color: var(--text-on-light);
+    margin-bottom: 20px;
+  }
+  .section-title em { font-style: italic; color: #8d6933; }
+  .section-desc {
+    font-size: 0.88rem; line-height: 1.9; color: var(--muted-on-light);
+    max-width: 520px; font-weight: 300;
+  }
+
+  /* NEPAL COLLECTION */
+  .nepal-section { background: linear-gradient(180deg, #eef4e8 0%, #dfe9dd 100%); }
+  .nepal-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 64px; }
+  .nepal-header-right { text-align: right; }
+  .nepal-section,
+  .global-section {
+    color: var(--text-on-light);
+  }
+  .nepal-section .section-title,
+  .global-section .section-title { color: var(--slate); }
+  .nepal-section .section-title em,
+  .global-section .section-title em { color: #8d6933; }
+  .nepal-section .section-desc,
+  .global-section .section-desc { color: var(--muted-on-light); }
+
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+  .card {
+    position: relative; border-radius: 8px; overflow: hidden;
+    cursor: pointer; border: 1px solid rgba(184,148,94,0.18);
+    box-shadow: 0 22px 70px rgba(0,0,0,0.24);
+    background: rgba(34,56,47,0.88);
+    transform: translateY(0);
+    transition: transform 0.45s ease, border-color 0.45s ease, box-shadow 0.45s ease;
+  }
+  .card:hover { transform: translateY(-6px); border-color: rgba(194,163,111,0.34); box-shadow: 0 34px 90px rgba(0,0,0,0.34); }
+  .card-img {
+    width: 100%; aspect-ratio: 3/4; object-fit: cover;
+    transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    display: block;
+  }
+  .card:hover .card-img { transform: scale(1.07); }
+  .card-glass {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    padding: 32px 28px 28px;
+    background: linear-gradient(to top, rgba(34,56,47,0.94) 0%, rgba(34,56,47,0.62) 60%, transparent 100%);
+    backdrop-filter: blur(0px);
+    transition: all 0.5s ease;
+  }
+  .card:hover .card-glass {
+    background: linear-gradient(to top, rgba(34,56,47,0.98) 0%, rgba(34,56,47,0.74) 70%, rgba(34,56,47,0.18) 100%);
+    backdrop-filter: blur(8px);
+  }
+  .card-tag {
+    display: inline-block; font-size: 0.58rem; font-weight: 700;
+    letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold);
+    border: 1px solid rgba(194,163,111,0.5); padding: 5px 12px; border-radius: 999px;
+    margin-bottom: 12px;
+  }
+  .card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.45rem; font-weight: 500; color: var(--off-white);
+    margin-bottom: 8px; line-height: 1.2;
+  }
+  .card-desc {
+    font-size: 0.78rem; color: var(--text-light); line-height: 1.7;
+    margin-bottom: 20px; font-weight: 300;
+    max-height: 0; overflow: hidden;
+    transition: max-height 0.5s ease, opacity 0.5s ease;
+    opacity: 0;
+  }
+  .card:hover .card-desc { max-height: 80px; opacity: 1; }
+  .card-cta {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 0.65rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--gold); background: none; border: none; cursor: pointer;
+    transform: translateY(8px); opacity: 0;
+    transition: all 0.4s ease 0.1s;
+  }
+  .card:hover .card-cta { transform: translateY(0); opacity: 1; }
+  .card-cta svg { transition: transform 0.3s ease; }
+  .card-cta:hover svg { transform: translateX(4px); }
+
+  /* LARGE FEATURED CARD */
+  .cards-grid.featured { grid-template-columns: 1.4fr 1fr 1fr; }
+
+  /* GLOBAL GATEWAY */
+  .global-section {
+    background: linear-gradient(135deg, #e7f0e7 0%, #f7efe1 100%);
+    position: relative; overflow: hidden;
+  }
+  .global-section::before {
+    content: '';
+    position: absolute; top: -200px; right: -200px;
+    width: 600px; height: 600px;
+    background: linear-gradient(135deg, rgba(194,163,111,0.05), transparent 65%);
+    pointer-events: none;
+  }
+  .global-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 64px; }
+  .destinations-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+
+  .dest-card {
+    position: relative; aspect-ratio: 3/4; overflow: hidden; cursor: pointer;
+    border-radius: 8px; border: 1px solid rgba(194,163,111,0.16);
+    box-shadow: 0 22px 70px rgba(0,0,0,0.25);
+    transition: transform 0.45s ease, border-color 0.45s ease, box-shadow 0.45s ease;
+  }
+  .dest-card:hover { transform: translateY(-6px); border-color: rgba(194,163,111,0.35); box-shadow: 0 34px 90px rgba(0,0,0,0.34); }
+  .dest-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s ease; display: block; }
+  .dest-card:hover .dest-img { transform: scale(1.1); }
+  .dest-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(34,56,47,0.94) 0%, rgba(34,56,47,0.22) 55%, transparent 100%);
+    transition: background 0.5s ease;
+  }
+  .dest-card:hover .dest-overlay {
+    background: linear-gradient(to top, rgba(34,56,47,0.98) 0%, rgba(34,56,47,0.44) 60%, rgba(34,56,47,0.08) 100%);
+  }
+  .dest-content {
+    position: absolute; bottom: 0; left: 0; right: 0; padding: 36px 32px;
+  }
+  .dest-region {
+    font-size: 0.6rem; font-weight: 700; letter-spacing: 0.25em;
+    text-transform: uppercase; color: var(--gold); margin-bottom: 8px;
+  }
+  .dest-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem; font-weight: 500; color: var(--off-white);
+    line-height: 1.1; margin-bottom: 4px;
+  }
+  .dest-tagline {
+    font-size: 0.75rem; color: var(--text-light); margin-bottom: 20px;
+    font-weight: 300; letter-spacing: 0.04em;
+    opacity: 0; transform: translateY(10px); transition: all 0.4s ease;
+  }
+  .dest-card:hover .dest-tagline { opacity: 1; transform: translateY(0); }
+  .dest-price-row {
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .dest-price {
+    font-size: 1.4rem; font-weight: 300;
+    color: var(--gold-light); letter-spacing: -0.01em;
+  }
+  .dest-price sup { font-size: 0.7rem; font-weight: 600; vertical-align: super; }
+  .dest-price small { font-size: 0.62rem; color: var(--text-light); display: block; font-weight: 400; letter-spacing: 0.06em; }
+  .dest-explore {
+    font-size: 0.6rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--slate); background: var(--gold); padding: 10px 20px; border-radius: 6px;
+    border: none; cursor: pointer; opacity: 0; transform: translateY(8px);
+    transition: all 0.4s ease 0.1s;
+  }
+  .dest-card:hover .dest-explore { opacity: 1; transform: translateY(0); }
+
+  /* SERVICES */
+  .services-section { background: linear-gradient(180deg, #2e473d 0%, #456b5c 100%); position: relative; overflow: hidden; color: var(--text-on-dark); }
+  .services-section::after {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.02'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    pointer-events: none;
+  }
+  .services-inner { position: relative; z-index: 1; }
+  .services-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin-top: 64px; }
+  .service-item {
+    padding: 48px 36px;
+    background: rgba(34,56,47,0.42);
+    border: 1px solid rgba(255,250,240,0.18);
+    border-radius: 8px;
+    transition: all 0.4s ease;
+    cursor: pointer;
+  }
+  .service-item:hover {
+    background: rgba(34,56,47,0.58);
+    border-color: rgba(194,163,111,0.34);
+    transform: translateY(-4px);
+    box-shadow: 0 22px 70px rgba(0,0,0,0.22);
+  }
+  .service-icon {
+    width: 48px; height: 48px; margin-bottom: 28px;
+    color: var(--gold);
+  }
+  .service-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem; font-weight: 500; color: var(--off-white);
+    margin-bottom: 12px; line-height: 1.3;
+  }
+  .service-desc { font-size: 0.78rem; color: var(--muted-on-dark); line-height: 1.8; font-weight: 400; }
+
+  /* TESTIMONIALS */
+  .services-section .section-title,
+  .testimonials-section .section-title,
+  .final-cta .section-title { color: var(--text-on-dark); }
+  .services-section .section-eyebrow,
+  .testimonials-section .section-eyebrow,
+  .final-cta .section-eyebrow { color: var(--gold-light); }
+  .services-section .section-eyebrow::before,
+  .testimonials-section .section-eyebrow::before,
+  .final-cta .section-eyebrow::before { background: var(--gold-light); }
+  .services-section .section-title em,
+  .testimonials-section .section-title em,
+  .final-cta .section-title em { color: var(--gold-light); }
+  .services-section .section-desc,
+  .testimonials-section .section-desc,
+  .final-cta .section-desc { color: var(--muted-on-dark); }
+
+  .testimonials-section { background: var(--slate); color: var(--text-on-dark); }
+  .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-top: 64px; }
+  .testimonial-card {
+    padding: 40px 36px;
+    border: 1px solid rgba(194,163,111,0.18);
+    position: relative;
+    border-radius: 8px;
+    background: rgba(255,255,255,0.025);
+    box-shadow: 0 18px 54px rgba(0,0,0,0.18);
+  }
+  .testimonial-card::before {
+    content: '"';
+    font-family: 'Playfair Display', serif;
+    font-size: 6rem; line-height: 1; color: var(--gold); opacity: 0.15;
+    position: absolute; top: 20px; right: 28px;
+  }
+  .stars { color: var(--gold); font-size: 0.75rem; letter-spacing: 2px; margin-bottom: 20px; }
+  .testimonial-text { font-size: 0.85rem; line-height: 1.85; color: var(--muted-on-dark); font-weight: 300; font-style: italic; margin-bottom: 28px; }
+  .testimonial-author { display: flex; align-items: center; gap: 14px; }
+  .author-avatar {
+    width: 44px; height: 44px; border-radius: 50%;
+    background: var(--slate-light); object-fit: cover;
+    border: 2px solid rgba(184,153,106,0.3);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--gold);
+  }
+  .author-name { font-size: 0.82rem; font-weight: 600; color: var(--off-white); letter-spacing: 0.04em; }
+  .author-origin { font-size: 0.68rem; color: var(--text-light); letter-spacing: 0.08em; }
+
+  /* STATS */
+  .stats-bar {
+    background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+    padding: 48px 60px;
+    display: grid; grid-template-columns: repeat(4, 1fr);
+  }
+  .stat-item { text-align: center; border-right: 1px solid rgba(26,31,46,0.2); }
+  .stat-item:last-child { border-right: none; }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem; font-weight: 400; color: var(--slate);
+    line-height: 1; margin-bottom: 8px;
+  }
+  .stat-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--slate); opacity: 0.7; }
+
+  /* FOOTER */
+  footer {
+    background: var(--slate-mid);
+    border-top: 1px solid var(--line);
+    padding: 80px 60px 40px;
+  }
+  footer .nav-logo { gap: 15px; align-items: center; }
+  footer .brand-mark { max-height: 68px; max-width: none; }
+  footer .nav-logo .brand-primary { color: var(--off-white); }
+  footer .nav-logo .brand-secondary { color: var(--gold-light); }
+  .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1.5fr; gap: 60px; margin-bottom: 64px; }
+  .footer-brand p { font-size: 0.8rem; color: var(--text-light); line-height: 1.9; margin-top: 20px; font-weight: 300; max-width: 280px; }
+  .footer-heading {
+    font-size: 0.62rem; font-weight: 700; letter-spacing: 0.25em;
+    text-transform: uppercase; color: var(--gold); margin-bottom: 24px;
+  }
+  .footer-links { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+  .footer-links a {
+    font-size: 0.8rem; color: var(--text-light); text-decoration: none;
+    font-weight: 300; transition: color 0.3s ease;
+  }
+  .footer-links a:hover { color: var(--gold-light); }
+  .contact-detail {
+    display: flex; align-items: flex-start; gap: 12px;
+    margin-bottom: 16px;
+  }
+  .contact-icon { color: var(--gold); flex-shrink: 0; margin-top: 2px; }
+  .contact-text { font-size: 0.8rem; color: var(--text-light); line-height: 1.6; font-weight: 300; }
+  .contact-text a { color: var(--text-light); text-decoration: none; transition: color 0.3s; }
+  .contact-text a:hover { color: var(--gold-light); }
+  .booking-cta {
+    display: block; width: 100%; padding: 18px;
+    background: var(--gold); color: var(--slate);
+    font-size: 0.7rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;
+    border: none; cursor: pointer; text-align: center; text-decoration: none;
+    border-radius: 6px;
+    transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    margin-top: 20px;
+  }
+  .booking-cta:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 14px 34px rgba(194,163,111,0.22); }
+  .footer-bottom {
+    display: flex; justify-content: space-between; align-items: center;
+    padding-top: 32px; border-top: 1px solid rgba(255,255,255,0.06);
+  }
+  .footer-copy { font-size: 0.72rem; color: var(--text-light); font-weight: 300; }
+  .footer-socials { display: flex; gap: 20px; }
+  .social-link {
+    width: 36px; height: 36px; border: 1px solid rgba(184,153,106,0.25);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--gold); text-decoration: none;
+    transition: all 0.3s ease;
+    font-size: 0.75rem;
+  }
+  .social-link svg { width: 17px; height: 17px; display: block; }
+  .social-link:hover { background: var(--gold); color: var(--slate); border-color: var(--gold); }
+
+  /* MODAL */
+  .modal-overlay {
+    position: fixed; inset: 0; z-index: 2000;
+    background: rgba(34,56,47,0.9);
+    backdrop-filter: blur(16px);
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; pointer-events: none; transition: opacity 0.4s ease;
+    padding: 24px;
+  }
+  .modal-overlay.active { opacity: 1; pointer-events: all; }
+  .modal {
+    background: linear-gradient(180deg, var(--slate-light), var(--slate-mid));
+    border: 1px solid rgba(194,163,111,0.24);
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    max-width: 640px; width: 100%;
+    transform: translateY(30px) scale(0.97);
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    max-height: 90vh; overflow-y: auto;
+  }
+  .modal-overlay.active .modal { transform: translateY(0) scale(1); }
+  .modal-header {
+    padding: 40px 48px 32px;
+    border-bottom: 1px solid rgba(184,153,106,0.15);
+    display: flex; justify-content: space-between; align-items: flex-start;
+  }
+  .modal-tag { font-size: 0.6rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
+  .modal-title { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 500; color: var(--off-white); }
+  .modal-close {
+    width: 36px; height: 36px; display: flex; align-items: center; justify-content: center;
+    border: 1px solid rgba(194,163,111,0.3); color: var(--gold);
+    border-radius: 6px;
+    background: none; cursor: pointer; font-size: 1.2rem; flex-shrink: 0;
+    transition: all 0.3s ease;
+  }
+  .modal-close:hover { background: var(--gold); color: var(--slate); }
+  .modal-body { padding: 40px 48px; }
+  .modal-form { display: flex; flex-direction: column; gap: 20px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .form-field { display: flex; flex-direction: column; gap: 12px; }
+  .form-label { font-size: 0.6rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); }
+  .form-input {
+    background: rgba(255,250,240,0.24); border: 1.5px solid rgba(216,185,129,0.78);
+    border-radius: 6px;
+    padding: 15px 16px; color: #fffdf7; font-family: 'Montserrat', sans-serif;
+    font-size: 0.86rem; font-weight: 500; outline: none; cursor: text;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
+    transition: border-color 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+  }
+  select.form-input { cursor: pointer; }
+  .form-input:hover { border-color: rgba(216,185,129,0.92); background: rgba(255,250,240,0.28); }
+  .form-input:focus { border-color: var(--gold-light); background: rgba(255,250,240,0.32); box-shadow: 0 0 0 4px rgba(194,163,111,0.2), 0 12px 34px rgba(0,0,0,0.18); }
+  .form-input::placeholder { color: rgba(255,250,240,0.84); }
+  .form-input option { background: var(--slate); }
+  .form-submit {
+    background: var(--gold); color: var(--slate);
+    font-size: 0.7rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;
+    padding: 18px; border: none; cursor: pointer; margin-top: 8px; border-radius: 6px;
+    transition: all 0.3s ease;
+  }
+  .form-submit:hover { background: var(--gold-light); transform: translateY(-1px); }
+
+  /* REVEAL ANIMATIONS */
+  .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease, transform 0.8s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-4 { transition-delay: 0.4s; }
+
+  /* DIVIDER */
+  .gold-divider {
+    width: 60px; height: 1px; background: linear-gradient(to right, transparent, var(--gold), transparent);
+    margin: 0 auto 20px;
+  }
+
+  /* VIEW ALL LINK */
+  .view-all {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 0.65rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--gold); text-decoration: none;
+    border-bottom: 1px solid rgba(184,153,106,0.4);
+    padding-bottom: 4px; transition: all 0.3s ease;
+  }
+  .view-all:hover { gap: 14px; border-color: var(--gold); }
+
+  .offer-strip, .final-cta {
+    background: linear-gradient(135deg, var(--slate) 0%, var(--evergreen) 100%);
+    padding: 42px 60px;
+    display: flex; align-items: center; justify-content: space-between; gap: 28px;
+    border-top: 1px solid rgba(216,185,129,0.24);
+    border-bottom: 1px solid rgba(216,185,129,0.24);
+    color: var(--text-on-dark);
+  }
+  .offer-strip h3, .final-cta h2 {
+    font-family: 'Playfair Display', serif; font-weight: 400; color: var(--off-white);
+    font-size: clamp(1.7rem, 3vw, 2.8rem); line-height: 1.15;
+  }
+  .offer-strip p, .final-cta p { color: var(--muted-on-dark); line-height: 1.8; max-width: 620px; font-size: 0.88rem; }
+  .section-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 26px; }
+  .primary-link, .secondary-link {
+    display: inline-flex; align-items: center; justify-content: center; min-height: 44px;
+    padding: 13px 22px; border-radius: 6px; text-decoration: none;
+    font-size: 0.68rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase;
+  }
+  .primary-link { background: var(--gold); color: var(--slate); }
+  .secondary-link { border: 1px solid rgba(216,185,129,0.55); color: var(--gold-light); }
+
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible,
+  select:focus-visible,
+  textarea:focus-visible {
+    outline: 2px solid var(--gold-light);
+    outline-offset: 4px;
+  }
+
+  @media (hover: none), (pointer: coarse) {
+    body, a, button, input, select, textarea, .card, .dest-card, .service-item { cursor: auto; }
+    .card-desc,
+    .card-cta,
+    .dest-tagline,
+    .dest-explore {
+      opacity: 1;
+      max-height: none;
+      transform: none;
+    }
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 1180px) {
+    nav { padding: 6px 24px; gap: 18px; }
+    nav.scrolled { padding: 6px 24px; }
+    .nav-links {
+      position: absolute;
+      top: calc(100% + 1px);
+      left: 16px;
+      right: 16px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0;
+      padding: 12px;
+      background: rgba(255,253,247,0.98);
+      border: 1px solid rgba(184,148,94,0.22);
+      border-radius: 8px;
+      box-shadow: 0 24px 58px rgba(34,56,47,0.18);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-8px);
+      pointer-events: none;
+      transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease;
+      flex: initial;
+    }
+    nav.nav-open .nav-links {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+    .nav-links a {
+      display: flex;
+      min-height: 48px;
+      align-items: center;
+      padding: 0 14px;
+      border-radius: 6px;
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+    }
+    .nav-links a:hover,
+    .nav-links a.active { background: rgba(184,148,94,0.1); }
+    .nav-toggle { display: inline-flex; }
+    section { padding: 80px 24px; }
+    .hero-title { font-size: 2.6rem; }
+    .hero { min-height: 92vh; min-height: 92svh; align-items: flex-start; padding-top: 128px; }
+    .hero-sub { margin-bottom: 36px; }
+    .quick-search { width: min(100%, 520px); flex-direction: column; align-items: stretch; border-radius: 8px; padding: 10px; }
+    .qs-field { min-width: 100%; width: 100%; padding: 16px 14px; }
+    .qs-value { min-width: 0; font-size: 0.9rem; }
+    .qs-btn { justify-content: center; width: 100%; border-radius: 6px; margin-top: 4px; }
+    .cards-grid, .cards-grid.featured, .destinations-row { grid-template-columns: 1fr; }
+    .services-grid { grid-template-columns: repeat(2, 1fr); }
+    .testimonials-grid { grid-template-columns: 1fr; }
+    .stats-bar { grid-template-columns: repeat(2, 1fr); padding: 40px 24px; }
+    .stat-item { border-right: none; border-bottom: 1px solid rgba(26,31,46,0.2); padding: 20px 0; }
+    .stat-item:last-child { border-bottom: none; }
+    .footer-top { grid-template-columns: 1fr 1fr; gap: 40px; }
+    .nepal-header, .global-header { flex-direction: column; gap: 16px; }
+    .nepal-header-right { text-align: left; }
+    .modal-header, .modal-body { padding: 28px; }
+    .form-row { grid-template-columns: 1fr; }
+    .carousel-caption { display: none; }
+    .carousel-dots { bottom: 32px; }
+    .scroll-indicator { display: none; }
+    .offer-strip, .final-cta { padding: 36px 24px; align-items: flex-start; flex-direction: column; }
+    .footer-bottom { flex-direction: column; gap: 20px; text-align: center; }
+  }
+
+  @media (max-width: 640px) {
+    nav { gap: 12px; padding: 6px 16px; }
+    nav.scrolled { padding: 6px 16px; }
+    .nav-logo { font-size: 0.95rem; line-height: 1.2; min-width: 0; gap: 10px; margin-right: 0; }
+    .brand-mark { max-height: 62px; padding: 0; clip-path: inset(4% 5%); }
+    footer .brand-mark { max-height: 52px; }
+    .nav-logo .brand-primary { font-size: 1.18rem; }
+    .nav-logo .brand-secondary { font-size: 0.62rem; letter-spacing: 0.045em; }
+    .nav-cta { min-height: 38px; padding: 9px 12px; font-size: 0.58rem; line-height: 1; letter-spacing: 0.08em; flex-shrink: 0; margin-left: 0; white-space: nowrap; }
+    .lang-switch a { min-height: 26px; padding: 0 7px; font-size: 0.62rem; letter-spacing: 0.04em; }
+    section { padding: 72px 20px; }
+    .hero { min-height: 92vh; min-height: 92svh; padding-top: 116px; }
+    .hero-title { font-size: 2.55rem; }
+    .hero-content { padding: 0 16px; }
+    .hero-eyebrow { letter-spacing: 0.18em; gap: 10px; }
+    .hero-eyebrow::before, .hero-eyebrow::after { width: 20px; }
+    .nepal-header-right, .nepal-header-right .section-desc { text-align: left !important; }
+    .services-grid, .stats-bar, .footer-top { grid-template-columns: 1fr; }
+    .stats-bar { padding: 28px 20px; }
+    .stat-item { border-right: none; }
+    .dest-content, .card-glass { padding: 28px 22px 24px; }
+    .dest-price-row { align-items: flex-start; gap: 16px; flex-direction: column; }
+    footer { padding: 64px 24px 32px; }
+  }
+
+  @media (max-width: 520px) {
+    .nav-cta { display: none; }
+  }
+
+  html[lang="ne"] body,
+  html[lang="ne"] input,
+  html[lang="ne"] select,
+  html[lang="ne"] textarea,
+  html[lang="ne"] button {
+    font-family: 'Noto Sans Devanagari', 'Montserrat', sans-serif;
+  }
+  html[lang="ne"] h1,
+  html[lang="ne"] h2,
+  html[lang="ne"] h3,
+  html[lang="ne"] .brand-primary {
+    font-family: 'Noto Sans Devanagari', 'Playfair Display', serif;
+  }
+  html[lang="ne"] .nav-links a,
+  html[lang="ne"] .nav-cta,
+  html[lang="ne"] .btn,
+  html[lang="ne"] .tag,
+  html[lang="ne"] .eyebrow,
+  html[lang="ne"] .footer-heading {
+    letter-spacing: 0.02em;
+  }
+</style>
+</head>
+<body>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal">
+  <div class="modal">
+    <div class="modal-header">
+      <div>
+        <div class="modal-tag" id="modalTag">Booking Inquiry</div>
+        <div class="modal-title" id="modalTitle">Everest Base Camp Trek</div>
+      </div>
+      <button class="modal-close" onclick="closeModal()">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-form">
+        <div class="form-row">
+          <div class="form-field">
+            <label class="form-label">Full Name</label>
+            <input class="form-input" type="text" placeholder="Your name" />
+          </div>
+          <div class="form-field">
+            <label class="form-label">Email Address</label>
+            <input class="form-input" type="email" placeholder="your@email.com" />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-field">
+            <label class="form-label">Phone Number</label>
+            <input class="form-input" type="tel" placeholder="+1 234 567 8900" />
+          </div>
+          <div class="form-field">
+            <label class="form-label">Preferred Date</label>
+            <input class="form-input" type="date" />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-field">
+            <label class="form-label">Number of Guests</label>
+            <select class="form-input">
+              <option>1 Person</option>
+              <option>2 Persons</option>
+              <option>3-5 Persons</option>
+              <option>6-10 Persons</option>
+              <option>10+ Persons</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label class="form-label">Tour Duration</label>
+            <select class="form-input">
+              <option>7-10 Days</option>
+              <option>11-14 Days</option>
+              <option>15-20 Days</option>
+              <option>Custom</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-field">
+          <label class="form-label">Special Requests</label>
+          <textarea class="form-input" rows="3" placeholder="Any special requirements, dietary needs, or notes..."></textarea>
+        </div>
+        <button class="form-submit" onclick="submitInquiry()">Send Inquiry - We Respond Within 24 Hours</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="index.html" class="nav-logo">
+    <img class="brand-mark" src="Aaradhya Travels and Tours logo.png" alt="Aaradhya Travels and Tours logo" /><span class="brand-lines"><span class="brand-primary">Aaradhya</span><span class="brand-secondary">Travels and Tours</span></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="nepal-packages.html">Nepal</a></li>
+    <li><a href="international-tours.html">International</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="tirtha-yatra.html">Pilgrimage</a></li>
+    <li><a href="healing-wellbeing.html">Healing</a></li>
+    <li><a href="offers.html">Offers</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a href="contact.html" class="nav-cta">Plan a Trip</a>
+<button class="nav-toggle" type="button" aria-label="Open navigation menu" aria-expanded="false"><span></span><span></span><span></span></button></nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+
+  <!-- CAROUSEL SLIDES -->
+  <div class="carousel" id="carousel">
+    <div class="carousel-slide active" style="background-image:url('https://images.unsplash.com/photo-1605640840605-14ac1855827b?w=1920&q=85')"></div>
+    <div class="carousel-slide" style="background-image:url('https://images.unsplash.com/photo-1533130061792-64b345e4a833?w=1920&q=85')"></div>
+    <div class="carousel-slide" style="background-image:url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1920&q=85')"></div>
+    <div class="carousel-slide" style="background-image:url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1920&q=85')"></div>
+    <div class="carousel-slide" style="background-image:url('https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=1920&q=85')"></div>
+    <div class="carousel-slide" style="background-image:url('https://images.unsplash.com/photo-1548013146-72479768bada?w=1920&q=85')"></div>
+    <div class="carousel-slide" style="background-image:url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1920&q=85')"></div>
+  </div>
+
+  <!-- CAROUSEL CAPTION -->
+  <div class="carousel-caption visible" id="carouselCaption">
+    <div class="cc-title" id="ccTitle">Swayambhunath, Kathmandu</div>
+  </div>
+
+  <!-- CAROUSEL DOTS -->
+  <div class="carousel-dots">
+    <button class="cdot active" onclick="goToSlide(0)"></button>
+    <button class="cdot" onclick="goToSlide(1)"></button>
+    <button class="cdot" onclick="goToSlide(2)"></button>
+    <button class="cdot" onclick="goToSlide(3)"></button>
+    <button class="cdot" onclick="goToSlide(4)"></button>
+    <button class="cdot" onclick="goToSlide(5)"></button>
+    <button class="cdot" onclick="goToSlide(6)"></button>
+  </div>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">Est. Kathmandu, Nepal&nbsp;&nbsp;Since 1998</div>
+    <h1 class="hero-title">
+      Journeys that feel<br /><em>beautifully handled</em>
+    </h1>
+    <p class="hero-sub">Premium Nepal adventures and international holidays designed with local insight, careful planning, and warm end-to-end support.</p>
+
+    <!-- PILL SEARCH BAR -->
+    <div class="quick-search">
+      <div class="qs-field">
+        <svg class="qs-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <div class="qs-inner">
+          <span class="qs-label">Where to?</span>
+          <input class="qs-value" list="destination-options" placeholder="Destination" autocomplete="off" />
+          <datalist id="destination-options">
+            <option value="Everest Region"></option>
+            <option value="Annapurna Circuit"></option>
+            <option value="Kathmandu Valley"></option>
+            <option value="Pokhara"></option>
+            <option value="Chitwan"></option>
+            <option value="Europe"></option>
+            <option value="Dubai"></option>
+            <option value="Hong Kong"></option>
+          </datalist>
+        </div>
+      </div>
+      <div class="qs-field">
+        <svg class="qs-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        <div class="qs-inner">
+          <span class="qs-label">When?</span>
+          <input type="text" class="qs-value" placeholder="Travel Date" onfocus="this.type='date'" onblur="if(!this.value)this.type='text'" />
+        </div>
+      </div>
+      <div class="qs-field">
+        <svg class="qs-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        <div class="qs-inner">
+          <span class="qs-label">Tour Type</span>
+          <select class="qs-value">
+            <option value="" disabled selected hidden>Select type</option>
+            <option>Trekking</option>
+            <option>City Tour</option>
+            <option>Group Adventure</option>
+            <option>International</option>
+            <option>Pilgrimage</option>
+          </select>
+        </div>
+      </div>
+      <button class="qs-btn" onclick="openModal('Tour Inquiry','Your Custom Journey')">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        Search
+      </button>
+    </div>
+  </div>
+
+  <div class="scroll-indicator">
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- NEPAL COLLECTION -->
+<section class="nepal-section" id="nepal">
+  <div class="nepal-header">
+    <div>
+      <div class="section-eyebrow reveal">The Nepal Collection</div>
+      <h2 class="section-title reveal reveal-delay-1">The <em>Spirit</em><br />of Nepal</h2>
+    </div>
+    <div class="nepal-header-right reveal">
+      <p class="section-desc" style="text-align:right">From the soaring peaks of the Khumbu to the living temples of the Kathmandu Valley - each journey is a revelation.</p>
+      <br />
+      <a href="nepal-packages.html" class="view-all">All Packages &rarr;</a>
+    </div>
+  </div>
+
+  <div class="cards-grid featured">
+
+    <div class="card reveal" onclick="openModal('Trekking','Everest Base Camp Expedition')">
+      <img class="card-img" src="https://images.unsplash.com/photo-1533130061792-64b345e4a833?w=800&q=80" alt="Everest Base Camp" style="aspect-ratio:2/3" />
+      <div class="card-glass">
+        <div class="card-tag">Signature Trek</div>
+        <div class="card-title">Everest Base<br />Camp Expedition</div>
+        <div class="card-desc">The ultimate Himalayan odyssey. 14 days through Sherpa villages, rhododendron forests, and glacial moraines to the foot of the world's highest peak.</div>
+        <button class="card-cta">Enquire Now <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+      </div>
+    </div>
+
+    <div class="card reveal reveal-delay-1" onclick="openModal('City Tour','Kathmandu Valley Heritage Tour')">
+      <img class="card-img" src="https://images.unsplash.com/photo-1605640840605-14ac1855827b?w=700&q=80" alt="Kathmandu" />
+      <div class="card-glass">
+        <div class="card-tag">Guided City Tour</div>
+        <div class="card-title">Kathmandu Valley Heritage</div>
+        <div class="card-desc">Three UNESCO World Heritage cities - Kathmandu, Patan, and Bhaktapur - in one immersive cultural journey.</div>
+        <button class="card-cta">Enquire Now <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+      </div>
+    </div>
+
+    <div class="card reveal reveal-delay-2" onclick="openModal('Group Adventure','Annapurna Circuit Trek')">
+      <img class="card-img" src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=700&q=80" alt="Annapurna" />
+      <div class="card-glass">
+        <div class="card-tag">Group Adventure</div>
+        <div class="card-title">Annapurna Circuit</div>
+        <div class="card-desc">Cross the legendary Thorong La Pass at 5,416m. A classic, complete Himalayan adventure for small groups.</div>
+        <button class="card-cta">Enquire Now <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Second row -->
+  <div class="cards-grid" style="margin-top:24px">
+    <div class="card reveal" onclick="openModal('Trekking','Langtang Valley Trek')">
+      <img class="card-img" src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=700&q=80" alt="Langtang" />
+      <div class="card-glass">
+        <div class="card-tag">Trekking</div>
+        <div class="card-title">Langtang Valley</div>
+        <div class="card-desc">Nepal's closest trekking region to Kathmandu, offering pristine forests and Tamang culture.</div>
+        <button class="card-cta">Enquire Now <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+      </div>
+    </div>
+    <div class="card reveal reveal-delay-1" onclick="openModal('City Tour','Pokhara Lakeside Retreat')">
+      <img class="card-img" src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=700&q=80" alt="Pokhara" />
+      <div class="card-glass">
+        <div class="card-tag">City & Lake</div>
+        <div class="card-title">Pokhara Lakeside Retreat</div>
+        <div class="card-desc">The jewel of Nepal's lake district, with Phewa Tal reflections and dramatic Annapurna panoramas.</div>
+        <button class="card-cta">Enquire Now <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+      </div>
+    </div>
+    <div class="card reveal reveal-delay-2" onclick="openModal('Wildlife Safari','Chitwan Jungle Safari')">
+      <img class="card-img" src="https://images.unsplash.com/photo-1549366021-9f761d450615?w=700&q=80" alt="Chitwan" />
+      <div class="card-glass">
+        <div class="card-tag">Wildlife Safari</div>
+        <div class="card-title">Chitwan Jungle Safari</div>
+        <div class="card-desc">Encounter one-horned rhinos and Bengal tigers in Nepal's premier national park.</div>
+        <button class="card-cta">Enquire Now <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stat-item">
+    <div class="stat-num">26+</div>
+    <div class="stat-label">Years of Experience</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">8,400+</div>
+    <div class="stat-label">Happy Travellers</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">120+</div>
+    <div class="stat-label">Curated Packages</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">35+</div>
+    <div class="stat-label">Countries Served</div>
+  </div>
+</div>
+
+<div class="offer-strip">
+  <div>
+    <div class="section-eyebrow" style="margin-bottom:14px">Limited-Time Guest Benefit</div>
+    <h3>Early planning benefits for Nepal journeys</h3>
+    <p>Request your Nepal package in advance and our team will check eligible value-adds such as airport assistance, private briefings, and route pairing options.</p>
+  </div>
+  <a class="primary-link" href="offers.html">View Offers</a>
+</div>
+
+<!-- GLOBAL GATEWAY -->
+<section class="global-section" id="global">
+  <div class="global-header">
+    <div>
+      <div class="section-eyebrow reveal">The Global Gateway</div>
+      <h2 class="section-title reveal reveal-delay-1">Beyond<br />the <em>Himalayas</em></h2>
+    </div>
+    <div class="reveal reveal-delay-2">
+      <p class="section-desc">International packages crafted with the same care and precision as our Himalayan journeys. The world, curated for you.</p>
+      <br/>
+      <a href="international-tours.html" class="view-all">All Destinations &rarr;</a>
+    </div>
+  </div>
+
+  <div class="destinations-row reveal">
+    <div class="dest-card" onclick="openModal('International Package','Europe - Grand Tour')">
+      <img class="dest-img" src="https://images.unsplash.com/photo-1499856871958-5b9627545d1a?w=700&q=80" alt="Europe" />
+      <div class="dest-overlay"></div>
+      <div class="dest-content">
+        <div class="dest-region">Western Europe</div>
+        <div class="dest-name">The Grand<br />European Tour</div>
+        <div class="dest-tagline">Paris &middot; Rome &middot; Amsterdam &middot; Barcelona - 14 Days</div>
+        <div class="dest-price-row">
+          <div class="dest-price">
+            <sup>package</sup> Custom quote
+            <small>Single, paired, or combo options</small>
+          </div>
+          <button class="dest-explore">Enquire</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="dest-card" onclick="openModal('International Package','Hong Kong - City of Contrasts')">
+      <img class="dest-img" src="https://images.unsplash.com/photo-1536599018102-9f803c140fc1?w=900&q=86" alt="Hong Kong skyline over Victoria Harbour" />
+      <div class="dest-overlay"></div>
+      <div class="dest-content">
+        <div class="dest-region">East Asia</div>
+        <div class="dest-name">Hong Kong<br />Spectacular</div>
+        <div class="dest-tagline">Neon skylines &middot; Dim sum mornings &middot; Victoria Peak - 7 Days</div>
+        <div class="dest-price-row">
+          <div class="dest-price">
+            <sup>package</sup> Custom quote
+            <small>Family, city, and theme-park options</small>
+          </div>
+          <button class="dest-explore">Enquire</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="dest-card" onclick="openModal('International Package','Dubai - Desert Opulence')">
+      <img class="dest-img" src="https://images.unsplash.com/photo-1518684079-3c830dcef090?w=700&q=80" alt="Dubai" />
+      <div class="dest-overlay"></div>
+      <div class="dest-content">
+        <div class="dest-region">Middle East</div>
+        <div class="dest-name">Dubai<br />Opulence</div>
+        <div class="dest-tagline">Burj Khalifa &middot; Desert Safari &middot; Gold Souk - 6 Days</div>
+        <div class="dest-price-row">
+          <div class="dest-price">
+            <sup>package</sup> Custom quote
+            <small>Luxury, family, and stopover options</small>
+          </div>
+          <button class="dest-explore">Enquire</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services-section" id="services">
+  <div class="services-inner">
+    <div style="text-align:center; margin-bottom:64px">
+      <div class="section-eyebrow reveal" style="justify-content:center">What We Offer</div>
+      <h2 class="section-title reveal reveal-delay-1" style="text-align:center">Complete <em>Travel</em><br />Solutions</h2>
+      <div class="gold-divider reveal reveal-delay-2" style="margin-top:24px"></div>
+    </div>
+    <div class="services-grid">
+      <div class="service-item reveal" onclick="openModal('Service','International Air Ticketing')">
+        <svg class="service-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M6 32l8-8 4 4 14-14 6 2-16 16z"/>
+          <path d="M4 38h40"/>
+          <path d="M10 14l4 4M20 10l2 6"/>
+        </svg>
+        <div class="service-title">International Air Ticketing</div>
+        <div class="service-desc">Competitive fares on all major international routes. Business and economy class, with flexible change policies and priority assistance.</div>
+      </div>
+      <div class="service-item reveal reveal-delay-1" onclick="openModal('Service','Domestic Air Ticketing')">
+        <svg class="service-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+          <circle cx="24" cy="24" r="18"/>
+          <path d="M24 6v18l12 6"/>
+          <path d="M12 30l12-6"/>
+        </svg>
+        <div class="service-title">Domestic Air Ticketing</div>
+        <div class="service-desc">Mountain flight bookings, domestic routes across Nepal - Lukla, Pokhara, Bharatpur - and helicopter charters for remote access.</div>
+      </div>
+      <div class="service-item reveal reveal-delay-2" onclick="openModal('Service','Hotel & Resort Bookings')">
+        <svg class="service-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="6" y="18" width="36" height="26" rx="1"/>
+          <path d="M16 44V30h16v14"/>
+          <path d="M6 18l18-12 18 12"/>
+          <rect x="20" y="30" width="8" height="8"/>
+        </svg>
+        <div class="service-title">Hotel & Resort Bookings</div>
+        <div class="service-desc">From Kathmandu's heritage boutique hotels to remote teahouse lodges - curated accommodation for every style and budget.</div>
+      </div>
+      <div class="service-item reveal reveal-delay-3" onclick="openModal('Service','Visa & Documentation')">
+        <svg class="service-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="8" y="8" width="32" height="40" rx="2"/>
+          <path d="M16 20h16M16 28h16M16 36h8"/>
+          <path d="M30 4v8"/>
+        </svg>
+        <div class="service-title">Visa & Documentation</div>
+        <div class="service-desc">Trekking permits, TIMS cards, visa assistance, and all necessary documentation handled with precision and care.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials-section">
+  <div style="text-align:center">
+    <div class="section-eyebrow reveal" style="justify-content:center">Guest Stories</div>
+    <h2 class="section-title reveal reveal-delay-1" style="text-align:center">Voices of Our <em>Travellers</em></h2>
+  </div>
+  <div class="testimonials-grid">
+    <div class="testimonial-card reveal">
+      <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <p class="testimonial-text">"Aaradhya arranged our Everest Base Camp trek flawlessly. Every detail - from the Sherpa guides to the teahouse bookings - was handled with genuine care. A journey that changed our lives."</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">M</div>
+        <div>
+          <div class="author-name">Marcus & Elena Bauer</div>
+          <div class="author-origin">Munich, Germany</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card reveal reveal-delay-1">
+      <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <p class="testimonial-text">"Our group of twelve had the most seamless experience through the Kathmandu Valley. The guides were encyclopedic in knowledge and warmth. We've already booked the Annapurna Circuit for next year."</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">S</div>
+        <div>
+          <div class="author-name">Sarah Thompson</div>
+          <div class="author-origin">London, United Kingdom</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card reveal reveal-delay-2">
+      <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <p class="testimonial-text">"The Dubai package was beyond expectations. Airport transfers, hotels, desert safari - all handled with premium quality and genuine care. Aaradhya Travels and Tours has earned a lifelong client."</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">R</div>
+        <div>
+          <div class="author-name">Ranjit & Priya Sharma</div>
+          <div class="author-origin">Singapore</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="final-cta">
+  <div>
+    <div class="section-eyebrow" style="margin-bottom:14px">Start With a Thoughtful Plan</div>
+    <h2>Tell us where you want to go. We will shape the journey around you.</h2>
+    <p>Share your dates, budget, travel style, and must-see moments. Aaradhya will respond with a clear route, custom quote guidance, and a warm recommendation you can trust.</p>
+  </div>
+  <div class="section-actions" style="margin-top:0">
+    <a class="primary-link" href="contact.html">Request a Plan</a>
+    <a class="secondary-link" href="offers.html">See Current Offers</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="contact">
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="index.html" class="nav-logo" style="font-size:1.1rem">
+        <img class="brand-mark" src="Aaradhya Travels and Tours logo.png" alt="Aaradhya Travels and Tours logo" /><span class="brand-lines"><span class="brand-primary">Aaradhya</span><span class="brand-secondary">Travels and Tours</span></span>
+      </a>
+      <p>Your trusted travel partner in the heart of Kathmandu, crafting unforgettable journeys across Nepal and the world since 1998. Licenced by Nepal Tourism Board.</p><div class="lang-switch footer-lang" aria-label="Language switcher"><a class="active" href="index.html">EN</a><a href="index-ne.html">नेपाली</a></div>
+      <div style="margin-top:28px;display:flex;gap:12px;flex-wrap:wrap">
+        <img src="https://img.shields.io/badge/Nepal%20Tourism%20Board-Registered-b8996a?style=flat&labelColor=2e3547" alt="NTB" style="height:22px;border-radius:2px" />
+        <img src="https://img.shields.io/badge/TAAN-Member-b8996a?style=flat&labelColor=2e3547" alt="TAAN" style="height:22px;border-radius:2px" />
+      </div>
+    </div>
+
+    <div>
+      <div class="footer-heading">Quick Links</div>
+      <ul class="footer-links">
+        <li><a href="nepal-packages.html">Nepal Packages</a></li>
+        <li><a href="international-tours.html">International Tours</a></li>
+        <li><a href="services.html">Our Services</a></li>
+        <li><a href="offers.html">Offers</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <div class="footer-heading">Destinations</div>
+      <ul class="footer-links">
+        <li><a href="nepal-packages.html">Everest Region</a></li>
+        <li><a href="nepal-packages.html">Annapurna Circuit</a></li>
+        <li><a href="nepal-packages.html">Kathmandu Valley</a></li>
+        <li><a href="nepal-packages.html">Pokhara</a></li>
+        <li><a href="international-tours.html">Europe Tours</a></li>
+        <li><a href="international-tours.html">Dubai Packages</a></li>
+        <li><a href="international-tours.html">Hong Kong</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <div class="footer-heading">Get in Touch</div>
+      <div class="contact-detail">
+        <svg class="contact-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <div class="contact-text">New-Baneshwor-10,<br />Kathmandu, Nepal</div>
+      </div>
+      <div class="contact-detail">
+        <svg class="contact-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.57 3.59 2 2 0 0 1 3.54 1.39h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.15 6.15l1.88-1.88a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <div class="contact-text"><a href="tel:+9779841395391">+9779841395391</a></div>
+      </div>
+      <div class="contact-detail">
+        <svg class="contact-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        <div class="contact-text"><a href="mailto:info@aaradhyatravels.com">info@aaradhyatravels.com</a></div>
+      </div>
+      <a class="booking-cta" href="contact.html">&#10022; &nbsp; Travel Inquiry</a>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <div class="footer-copy">&copy; 2025 Aaradhya Travels and Tours Pvt. Ltd. All rights reserved.</div>
+    <div class="footer-socials">
+      <a href="https://www.facebook.com/AaradhyaTravel" class="social-link" title="Facebook" aria-label="Facebook" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 8.4V6.7c0-.8.4-1.2 1.3-1.2h1.6V2.7c-.8-.1-1.6-.2-2.4-.2-2.6 0-4.3 1.6-4.3 4.5v1.4H7.5v3.1h2.7v8h3.3v-8h2.7l.4-3.1H14Z"/></svg></a>
+      <a href="https://wa.me/9779841395391" class="social-link" title="WhatsApp" aria-label="WhatsApp" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3a8.7 8.7 0 0 0-7.5 13.1L3.4 21l5-1.3A8.7 8.7 0 1 0 12 3Zm0 15.7c-1.4 0-2.7-.4-3.8-1.1l-.3-.2-2 .5.5-2-.2-.3A7 7 0 1 1 12 18.7Zm3.9-5.2c-.2-.1-1.2-.6-1.4-.7-.2-.1-.4-.1-.5.1l-.7.8c-.1.2-.3.2-.5.1-1.4-.7-2.3-1.5-3-2.9-.1-.2 0-.4.1-.5l.4-.5c.1-.1.1-.3.2-.4v-.4c-.1-.1-.5-1.2-.7-1.6-.2-.4-.4-.4-.5-.4h-.5c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 2 0 1.2.8 2.3.9 2.4.1.2 1.7 2.7 4.2 3.7.6.3 1 .4 1.4.5.6.2 1.1.2 1.5.1.5-.1 1.2-.5 1.4-1 .2-.5.2-1 .1-1.1 0-.2-.2-.3-.4-.4Z"/></svg></a>
+      <a href="mailto:info@aaradhyatravels.com" class="social-link" title="Email" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2Z"/><path d="m22 6-10 7L2 6"/></svg></a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Nav scroll
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // Reveal on scroll
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+  reveals.forEach(r => observer.observe(r));
+
+  // Modal
+  function openModal(tag, title) {
+    document.getElementById('modalTag').textContent = tag;
+    document.getElementById('modalTitle').textContent = title;
+    document.getElementById('modal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal() {
+    document.getElementById('modal').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+  document.getElementById('modal').addEventListener('click', e => {
+    if (e.target === document.getElementById('modal')) closeModal();
+  });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+  async function submitInquiry() {
+    const btn = document.querySelector('.form-submit');
+    const modalForm = document.querySelector('.modal-form');
+    const fields = window.collectAaradhyaFields ? window.collectAaradhyaFields(modalForm) : {};
+    const tag = document.getElementById('modalTag')?.textContent || 'Travel Inquiry';
+    const title = document.getElementById('modalTitle')?.textContent || 'Aaradhya Travels and Tours';
+    let result = { ok: false };
+    if (window.submitAaradhyaEnquiry) {
+      result = await window.submitAaradhyaEnquiry({
+        type: tag,
+        title,
+        fields
+      }, { button: btn, statusTarget: modalForm });
+    }
+    btn.textContent = result.ok ? 'Enquiry Sent' : 'Try Again';
+    btn.style.background = result.ok ? 'var(--evergreen)' : 'var(--gold)';
+    btn.style.color = result.ok ? 'var(--off-white)' : 'var(--slate)';
+    if (result.ok) setTimeout(closeModal, 1800);
+  }
+
+  // Parallax on   // CAROUSEL
+  const slides = document.querySelectorAll('.carousel-slide');
+  const dots = document.querySelectorAll('.cdot');
+  const slideMeta = [
+    { title: 'Swayambhunath, Kathmandu' },
+    { title: 'Everest Base Camp, Khumbu' },
+    { title: 'Langtang Valley, Nepal' },
+    { title: 'Annapurna Massif, Pokhara' },
+    { title: 'Himalayan Foothills, Nepal' },
+    { title: 'Temple Journey, South Asia' },
+    { title: 'Island Escape, Curated Worldwide' },
+  ];
+  let current = 0;
+  let carouselTimer;
+
+  function goToSlide(idx) {
+    slides[current].classList.remove('active');
+    dots[current].classList.remove('active');
+    current = idx;
+    slides[current].classList.add('active');
+    dots[current].classList.add('active');
+    const cap = document.getElementById('carouselCaption');
+    cap.classList.remove('visible');
+    setTimeout(() => {
+      document.getElementById('ccTitle').textContent = slideMeta[current].title;
+      cap.classList.add('visible');
+    }, 300);
+    clearInterval(carouselTimer);
+    carouselTimer = setInterval(nextSlide, 5500);
+  }
+
+  function nextSlide() {
+    goToSlide((current + 1) % slides.length);
+  }
+
+  carouselTimer = setInterval(nextSlide, 5500);
+ </script>
+<script src="aaradhya-enquiry.js"></script>
+</body>
+</html>
