@@ -1,16 +1,5 @@
 (function () {
-  const EMAILJS_CONFIG = {
-    publicKey: 'YOUR_EMAILJS_PUBLIC_KEY',
-    serviceId: 'YOUR_EMAILJS_SERVICE_ID',
-    templateId: 'YOUR_EMAILJS_TEMPLATE_ID'
-  };
-
-  let emailJsReady;
   const pendingSubmits = new WeakSet();
-
-  function clean(value) {
-    return String(value || '').replace(/\s+/g, ' ').trim();
-  }
 
   function isNepaliPage() {
     return document.documentElement.lang === 'ne';
@@ -19,155 +8,6 @@
   function copy(en, ne) {
     return isNepaliPage() ? ne : en;
   }
-
-  function fieldName(field) {
-    const id = field.id && document.querySelector(`label[for="${field.id}"]`);
-    const label = id || field.closest('.form-field, .qs-field')?.querySelector('label, .qs-label');
-    return clean(field.name || label?.textContent || field.getAttribute('aria-label') || field.placeholder || field.type || 'Field');
-  }
-
-  function collectFields(root) {
-    const fields = {};
-    root?.querySelectorAll('input, select, textarea').forEach(field => {
-      if (field.type === 'hidden' || field.type === 'button' || field.type === 'submit') return;
-      const value = clean(field.value);
-      if (field.tagName === 'SELECT' && field.selectedIndex === 0 && /^(preferred|package type|number of guests)/i.test(value)) return;
-      if (!value) return;
-      fields[fieldName(field)] = value;
-    });
-    return fields;
-  }
-
-  function contextFromElement(el) {
-    const card = el.closest('article, .card, .dest-card, .service-item, .offer, .service-card, .band, section');
-    return {
-      page: document.title,
-      url: window.location.href,
-      item: clean(card?.querySelector('h1, h2, h3, .card-title, .dest-name, .service-title')?.textContent),
-      details: clean(card?.innerText),
-      button: clean(el.textContent)
-    };
-  }
-
-  function emailJsParams(payload) {
-    const fields = Object.entries(payload.fields || {})
-      .map(([key, value]) => [key, clean(value)])
-      .filter(([, value]) => value)
-      .map(([key, value]) => `${key}: ${value}`)
-      .join('\n');
-
-    return {
-      inquiry_type: payload.type || 'General enquiry',
-      inquiry_title: payload.title || 'Travel request',
-      page_title: payload.page || document.title,
-      page_url: payload.url || window.location.href,
-      fields,
-      notes: payload.notes || '',
-      message: [
-        `Inquiry type: ${payload.type || 'General enquiry'}`,
-        payload.title ? `Selected item: ${payload.title}` : '',
-        payload.page ? `Page: ${payload.page}` : '',
-        payload.url ? `URL: ${payload.url}` : '',
-        fields ? `Fields:\n${fields}` : '',
-        payload.notes ? `Notes:\n${payload.notes}` : ''
-      ].filter(Boolean).join('\n\n')
-    };
-  }
-
-  function loadEmailJs() {
-    if (window.emailjs) {
-      window.emailjs.init({ publicKey: EMAILJS_CONFIG.publicKey });
-      return Promise.resolve(window.emailjs);
-    }
-
-    if (!emailJsReady) {
-      emailJsReady = new Promise((resolve, reject) => {
-        const script = document.createElement('script');
-        script.src = 'https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js';
-        script.async = true;
-        script.onload = () => {
-          window.emailjs.init({ publicKey: EMAILJS_CONFIG.publicKey });
-          resolve(window.emailjs);
-        };
-        script.onerror = () => reject(new Error('EmailJS could not be loaded.'));
-        document.head.appendChild(script);
-      });
-    }
-
-    return emailJsReady;
-  }
-
-  function setButtonState(button, isSending) {
-    if (!button) return;
-    if (isSending) {
-      button.dataset.originalHtml = button.dataset.originalHtml || button.innerHTML;
-      button.textContent = copy('Sending...', 'पठाउँदै...');
-      button.disabled = true;
-      button.setAttribute('aria-busy', 'true');
-    } else {
-      button.disabled = false;
-      button.removeAttribute('aria-busy');
-      if (button.dataset.originalHtml) button.innerHTML = button.dataset.originalHtml;
-    }
-  }
-
-  function setStatus(target, message, tone) {
-    if (!target) return;
-    const anchor = target.matches?.('form') ? target : target.closest('form') || target.parentElement;
-    if (!anchor) return;
-
-    let status = anchor.querySelector('.enquiry-status');
-    if (!status) {
-      status = document.createElement('div');
-      status.className = 'enquiry-status';
-      status.setAttribute('role', 'status');
-      status.style.cssText = 'margin-top:12px;font-size:0.78rem;line-height:1.6;font-weight:600;';
-      anchor.appendChild(status);
-    }
-
-    status.textContent = message;
-    status.style.color = tone === 'error' ? '#b85c5c' : 'var(--gold-light, #d8b981)';
-  }
-
-  async function submitEnquiry(payload, options = {}) {
-    const button = options.button || null;
-    const statusTarget = options.statusTarget || options.form || button || null;
-    const lockTarget = options.form || button || document.body;
-
-    if (pendingSubmits.has(lockTarget)) return { ok: false, duplicate: true };
-    pendingSubmits.add(lockTarget);
-    setButtonState(button, true);
-    setStatus(statusTarget, copy('Sending your enquiry...', 'तपाईंको सोधपुछ पठाउँदै...'), 'info');
-
-    const normalized = {
-      type: payload.type || 'General enquiry',
-      title: payload.title || '',
-      page: payload.page || document.title,
-      url: payload.url || window.location.href,
-      fields: payload.fields || {},
-      notes: payload.notes || ''
-    };
-
-    try {
-      const emailjs = await loadEmailJs();
-      await emailjs.send(
-        EMAILJS_CONFIG.serviceId,
-        EMAILJS_CONFIG.templateId,
-        emailJsParams(normalized)
-      );
-      setStatus(statusTarget, copy('Thank you. Your enquiry has been sent.', 'धन्यवाद। तपाईंको सोधपुछ पठाइएको छ।'), 'success');
-      return { ok: true, method: 'emailjs' };
-    } catch (error) {
-      setStatus(statusTarget, copy('Could not send the enquiry. Please try again.', 'सोधपुछ पठाउन सकिएन। कृपया फेरि प्रयास गर्नुहोस्।'), 'error');
-      return { ok: false, method: 'emailjs', error };
-    } finally {
-      pendingSubmits.delete(lockTarget);
-      setButtonState(button, false);
-    }
-  }
-
-  window.submitAaradhyaEnquiry = submitEnquiry;
-  window.collectAaradhyaFields = collectFields;
 
   function closeMobileNav(nav) {
     const toggle = nav?.querySelector('.nav-toggle');
@@ -186,9 +26,12 @@
       event.stopPropagation();
       const isOpen = nav.classList.toggle('nav-open');
       toggle.setAttribute('aria-expanded', String(isOpen));
-      toggle.setAttribute('aria-label', isOpen
-        ? copy('Close navigation menu', 'नेभिगेसन मेनु बन्द गर्नुहोस्')
-        : copy('Open navigation menu', 'नेभिगेसन मेनु खोल्नुहोस्'));
+      toggle.setAttribute(
+        'aria-label',
+        isOpen
+          ? copy('Close navigation menu', 'नेभिगेसन मेनु बन्द गर्नुहोस्')
+          : copy('Open navigation menu', 'नेभिगेसन मेनु खोल्नुहोस्')
+      );
     });
 
     links.addEventListener('click', event => {
@@ -209,10 +52,153 @@
     });
   }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initMobileNav, { once: true });
-  } else {
-    initMobileNav();
+  function setButtonState(button, isSending) {
+    if (!button) return;
+
+    if (isSending) {
+      button.dataset.originalHtml = button.dataset.originalHtml || button.innerHTML;
+      button.textContent = copy('Sending...', 'पठाउँदै...');
+      button.disabled = true;
+      button.setAttribute('aria-busy', 'true');
+      return;
+    }
+
+    button.disabled = false;
+    button.removeAttribute('aria-busy');
+    if (button.dataset.originalHtml) button.innerHTML = button.dataset.originalHtml;
   }
 
+  function setStatus(form, message, tone) {
+    let status = form.querySelector('.enquiry-status');
+    if (!status) {
+      status = document.createElement('div');
+      status.className = 'enquiry-status';
+      status.setAttribute('role', 'status');
+      status.style.cssText = [
+        'margin-top:12px',
+        'font-size:0.78rem',
+        'line-height:1.6',
+        'font-weight:600',
+        'letter-spacing:0.02em',
+        'grid-column:1 / -1'
+      ].join(';');
+      form.appendChild(status);
+    }
+
+    status.textContent = message;
+    status.style.color = tone === 'error' ? '#d98b8b' : 'var(--gold-light, #d8b981)';
+  }
+
+  function ensureToast() {
+    let toast = document.querySelector('.aaradhya-toast');
+    if (toast) return toast;
+
+    toast = document.createElement('div');
+    toast.className = 'aaradhya-toast';
+    toast.setAttribute('role', 'status');
+    toast.setAttribute('aria-live', 'polite');
+    toast.style.cssText = [
+      'position:fixed',
+      'left:50%',
+      'bottom:24px',
+      'z-index:9999',
+      'width:min(calc(100% - 32px),420px)',
+      'padding:16px 18px',
+      'border:1px solid rgba(216,185,129,0.42)',
+      'border-radius:8px',
+      'background:rgba(16,24,32,0.94)',
+      'color:#fff',
+      'box-shadow:0 22px 60px rgba(0,0,0,0.35)',
+      'backdrop-filter:blur(18px)',
+      'font:600 0.88rem/1.5 Montserrat, Arial, sans-serif',
+      'opacity:0',
+      'pointer-events:none',
+      'transform:translate(-50%,14px)',
+      'transition:opacity 220ms ease, transform 220ms ease'
+    ].join(';');
+    document.body.appendChild(toast);
+    return toast;
+  }
+
+  function showToast(message) {
+    const toast = ensureToast();
+    toast.textContent = message;
+    toast.style.opacity = '1';
+    toast.style.transform = 'translate(-50%,0)';
+
+    window.clearTimeout(showToast.timer);
+    showToast.timer = window.setTimeout(() => {
+      toast.style.opacity = '0';
+      toast.style.transform = 'translate(-50%,14px)';
+    }, 3800);
+  }
+
+  function appendIfMissing(formData, key, value) {
+    if (!formData.has(key) && value) formData.append(key, value);
+  }
+
+  async function submitNetlifyForm(form) {
+    const button = form.querySelector('[type="submit"], .btn, .form-submit, .qs-btn');
+
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      setStatus(form, copy('Please complete the required fields.', 'कृपया आवश्यक विवरणहरू भर्नुहोस्।'), 'error');
+      return;
+    }
+
+    if (pendingSubmits.has(form)) return;
+    pendingSubmits.add(form);
+    setButtonState(button, true);
+    setStatus(form, copy('Sending your request...', 'तपाईंको अनुरोध पठाउँदै...'), 'info');
+
+    const formData = new FormData(form);
+    appendIfMissing(formData, 'page_title', document.title);
+    appendIfMissing(formData, 'page_url', window.location.href);
+
+    const modalTitle = form.closest('.modal')?.querySelector('#modalTitle')?.textContent?.trim();
+    if (modalTitle) appendIfMissing(formData, 'selected_context', modalTitle);
+
+    try {
+      const response = await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(formData).toString()
+      });
+
+      if (!response.ok) throw new Error(`Netlify form post failed: ${response.status}`);
+
+      form.reset();
+      setStatus(form, copy('Your request has been received successfully.', 'तपाईंको अनुरोध सफलतापूर्वक प्राप्त भयो।'), 'success');
+      showToast(copy('Your request has been received successfully.', 'तपाईंको अनुरोध सफलतापूर्वक प्राप्त भयो।'));
+    } catch (error) {
+      setStatus(
+        form,
+        copy('We could not send your request. Please try again.', 'अनुरोध पठाउन सकिएन। कृपया फेरि प्रयास गर्नुहोस्।'),
+        'error'
+      );
+      console.error(error);
+    } finally {
+      pendingSubmits.delete(form);
+      setButtonState(button, false);
+    }
+  }
+
+  function initNetlifyForms() {
+    document.addEventListener('submit', event => {
+      const form = event.target;
+      if (!(form instanceof HTMLFormElement) || !form.matches('form[data-netlify="true"]')) return;
+      event.preventDefault();
+      submitNetlifyForm(form);
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+      initMobileNav();
+      initNetlifyForms();
+    }, { once: true });
+  } else {
+    initMobileNav();
+    initNetlifyForms();
+  }
 })();
