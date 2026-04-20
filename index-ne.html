@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ne">
 <head>
 <meta charset="UTF-8">
@@ -1222,6 +1222,12 @@
   @media (max-width: 640px) {
     nav { gap: 8px; padding: 6px max(12px, env(safe-area-inset-right)) 6px max(12px, env(safe-area-inset-left)); justify-content: flex-start; }
     nav.scrolled { padding: 6px max(12px, env(safe-area-inset-right)) 6px max(12px, env(safe-area-inset-left)); }
+    .nav-links {
+      top: calc(100% + 56px);
+      max-height: calc(100vh - 132px);
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+    }
     .nav-logo { flex: 1 1 auto; font-size: 0.95rem; line-height: 1.2; min-width: 0; max-width: none; gap: 8px; margin-right: 0; overflow: hidden; }
     .nav-logo .brand-lines { min-width: 0; }
     .brand-mark { flex: 0 0 auto; max-height: 56px; padding: 0; clip-path: inset(4% 5%); }
@@ -1233,7 +1239,7 @@
     .nav-cta {
       display: none;
       position: absolute;
-      top: calc(100% + 413px);
+      top: calc(100% + 1px);
       left: 16px;
       right: 16px;
       z-index: 1001;

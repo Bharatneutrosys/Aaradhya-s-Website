@@ -475,6 +475,12 @@ footer a { color: var(--text-light); }
 
 @media (max-width: 640px) {
   nav { padding: 6px max(12px, env(safe-area-inset-right)) 6px max(12px, env(safe-area-inset-left)); gap: 8px; justify-content: flex-start; }
+  .nav-links {
+    top: calc(100% + 56px);
+    max-height: calc(100vh - 132px);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
   .nav-logo { flex: 1 1 auto; font-size: 0.95rem; line-height: 1.2; gap: 8px; margin-right: 0; min-width: 0; max-width: none; overflow: hidden; }
   .nav-logo .brand-lines { min-width: 0; }
   .brand-mark { flex: 0 0 auto; max-height: 56px; padding: 0; clip-path: inset(4% 5%); }
@@ -486,7 +492,7 @@ footer a { color: var(--text-light); }
   .nav-cta {
     display: none;
     position: absolute;
-    top: calc(100% + 413px);
+    top: calc(100% + 1px);
     left: 16px;
     right: 16px;
     z-index: 1001;

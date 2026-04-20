@@ -2,11 +2,19 @@
   const NETLIFY_FORM_SELECTOR = 'form[data-netlify="true"], form[netlify]';
   const pendingSubmits = new WeakSet();
 
+  function isNepaliPage() {
+    return document.documentElement.lang === 'ne';
+  }
+
+  function copy(en, ne) {
+    return isNepaliPage() ? ne : en;
+  }
+
   function closeMobileNav(nav) {
     const toggle = nav?.querySelector('.nav-toggle');
     nav?.classList.remove('nav-open');
     toggle?.setAttribute('aria-expanded', 'false');
-    toggle?.setAttribute('aria-label', 'Open navigation menu');
+    toggle?.setAttribute('aria-label', copy('Open navigation menu', 'नेभिगेसन मेनु खोल्नुहोस्'));
   }
 
   function initMobileNav() {
@@ -19,7 +27,12 @@
       event.stopPropagation();
       const isOpen = nav.classList.toggle('nav-open');
       toggle.setAttribute('aria-expanded', String(isOpen));
-      toggle.setAttribute('aria-label', isOpen ? 'Close navigation menu' : 'Open navigation menu');
+      toggle.setAttribute(
+        'aria-label',
+        isOpen
+          ? copy('Close navigation menu', 'नेभिगेसन मेनु बन्द गर्नुहोस्')
+          : copy('Open navigation menu', 'नेभिगेसन मेनु खोल्नुहोस्')
+      );
     });
 
     links.addEventListener('click', event => {
@@ -45,7 +58,7 @@
 
     if (isSending) {
       button.dataset.originalHtml = button.dataset.originalHtml || button.innerHTML;
-      button.textContent = 'Sending...';
+      button.textContent = copy('Sending...', 'पठाउँदै...');
       button.disabled = true;
       button.setAttribute('aria-busy', 'true');
       return;
@@ -135,14 +148,14 @@
 
     if (!form.checkValidity()) {
       form.reportValidity();
-      setStatus(form, 'Please complete the required fields.', 'error');
+      setStatus(form, copy('Please complete the required fields.', 'कृपया आवश्यक विवरणहरू भर्नुहोस्।'), 'error');
       return;
     }
 
     if (pendingSubmits.has(form)) return;
     pendingSubmits.add(form);
     setButtonState(button, true);
-    setStatus(form, 'Sending your request...', 'info');
+    setStatus(form, copy('Sending your request...', 'तपाईंको अनुरोध पठाउँदै...'), 'info');
 
     const formData = new FormData(form);
     appendIfMissing(formData, 'page_title', document.title);
@@ -161,11 +174,11 @@
       if (!response.ok) throw new Error(`Netlify form post failed: ${response.status}`);
 
       form.reset();
-      setStatus(form, 'Your request has been received successfully.', 'success');
-      showToast('Your request has been received successfully.');
+      setStatus(form, copy('Your request has been received successfully.', 'तपाईंको अनुरोध सफलतापूर्वक प्राप्त भयो।'), 'success');
+      showToast(copy('Your request has been received successfully.', 'तपाईंको अनुरोध सफलतापूर्वक प्राप्त भयो।'));
     } catch (error) {
-      setStatus(form, 'We could not send your request. Please try again.', 'error');
-      showToast('We could not send your request. Please try again.');
+      setStatus(form, copy('We could not send your request. Please try again.', 'अनुरोध पठाउन सकिएन। कृपया फेरि प्रयास गर्नुहोस्।'), 'error');
+      showToast(copy('We could not send your request. Please try again.', 'अनुरोध पठाउन सकिएन। कृपया फेरि प्रयास गर्नुहोस्।'));
       console.error(error);
     } finally {
       pendingSubmits.delete(form);
@@ -192,13 +205,36 @@
     document.addEventListener('submit', handleNetlifySubmit, true);
   }
 
+  function initActionButtons() {
+    document.querySelectorAll('button:not([type])').forEach(button => {
+      button.type = 'button';
+    });
+
+    document.querySelectorAll('.cdot').forEach((dot, index) => {
+      dot.setAttribute('aria-label', copy(`Show slide ${index + 1}`, `स्लाइड ${index + 1} देखाउनुहोस्`));
+    });
+
+    document.addEventListener('click', event => {
+      const button = event.target.closest('button.card-cta, button.dest-explore');
+      if (!button || button.hasAttribute('onclick') || typeof window.openModal !== 'function') return;
+
+      event.preventDefault();
+      event.stopPropagation();
+      const card = button.closest('article, .destination-card, .dest-card, .card-glass');
+      const title = card?.querySelector('h3, h2')?.textContent?.trim() || copy('Travel Enquiry', 'यात्रा सोधपुछ');
+      window.openModal(copy('Travel Enquiry', 'यात्रा सोधपुछ'), title);
+    });
+  }
+
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
       initMobileNav();
       initNetlifyForms();
+      initActionButtons();
     }, { once: true });
   } else {
     initMobileNav();
     initNetlifyForms();
+    initActionButtons();
   }
 })();

@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
@@ -882,15 +882,41 @@
   }
 
   @media (max-width: 640px) {
-    nav { gap: 12px; padding: 6px 16px; }
+    nav { gap: 8px; padding: 6px max(12px, env(safe-area-inset-right)) 6px max(12px, env(safe-area-inset-left)); justify-content: flex-start; }
     nav.scrolled { padding: 6px 16px; }
-    .nav-logo { font-size: 0.95rem; line-height: 1.2; min-width: 0; gap: 10px; margin-right: 0; }
-    .brand-mark { max-height: 62px; padding: 0; clip-path: inset(4% 5%); }
+    .nav-links {
+      top: calc(100% + 56px);
+      max-height: calc(100vh - 132px);
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    .nav-logo { flex: 1 1 auto; font-size: 0.95rem; line-height: 1.2; min-width: 0; max-width: none; gap: 8px; margin-right: 0; overflow: hidden; }
+    .nav-logo .brand-lines { min-width: 0; }
+    .brand-mark { flex: 0 0 auto; max-height: 56px; padding: 0; clip-path: inset(4% 5%); }
     footer .brand-mark { max-height: 52px; }
-    .nav-logo .brand-primary { font-size: 1.18rem; }
-    .nav-logo .brand-secondary { font-size: 0.62rem; letter-spacing: 0.045em; }
-    .nav-cta { min-height: 38px; padding: 9px 12px; font-size: 0.58rem; line-height: 1; letter-spacing: 0.08em; flex-shrink: 0; margin-left: 0; white-space: nowrap; }
-    .lang-switch a { min-height: 26px; padding: 0 7px; font-size: 0.62rem; letter-spacing: 0.04em; }
+    .nav-logo .brand-primary,
+    .nav-logo .brand-secondary { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .nav-logo .brand-primary { font-size: 1.08rem; }
+    .nav-logo .brand-secondary { font-size: 0.58rem; letter-spacing: 0.025em; }
+    .nav-cta {
+      display: none;
+      position: absolute;
+      top: calc(100% + 1px);
+      left: 16px;
+      right: 16px;
+      z-index: 1001;
+      min-height: 42px;
+      padding: 11px 14px;
+      font-size: 0.62rem;
+      line-height: 1;
+      letter-spacing: 0.08em;
+      margin-left: 0;
+      white-space: nowrap;
+    }
+    nav.nav-open .nav-cta { display: inline-flex; }
+    .lang-switch { margin-left: auto; padding: 3px; gap: 2px; }
+    .lang-switch a { min-height: 26px; padding: 0 7px; font-size: 0.6rem; letter-spacing: 0.01em; }
+    .nav-toggle { width: 42px; height: 42px; margin-left: 0; }
     section { padding: 72px 20px; }
     .hero { min-height: 92vh; min-height: 92svh; padding-top: 116px; }
     .hero-title { font-size: 2.55rem; }
@@ -908,6 +934,7 @@
 
   @media (max-width: 520px) {
     .nav-cta { display: none; }
+    nav.nav-open .nav-cta { display: inline-flex; }
   }
 
   html[lang="ne"] body,
@@ -1016,6 +1043,7 @@
     <li><a href="about.html">About</a></li>
     <li><a href="contact.html">Contact</a></li>
   </ul>
+  <div class="lang-switch" aria-label="Language switcher"><a class="active" href="index.html">EN</a><a href="index-ne.html">नेपाली</a></div>
   <a href="contact.html" class="nav-cta">Plan a Trip</a>
 <button class="nav-toggle" type="button" aria-label="Open navigation menu" aria-expanded="false"><span></span><span></span><span></span></button></nav>
 
@@ -1442,7 +1470,7 @@
       <a href="index.html" class="nav-logo" style="font-size:1.1rem">
         <img class="brand-mark" src="Aaradhya Travels and Tours logo.png" alt="Aaradhya Travels and Tours logo" /><span class="brand-lines"><span class="brand-primary">Aaradhya</span><span class="brand-secondary">Travels and Tours</span></span>
       </a>
-      <p>Your trusted travel partner in the heart of Kathmandu, crafting unforgettable journeys across Nepal and the world since 1998. Licenced by Nepal Tourism Board.</p><div class="lang-switch footer-lang" aria-label="Language switcher"><a class="active" href="index.html">EN</a><a href="index-ne.html">नेपाली</a></div>
+      <p>Your trusted travel partner in the heart of Kathmandu, crafting unforgettable journeys across Nepal and the world since 1998. Licensed by Nepal Tourism Board.</p><div class="lang-switch footer-lang" aria-label="Language switcher"><a class="active" href="index.html">EN</a><a href="index-ne.html">नेपाली</a></div>
       <div style="margin-top:28px;display:flex;gap:12px;flex-wrap:wrap">
         <img src="https://img.shields.io/badge/Nepal%20Tourism%20Board-Registered-b8996a?style=flat&labelColor=2e3547" alt="NTB" style="height:22px;border-radius:2px" />
         <img src="https://img.shields.io/badge/TAAN-Member-b8996a?style=flat&labelColor=2e3547" alt="TAAN" style="height:22px;border-radius:2px" />
@@ -1493,7 +1521,7 @@
   </div>
 
   <div class="footer-bottom">
-    <div class="footer-copy">&copy; 2025 Aaradhya Travels and Tours Pvt. Ltd. All rights reserved.</div>
+    <div class="footer-copy">&copy; 2026 Aaradhya Travels and Tours Pvt. Ltd. All rights reserved.</div>
     <div class="footer-socials">
       <a href="https://www.facebook.com/AaradhyaTravel" class="social-link" title="Facebook" aria-label="Facebook" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 8.4V6.7c0-.8.4-1.2 1.3-1.2h1.6V2.7c-.8-.1-1.6-.2-2.4-.2-2.6 0-4.3 1.6-4.3 4.5v1.4H7.5v3.1h2.7v8h3.3v-8h2.7l.4-3.1H14Z"/></svg></a>
       <a href="https://wa.me/9779841395391" class="social-link" title="WhatsApp" aria-label="WhatsApp" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3a8.7 8.7 0 0 0-7.5 13.1L3.4 21l5-1.3A8.7 8.7 0 1 0 12 3Zm0 15.7c-1.4 0-2.7-.4-3.8-1.1l-.3-.2-2 .5.5-2-.2-.3A7 7 0 1 1 12 18.7Zm3.9-5.2c-.2-.1-1.2-.6-1.4-.7-.2-.1-.4-.1-.5.1l-.7.8c-.1.2-.3.2-.5.1-1.4-.7-2.3-1.5-3-2.9-.1-.2 0-.4.1-.5l.4-.5c.1-.1.1-.3.2-.4v-.4c-.1-.1-.5-1.2-.7-1.6-.2-.4-.4-.4-.5-.4h-.5c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 2 0 1.2.8 2.3.9 2.4.1.2 1.7 2.7 4.2 3.7.6.3 1 .4 1.4.5.6.2 1.1.2 1.5.1.5-.1 1.2-.5 1.4-1 .2-.5.2-1 .1-1.1 0-.2-.2-.3-.4-.4Z"/></svg></a>
