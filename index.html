@@ -264,7 +264,7 @@
   }
   .hero-title {
     font-family: 'Playfair Display', serif;
-    font-size: clamp(2.65rem, 5.8vw, 5.05rem);
+    font-size: clamp(2.45rem, 5.25vw, 4.7rem);
     font-weight: 400; line-height: 1.05; letter-spacing: -0.01em;
     color: var(--off-white); margin-bottom: 20px;
     text-shadow: 0 2px 18px rgba(0,0,0,0.24);
@@ -273,10 +273,15 @@
   .hero-title em { font-style: italic; color: var(--gold-light); }
   .hero-sub {
     font-size: 0.84rem; font-weight: 400; letter-spacing: 0.045em;
-    color: var(--text-mid); max-width: 520px; margin: 0 auto 34px;
+    color: var(--text-mid); max-width: 640px; margin: 0 auto 14px;
     line-height: 1.62;
     text-shadow: 0 2px 14px rgba(0,0,0,0.24);
     opacity: 0; animation: fadeUp 1s 0.8s ease forwards;
+  }
+  .hero-support {
+    font-size: 0.74rem; font-weight: 600; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--gold-light);
+    margin: 0 auto 30px; opacity: 0; animation: fadeUp 1s 0.92s ease forwards;
   }
 
   @keyframes fadeUp {
@@ -1354,14 +1359,14 @@
             <input class="form-input" name="phone" type="tel" placeholder="+1 234 567 8900" required />
           </div>
           <div class="form-field">
-            <label class="form-label">Preferred Date</label>
-            <input class="form-input" name="preferred_date" type="date" />
+            <label class="form-label">Preferred Date *</label>
+            <input class="form-input" name="preferred_date" type="date" required />
           </div>
         </div>
         <div class="form-row">
           <div class="form-field">
-            <label class="form-label">Number of Guests</label>
-            <select class="form-input" name="guests">
+            <label class="form-label">Number of Guests *</label>
+            <select class="form-input" name="guests" required>
               <option>1 Person</option>
               <option>2 Persons</option>
               <option>3-5 Persons</option>
@@ -1445,9 +1450,10 @@
   <div class="hero-content">
     <div class="hero-eyebrow">Est. Kathmandu, Nepal&nbsp;&nbsp;Since 1998</div>
     <h1 class="hero-title">
-      Journeys that feel<br /><em>beautifully handled</em>
+      Travel beautifully.<br /><em>Experience deeply.</em>
     </h1>
-    <p class="hero-sub">Premium Nepal adventures and international holidays designed with local insight, careful planning, and warm end-to-end support.</p>
+    <p class="hero-sub">From the Himalayas of Nepal to the finest destinations across Asia, we design seamless, meaningful, unforgettable journeys.</p>
+    <p class="hero-support">Premium travel planning with local expertise and complete end-to-end support.</p>
 
     <!-- BOOKING SEARCH -->
     <div class="booking-panel" id="booking">
@@ -1503,8 +1509,8 @@
           <div class="qs-field">
             <svg class="qs-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
             <div class="qs-inner">
-              <span class="qs-label">Passengers</span>
-              <select class="qs-value" id="flightPassengers" name="passengers">
+              <span class="qs-label">Passengers *</span>
+              <select class="qs-value" id="flightPassengers" name="passengers" required>
                 <option value="" disabled selected hidden></option>
                 <option>1 Passenger</option>
                 <option>2 Passengers</option>
@@ -2047,18 +2053,18 @@
         <input class="form-input" name="email" type="email" placeholder="you@example.com" />
       </div>
       <div class="form-field">
-        <label class="form-label">Preferred Destination or Package</label>
-        <input class="form-input" name="destination" placeholder="Nepal, Dubai, Char Dham, custom..." />
+        <label class="form-label">Preferred Destination or Package *</label>
+        <input class="form-input" name="destination" placeholder="Nepal, Dubai, Char Dham, custom..." required />
       </div>
     </div>
     <div class="form-row">
       <div class="form-field">
-        <label class="form-label">Travel Date or Month</label>
-        <input class="form-input" name="travel_date" placeholder="May 2026 or preferred dates" />
+        <label class="form-label">Travel Date or Month *</label>
+        <input class="form-input" name="travel_date" placeholder="May 2026 or preferred dates" required />
       </div>
       <div class="form-field">
-        <label class="form-label">Number of Guests</label>
-        <select class="form-input" name="guests">
+        <label class="form-label">Number of Guests *</label>
+        <select class="form-input" name="guests" required>
           <option value="" disabled selected hidden>Select guests</option>
           <option>1 Guest</option>
           <option>2 Guests</option>

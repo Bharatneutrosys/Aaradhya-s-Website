@@ -264,7 +264,7 @@
   }
   .hero-title {
     font-family: 'Playfair Display', serif;
-    font-size: clamp(3rem, 7vw, 6rem);
+    font-size: clamp(2.45rem, 5.25vw, 4.7rem);
     font-weight: 400; line-height: 1.1; letter-spacing: -0.01em;
     color: var(--off-white); margin-bottom: 28px;
     opacity: 0; animation: fadeUp 1s 0.55s ease forwards;
@@ -272,9 +272,14 @@
   .hero-title em { font-style: italic; color: var(--gold-light); }
   .hero-sub {
     font-size: 0.9rem; font-weight: 300; letter-spacing: 0.06em;
-    color: var(--text-mid); max-width: 480px; margin: 0 auto 56px;
+    color: var(--text-mid); max-width: 640px; margin: 0 auto 14px;
     line-height: 1.8;
     opacity: 0; animation: fadeUp 1s 0.8s ease forwards;
+  }
+  .hero-support {
+    font-size: 0.74rem; font-weight: 600; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--gold-light);
+    margin: 0 auto 30px; opacity: 0; animation: fadeUp 1s 0.92s ease forwards;
   }
 
   @keyframes fadeUp {
@@ -1012,14 +1017,14 @@
             <input class="form-input" name="phone" type="tel" placeholder="+1 234 567 8900" required />
           </div>
           <div class="form-field">
-            <label class="form-label">Preferred Date</label>
-            <input class="form-input" name="preferred_date" type="date" />
+            <label class="form-label">Preferred Date *</label>
+            <input class="form-input" name="preferred_date" type="date" required />
           </div>
         </div>
         <div class="form-row">
           <div class="form-field">
-            <label class="form-label">Number of Guests</label>
-            <select class="form-input" name="guests">
+            <label class="form-label">Number of Guests *</label>
+            <select class="form-input" name="guests" required>
               <option>1 Person</option>
               <option>2 Persons</option>
               <option>3-5 Persons</option>
@@ -1099,9 +1104,10 @@
   <div class="hero-content">
     <div class="hero-eyebrow">Est. Kathmandu, Nepal&nbsp;&nbsp;Since 1998</div>
     <h1 class="hero-title">
-      Journeys that feel<br /><em>beautifully handled</em>
+      Travel beautifully.<br /><em>Experience deeply.</em>
     </h1>
-    <p class="hero-sub">Premium Nepal adventures and international holidays designed with local insight, careful planning, and warm end-to-end support.</p>
+    <p class="hero-sub">From the Himalayas of Nepal to the finest destinations across Asia, we design seamless, meaningful, unforgettable journeys.</p>
+    <p class="hero-support">Premium travel planning with local expertise and complete end-to-end support.</p>
 
     <!-- PILL SEARCH BAR -->
     <form class="quick-search" name="holidays" method="POST" data-netlify="true">

@@ -265,7 +265,7 @@
   }
   .hero-title {
     font-family: 'Playfair Display', serif;
-    font-size: clamp(2.65rem, 5.8vw, 5.05rem);
+    font-size: clamp(2.45rem, 5.25vw, 4.7rem);
     font-weight: 400; line-height: 1.05; letter-spacing: -0.01em;
     color: var(--off-white); margin-bottom: 20px;
     text-shadow: 0 2px 18px rgba(0,0,0,0.24);
@@ -274,10 +274,15 @@
   .hero-title em { font-style: italic; color: var(--gold-light); }
   .hero-sub {
     font-size: 0.84rem; font-weight: 400; letter-spacing: 0.045em;
-    color: var(--text-mid); max-width: 520px; margin: 0 auto 34px;
+    color: var(--text-mid); max-width: 640px; margin: 0 auto 14px;
     line-height: 1.62;
     text-shadow: 0 2px 14px rgba(0,0,0,0.24);
     opacity: 0; animation: fadeUp 1s 0.8s ease forwards;
+  }
+  .hero-support {
+    font-size: 0.74rem; font-weight: 600; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--gold-light);
+    margin: 0 auto 30px; opacity: 0; animation: fadeUp 1s 0.92s ease forwards;
   }
 
   @keyframes fadeUp {
@@ -1356,14 +1361,14 @@
             <input class="form-input" name="phone" type="tel" placeholder="+1 234 567 8900" required />
           </div>
           <div class="form-field">
-            <label class="form-label">मनपर्ने मिति</label>
-            <input class="form-input" name="preferred_date" type="date" />
+            <label class="form-label">मनपर्ने मिति *</label>
+            <input class="form-input" name="preferred_date" type="date" required />
           </div>
         </div>
         <div class="form-row">
           <div class="form-field">
-            <label class="form-label">यात्रु संख्या</label>
-            <select class="form-input" name="guests">
+            <label class="form-label">यात्रु संख्या *</label>
+            <select class="form-input" name="guests" required>
               <option>१ जना</option>
               <option>२ जना</option>
               <option>३-५ जना</option>
@@ -1447,9 +1452,10 @@
   <div class="hero-content">
     <div class="hero-eyebrow">स्थापना: काठमाडौं, नेपाल&nbsp;&nbsp;सन् १९९८</div>
     <h1 class="hero-title">
-      मनले सम्झिरहने<br /><em>यात्रा अनुभव</em>
+      यात्रा मात्र होइन —<br /><em>जीवन्त अनुभव।</em>
     </h1>
-    <p class="hero-sub">नेपालदेखि विश्वसम्म, तपाईंको सपना, समय र आरामलाई सम्मान गर्दै बनाइने सुन्दर यात्रा योजना।</p>
+    <p class="hero-sub">नेपालदेखि एशियासम्म, सहज र अविस्मरणीय यात्रा।</p>
+    <p class="hero-support">प्रिमियम सेवा, स्थानीय अनुभवसहित।</p>
 
     <!-- BOOKING SEARCH -->
     <div class="booking-panel" id="booking">
@@ -1505,8 +1511,8 @@
           <div class="qs-field">
             <svg class="qs-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
             <div class="qs-inner">
-              <span class="qs-label">यात्रु</span>
-              <select class="qs-value" id="flightPassengers" name="passengers">
+              <span class="qs-label">यात्रु *</span>
+              <select class="qs-value" id="flightPassengers" name="passengers" required>
                 <option value="" disabled selected hidden></option>
                 <option>१ यात्रु</option>
                 <option>२ यात्रु</option>
@@ -2049,18 +2055,18 @@
         <input class="form-input" name="email" type="email" placeholder="तपाईंको इमेल" />
       </div>
       <div class="form-field">
-        <label class="form-label">मनपर्ने गन्तव्य वा प्याकेज</label>
-        <input class="form-input" name="destination" placeholder="नेपाल, दुबई, चारधाम वा आफूले चाहेको यात्रा..." />
+        <label class="form-label">मनपर्ने गन्तव्य वा प्याकेज *</label>
+        <input class="form-input" name="destination" placeholder="नेपाल, दुबई, चारधाम वा आफूले चाहेको यात्रा..." required />
       </div>
     </div>
     <div class="form-row">
       <div class="form-field">
-        <label class="form-label">यात्रा मिति वा महिना</label>
-        <input class="form-input" name="travel_date" placeholder="२०२६ मे वा आफूलाई मिल्ने मिति" />
+        <label class="form-label">यात्रा मिति वा महिना *</label>
+        <input class="form-input" name="travel_date" placeholder="२०२६ मे वा आफूलाई मिल्ने मिति" required />
       </div>
       <div class="form-field">
-        <label class="form-label">यात्रु संख्या</label>
-        <select class="form-input" name="guests">
+        <label class="form-label">यात्रु संख्या *</label>
+        <select class="form-input" name="guests" required>
           <option value="" disabled selected hidden>यात्रु संख्या छान्नुहोस्</option>
           <option>१ यात्रु</option>
           <option>२ यात्रु</option>
