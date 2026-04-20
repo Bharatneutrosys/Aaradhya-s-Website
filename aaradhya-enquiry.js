@@ -1,19 +1,12 @@
 (function () {
+  const NETLIFY_FORM_SELECTOR = 'form[data-netlify="true"], form[netlify]';
   const pendingSubmits = new WeakSet();
-
-  function isNepaliPage() {
-    return document.documentElement.lang === 'ne';
-  }
-
-  function copy(en, ne) {
-    return isNepaliPage() ? ne : en;
-  }
 
   function closeMobileNav(nav) {
     const toggle = nav?.querySelector('.nav-toggle');
     nav?.classList.remove('nav-open');
     toggle?.setAttribute('aria-expanded', 'false');
-    toggle?.setAttribute('aria-label', copy('Open navigation menu', 'नेभिगेसन मेनु खोल्नुहोस्'));
+    toggle?.setAttribute('aria-label', 'Open navigation menu');
   }
 
   function initMobileNav() {
@@ -26,12 +19,7 @@
       event.stopPropagation();
       const isOpen = nav.classList.toggle('nav-open');
       toggle.setAttribute('aria-expanded', String(isOpen));
-      toggle.setAttribute(
-        'aria-label',
-        isOpen
-          ? copy('Close navigation menu', 'नेभिगेसन मेनु बन्द गर्नुहोस्')
-          : copy('Open navigation menu', 'नेभिगेसन मेनु खोल्नुहोस्')
-      );
+      toggle.setAttribute('aria-label', isOpen ? 'Close navigation menu' : 'Open navigation menu');
     });
 
     links.addEventListener('click', event => {
@@ -57,7 +45,7 @@
 
     if (isSending) {
       button.dataset.originalHtml = button.dataset.originalHtml || button.innerHTML;
-      button.textContent = copy('Sending...', 'पठाउँदै...');
+      button.textContent = 'Sending...';
       button.disabled = true;
       button.setAttribute('aria-busy', 'true');
       return;
@@ -137,19 +125,24 @@
     if (!formData.has(key) && value) formData.append(key, value);
   }
 
-  async function submitNetlifyForm(form) {
-    const button = form.querySelector('[type="submit"], .btn, .form-submit, .qs-btn');
+  function getNetlifyForm(target) {
+    if (target instanceof HTMLFormElement && target.matches(NETLIFY_FORM_SELECTOR)) return target;
+    return target?.closest?.(NETLIFY_FORM_SELECTOR) || null;
+  }
+
+  async function submitNetlifyForm(form, submitter) {
+    const button = submitter || form.querySelector('[type="submit"], .btn, .form-submit, .qs-btn');
 
     if (!form.checkValidity()) {
       form.reportValidity();
-      setStatus(form, copy('Please complete the required fields.', 'कृपया आवश्यक विवरणहरू भर्नुहोस्।'), 'error');
+      setStatus(form, 'Please complete the required fields.', 'error');
       return;
     }
 
     if (pendingSubmits.has(form)) return;
     pendingSubmits.add(form);
     setButtonState(button, true);
-    setStatus(form, copy('Sending your request...', 'तपाईंको अनुरोध पठाउँदै...'), 'info');
+    setStatus(form, 'Sending your request...', 'info');
 
     const formData = new FormData(form);
     appendIfMissing(formData, 'page_title', document.title);
@@ -168,14 +161,11 @@
       if (!response.ok) throw new Error(`Netlify form post failed: ${response.status}`);
 
       form.reset();
-      setStatus(form, copy('Your request has been received successfully.', 'तपाईंको अनुरोध सफलतापूर्वक प्राप्त भयो।'), 'success');
-      showToast(copy('Your request has been received successfully.', 'तपाईंको अनुरोध सफलतापूर्वक प्राप्त भयो।'));
+      setStatus(form, 'Your request has been received successfully.', 'success');
+      showToast('Your request has been received successfully.');
     } catch (error) {
-      setStatus(
-        form,
-        copy('We could not send your request. Please try again.', 'अनुरोध पठाउन सकिएन। कृपया फेरि प्रयास गर्नुहोस्।'),
-        'error'
-      );
+      setStatus(form, 'We could not send your request. Please try again.', 'error');
+      showToast('We could not send your request. Please try again.');
       console.error(error);
     } finally {
       pendingSubmits.delete(form);
@@ -183,13 +173,23 @@
     }
   }
 
+  function handleNetlifySubmit(event) {
+    const form = getNetlifyForm(event.target);
+    if (!form) return;
+
+    event.preventDefault();
+    event.stopPropagation();
+    submitNetlifyForm(form, event.submitter);
+  }
+
   function initNetlifyForms() {
-    document.addEventListener('submit', event => {
-      const form = event.target;
-      if (!(form instanceof HTMLFormElement) || !form.matches('form[data-netlify="true"]')) return;
-      event.preventDefault();
-      submitNetlifyForm(form);
+    document.querySelectorAll(NETLIFY_FORM_SELECTOR).forEach(form => {
+      if (form.dataset.ajaxSubmitBound === 'true') return;
+      form.dataset.ajaxSubmitBound = 'true';
+      form.addEventListener('submit', handleNetlifySubmit, true);
     });
+
+    document.addEventListener('submit', handleNetlifySubmit, true);
   }
 
   if (document.readyState === 'loading') {
