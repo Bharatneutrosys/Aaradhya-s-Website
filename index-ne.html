@@ -95,18 +95,19 @@
     justify-content: center;
     gap: 2px;
     line-height: 0.96;
+    min-width: 128px;
   }
   .nav-logo .brand-primary {
-    font-size: 1.42rem;
+    font-size: 1.43rem;
     font-weight: 600;
-    letter-spacing: 0.035em;
+    letter-spacing: 0.04em;
     color: var(--slate);
   }
   .nav-logo .brand-secondary {
     font-family: 'Montserrat', sans-serif;
-    font-size: 0.73rem;
+    font-size: 0.69rem;
     font-weight: 600;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.13em;
     text-transform: uppercase;
     color: #8d6933;
   }
@@ -1254,13 +1255,13 @@
       -webkit-overflow-scrolling: touch;
     }
     .nav-logo { flex: 1 1 auto; font-size: 0.95rem; line-height: 1.2; min-width: 0; max-width: none; gap: 8px; margin-right: 0; overflow: hidden; }
-    .nav-logo .brand-lines { min-width: 0; }
+    .nav-logo .brand-lines { min-width: 112px; }
     .brand-mark { flex: 0 0 auto; width: 58px; height: 58px; padding: 0; clip-path: none; }
     footer .brand-mark { width: 54px; height: 54px; }
     .nav-logo .brand-primary,
     .nav-logo .brand-secondary { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .nav-logo .brand-primary { font-size: 1.08rem; }
-    .nav-logo .brand-secondary { font-size: 0.58rem; letter-spacing: 0.025em; }
+    .nav-logo .brand-primary { font-size: 1.08rem; letter-spacing: 0.035em; }
+    .nav-logo .brand-secondary { font-size: 0.54rem; letter-spacing: 0.09em; }
     .nav-cta {
       display: none;
       position: absolute;
@@ -1343,9 +1344,10 @@
   html[lang="ne"] .footer-heading {
     letter-spacing: 0.02em;
   }
-  html[lang="ne"] .nav-links a { font-size: 0.92rem; font-weight: 700; }
+  html[lang="ne"] .nav-links { gap: clamp(7px, 0.62vw, 13px); }
+  html[lang="ne"] .nav-links a { font-size: 1rem; font-weight: 800; line-height: 1.2; }
   html[lang="ne"] .nav-cta,
-  html[lang="ne"] .lang-switch a { font-size: 0.84rem; }
+  html[lang="ne"] .lang-switch a { font-size: 0.9rem; font-weight: 800; }
   html[lang="ne"] .qs-label,
   html[lang="ne"] .form-label { font-size: 0.84rem; font-weight: 800; color: #fbe8c8; }
 </style>

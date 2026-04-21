@@ -65,19 +65,20 @@ nav {
   justify-content: center;
   gap: 2px;
   line-height: 0.96;
+  min-width: 128px;
 }
 .nav-logo .brand-primary {
   color: var(--slate);
-  font-size: 1.42rem;
+  font-size: 1.43rem;
   font-weight: 600;
-  letter-spacing: 0.035em;
+  letter-spacing: 0.04em;
 }
 .nav-logo .brand-secondary {
   color: #8d6933;
   font-family: 'Montserrat', sans-serif;
-  font-size: 0.73rem;
+  font-size: 0.69rem;
   font-weight: 600;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.13em;
   text-transform: uppercase;
 }
 .nav-links { display: flex; list-style: none; gap: clamp(9px, 0.82vw, 18px); align-items: center; justify-content: center; flex: 1 1 auto; }
@@ -85,6 +86,7 @@ nav {
   color: var(--slate); text-decoration: none; text-transform: uppercase;
   font-size: 0.76rem; font-weight: 700; letter-spacing: 0.065em;
   border-radius: 6px;
+  white-space: nowrap;
   transition: color 0.25s ease, text-shadow 0.25s ease, background 0.25s ease;
 }
 .nav-links a:hover, .nav-links a.active {
@@ -597,13 +599,13 @@ footer a { color: var(--text-light); }
     -webkit-overflow-scrolling: touch;
   }
   .nav-logo { flex: 1 1 auto; font-size: 0.95rem; line-height: 1.2; gap: 12px; margin-right: 0; min-width: 0; max-width: none; overflow: hidden; }
-  .nav-logo .brand-lines { min-width: 0; }
+  .nav-logo .brand-lines { min-width: 112px; }
   .brand-mark { flex: 0 0 auto; width: 60px; height: 60px; padding: 0; }
   footer .brand-mark, footer .nav-logo .brand-mark { width: 52px; height: 52px; }
   .nav-logo .brand-primary,
   .nav-logo .brand-secondary { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .nav-logo .brand-primary { font-size: 1.08rem; }
-  .nav-logo .brand-secondary { font-size: 0.59rem; letter-spacing: 0.1em; }
+  .nav-logo .brand-primary { font-size: 1.08rem; letter-spacing: 0.035em; }
+  .nav-logo .brand-secondary { font-size: 0.54rem; letter-spacing: 0.09em; }
   .nav-cta {
     display: none;
     position: absolute;
@@ -665,13 +667,18 @@ html[lang="ne"] .footer-heading {
   word-spacing: normal !important;
   text-transform: none !important;
 }
+html[lang="ne"] .nav-links {
+  gap: clamp(7px, 0.62vw, 13px);
+}
 html[lang="ne"] .nav-links a {
-  font-size: 0.92rem;
-  font-weight: 700;
+  font-size: 1rem;
+  font-weight: 800;
+  line-height: 1.2;
 }
 html[lang="ne"] .nav-cta,
 html[lang="ne"] .lang-switch a {
-  font-size: 0.84rem;
+  font-size: 0.9rem;
+  font-weight: 800;
 }
 html[lang="ne"] .form-label {
   color: #3f2a0f;
