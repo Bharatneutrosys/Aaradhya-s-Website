@@ -229,7 +229,7 @@ nav.nav-open .nav-toggle span:nth-child(3) { transform: translateY(-7px) rotate(
 .band .eyebrow::before,
 .deal-spotlight .eyebrow::before { background: var(--gold-light); }
 h1, h2, h3 { font-family: 'Playfair Display', serif; font-weight: 500; line-height: 1.12; }
-h1 { font-size: clamp(3rem, 7vw, 6rem); max-width: 980px; }
+h1 { font-size: clamp(2.25rem, 5.25vw, 4.5rem); max-width: 980px; }
 h2 { font-size: clamp(2.2rem, 4vw, 3.8rem); color: var(--slate); margin-bottom: 18px; }
 h3 { font-size: 1.55rem; color: var(--slate); }
 .hero-copy, .section-copy { font-size: 0.97rem; line-height: 1.82; max-width: 680px; color: var(--off-white); margin-top: 22px; }
@@ -634,7 +634,7 @@ footer a { color: var(--text-light); }
   .lang-switch { margin-left: auto; padding: 3px; gap: 2px; flex: 0 0 auto; }
   .lang-switch a { min-height: 28px; padding: 0 7px; font-size: 0.62rem; letter-spacing: 0.01em; }
   .nav-toggle { width: 42px; height: 42px; margin-left: 0; flex: 0 0 42px; }
-  h1 { font-size: 2.65rem; }
+  h1 { font-size: 1.99rem; }
   h1, h2, h3, .btn, .nav-cta { overflow-wrap: anywhere; }
   .btn, .nav-cta { max-width: 100%; white-space: normal; }
   .category-nav { gap: 8px; }

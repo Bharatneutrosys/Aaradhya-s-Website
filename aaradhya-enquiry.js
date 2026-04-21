@@ -18,6 +18,10 @@
     return isNepaliPage() ? ne : en;
   }
 
+  function isRelaxedTravelForm(form) {
+    return form?.name === 'flights' || form?.name === 'holidays';
+  }
+
   function closeMobileNav(nav) {
     const toggle = nav?.querySelector('.nav-toggle');
     nav?.classList.remove('nav-open');
@@ -298,6 +302,15 @@
     const invalidFields = [];
 
     fields.forEach(field => {
+      if (isRelaxedTravelForm(form)) {
+        clearFieldError(field);
+        if (field.required && !field.value.trim()) {
+          setFieldError(field, copy(`Please complete ${getFieldLabel(field)}.`, `कृपया ${getFieldLabel(field)} भर्नुहोस्।`));
+          invalidFields.push(field);
+        }
+        return;
+      }
+
       if (!validateField(field, { revealRequired: true })) invalidFields.push(field);
     });
 
@@ -328,8 +341,9 @@
         if (!field.name) return;
         if (field.dataset.validationPrepared === 'true') return;
         field.dataset.validationPrepared = 'true';
+        const relaxedTravelForm = isRelaxedTravelForm(form);
 
-        if (field.name === 'phone') {
+        if (!relaxedTravelForm && field.name === 'phone') {
           field.type = 'tel';
           field.inputMode = 'numeric';
           field.minLength = 7;
@@ -338,7 +352,7 @@
           field.autocomplete = field.autocomplete || 'tel';
         }
 
-        if (GUEST_FIELD_NAMES.has(field.name) && field.tagName !== 'SELECT') {
+        if (!relaxedTravelForm && GUEST_FIELD_NAMES.has(field.name) && field.tagName !== 'SELECT') {
           field.type = 'number';
           field.inputMode = 'numeric';
           field.min = field.min || '1';
@@ -346,14 +360,14 @@
           field.step = field.step || '1';
         }
 
-        if (field.name === 'name') {
+        if (!relaxedTravelForm && field.name === 'name') {
           field.type = field.type || 'text';
           field.minLength = 2;
           field.maxLength = 80;
           field.autocomplete = field.autocomplete || 'name';
         }
 
-        if (DATE_FIELD_NAMES.has(field.name) && field.tagName === 'INPUT') {
+        if (!relaxedTravelForm && DATE_FIELD_NAMES.has(field.name) && field.tagName === 'INPUT') {
           field.type = 'date';
           field.removeAttribute('onfocus');
           field.removeAttribute('onblur');
@@ -362,6 +376,14 @@
         }
 
         const validateLive = () => {
+          if (relaxedTravelForm) {
+            clearFieldError(field);
+            if (form.dataset.validationSubmitted === 'true' && field.required && !field.value.trim()) {
+              setFieldError(field, copy(`Please complete ${getFieldLabel(field)}.`, `कृपया ${getFieldLabel(field)} भर्नुहोस्।`));
+            }
+            return;
+          }
+
           const revealRequired = field.closest('form')?.dataset.validationSubmitted === 'true' || field.hasAttribute('aria-invalid');
           validateField(field, { revealRequired });
         };
