@@ -108,6 +108,29 @@
     }, 2600);
   }
 
+  function ensureValidationStyles() {
+    if (document.getElementById('aaradhya-validation-styles')) return;
+
+    const style = document.createElement('style');
+    style.id = 'aaradhya-validation-styles';
+    style.textContent = `
+      .field-shell-invalid .qs-label,
+      .field-shell-invalid .form-label,
+      .field-shell-invalid label {
+        color: #fff6e0 !important;
+      }
+
+      input[aria-invalid="true"],
+      select[aria-invalid="true"],
+      textarea[aria-invalid="true"] {
+        border-color: rgba(217, 139, 139, 0.86) !important;
+        box-shadow: 0 0 0 3px rgba(217, 139, 139, 0.16), 0 10px 28px rgba(84, 18, 18, 0.16) !important;
+        background-color: rgba(84, 18, 18, 0.14) !important;
+      }
+    `;
+    document.head.appendChild(style);
+  }
+
   function getFieldShell(field) {
     return field.closest('.qs-inner, .form-field, .form-group') || field.parentElement;
   }
@@ -136,6 +159,7 @@
     }
 
     error.textContent = message;
+    shell.classList.add('field-shell-invalid');
     field.setAttribute('aria-invalid', 'true');
     field.setCustomValidity(message);
   }
@@ -143,6 +167,7 @@
   function clearFieldError(field) {
     const shell = getFieldShell(field);
     shell?.querySelector(':scope > .field-error-message')?.remove();
+    shell?.classList.remove('field-shell-invalid');
     field.removeAttribute('aria-invalid');
     field.setCustomValidity('');
   }
@@ -154,14 +179,16 @@
     return text || field.getAttribute('aria-label') || field.placeholder || field.name.replace(/[_-]+/g, ' ');
   }
 
-  function validateRequired(field) {
+  function validateRequired(field, revealRequired) {
     if (!field.required) return '';
     const value = field.value.trim();
     if (field.type === 'checkbox' || field.type === 'radio') {
       return field.checked ? '' : copy('Please select this option.', 'कृपया यो विकल्प छान्नुहोस्।');
     }
     if (value) return '';
-    return copy(`Please complete ${getFieldLabel(field)}.`, `कृपया ${getFieldLabel(field)} भर्नुहोस्।`);
+    return revealRequired
+      ? copy(`Please complete ${getFieldLabel(field)}.`, `कृपया ${getFieldLabel(field)} भर्नुहोस्।`)
+      : '';
   }
 
   function validateEmail(field) {
@@ -172,9 +199,9 @@
       : copy('Please enter a valid email address.', 'कृपया सही इमेल ठेगाना लेख्नुहोस्।');
   }
 
-  function validateName(field) {
+  function validateName(field, revealRequired) {
     const value = field.value.trim();
-    if (!value && field.required) return copy('Please enter your name.', 'कृपया आफ्नो नाम लेख्नुहोस्।');
+    if (!value && field.required && revealRequired) return copy('Please enter your name.', 'कृपया आफ्नो नाम लेख्नुहोस्।');
     if (!value) return '';
     if (value.length < 2) return copy('Please enter a real name.', 'कृपया सही नाम लेख्नुहोस्।');
     if (!/[\p{L}]/u.test(value)) return copy('Name must include letters.', 'नाममा अक्षर हुनुपर्छ।');
@@ -183,9 +210,9 @@
     return '';
   }
 
-  function validatePhone(field) {
+  function validatePhone(field, revealRequired) {
     const value = field.value.trim();
-    if (!value && field.required) return copy('Please enter your phone number.', 'कृपया फोन नम्बर लेख्नुहोस्।');
+    if (!value && field.required && revealRequired) return copy('Please enter your phone number.', 'कृपया फोन नम्बर लेख्नुहोस्।');
     if (!value) return '';
     if (!/^\+?[\d\s().-]+$/.test(value)) return copy('Use digits and an optional + only.', 'फोनमा अंक र सुरुमा + मात्र प्रयोग गर्नुहोस्।');
 
@@ -202,21 +229,22 @@
     return !Number.isNaN(date.getTime()) && date.toISOString().slice(0, 10) === value;
   }
 
-  function validateDate(field) {
+  function validateDate(field, revealRequired) {
     const value = field.value.trim();
-    if (!value && field.required) return copy('Please choose a valid date.', 'कृपया सही मिति छान्नुहोस्।');
+    if (!value && field.required && revealRequired) return copy('Please choose a valid date.', 'कृपया सही मिति छान्नुहोस्।');
     if (!value) return '';
     if (!isRealIsoDate(value)) return copy('Please choose a valid date from the calendar.', 'कृपया क्यालेन्डरबाट सही मिति छान्नुहोस्।');
     return '';
   }
 
-  function validateField(field) {
+  function validateField(field, options = {}) {
+    const revealRequired = options.revealRequired === true;
     clearFieldError(field);
 
-    let message = validateRequired(field);
-    if (field.name === 'name') message = validateName(field);
-    if (!message && field.name === 'phone') message = validatePhone(field);
-    if (!message && DATE_FIELD_NAMES.has(field.name)) message = validateDate(field);
+    let message = validateRequired(field, revealRequired);
+    if (field.name === 'name') message = validateName(field, revealRequired);
+    if (!message && field.name === 'phone') message = validatePhone(field, revealRequired);
+    if (!message && DATE_FIELD_NAMES.has(field.name)) message = validateDate(field, revealRequired);
     if (!message && field.type === 'email') message = validateEmail(field);
     if (!message && field.validity.patternMismatch) {
       message = copy('Please use the requested format.', 'कृपया सही ढाँचा प्रयोग गर्नुहोस्।');
@@ -238,7 +266,8 @@
 
   function validateForm(form) {
     const fields = [...form.querySelectorAll('input, select, textarea')].filter(field => field.name);
-    const invalidFields = fields.filter(field => !validateField(field));
+    form.dataset.validationSubmitted = 'true';
+    const invalidFields = fields.filter(field => !validateField(field, { revealRequired: true }));
 
     if (invalidFields.length) {
       invalidFields[0].focus({ preventScroll: true });
@@ -250,6 +279,8 @@
   }
 
   function prepareValidationFields() {
+    ensureValidationStyles();
+
     document.querySelectorAll(NETLIFY_FORM_SELECTOR).forEach(form => {
       form.noValidate = true;
       console.log('[Aaradhya forms] validation prepared:', form.name, form.className);
@@ -280,9 +311,14 @@
           field.min = field.name === 'return_date' ? '' : new Date().toISOString().slice(0, 10);
         }
 
-        field.addEventListener('input', () => validateField(field));
-        field.addEventListener('change', () => validateField(field));
-        field.addEventListener('blur', () => validateField(field));
+        const validateLive = () => {
+          const revealRequired = field.closest('form')?.dataset.validationSubmitted === 'true' || field.hasAttribute('aria-invalid');
+          validateField(field, { revealRequired });
+        };
+
+        field.addEventListener('input', validateLive);
+        field.addEventListener('change', validateLive);
+        field.addEventListener('blur', validateLive);
       });
     });
   }
@@ -333,7 +369,9 @@
 
       console.log('[Aaradhya forms] Netlify AJAX post succeeded:', form.name);
       form.reset();
+      delete form.dataset.validationSubmitted;
       form.querySelectorAll('.field-error-message').forEach(error => error.remove());
+      form.querySelectorAll('.field-shell-invalid').forEach(shell => shell.classList.remove('field-shell-invalid'));
       form.querySelectorAll('[aria-invalid="true"]').forEach(field => field.removeAttribute('aria-invalid'));
       showToast(
         copy('Your submission has been sent. We’ll get back to you shortly.', 'तपाईंको विवरण पठाइयो। हामी चाँडै सम्पर्क गर्नेछौं।'),
