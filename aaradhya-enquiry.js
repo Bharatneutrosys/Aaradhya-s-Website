@@ -1,8 +1,13 @@
 (function () {
   const NETLIFY_FORM_SELECTOR = 'form[data-netlify="true"], form[netlify]';
+  const HOMEPAGE_FORM_SELECTORS = [
+    'form[name="flights"].quick-search',
+    'form[name="holidays"].quick-search',
+    'form[name="contact"].modal-form',
+    'form[name="contact"].enquiry-form'
+  ];
   const DATE_FIELD_NAMES = new Set(['departure_date', 'return_date', 'travel_date', 'preferred_date']);
   const pendingSubmits = new WeakSet();
-  let submitHandlerBound = false;
 
   function isNepaliPage() {
     return document.documentElement.lang === 'ne';
@@ -257,6 +262,7 @@
   }
 
   async function submitNetlifyForm(form, submitter) {
+    console.log('intercepted submit', form.name, form.className);
     console.log('[Aaradhya forms] submit intercepted:', form.name, form.className);
 
     if (!validateForm(form)) {
@@ -301,19 +307,31 @@
   }
 
   function initNetlifyAjaxForms() {
-    if (submitHandlerBound) return;
-    submitHandlerBound = true;
+    const boundForms = new Set();
 
-    document.addEventListener('submit', event => {
-      const form = event.target instanceof HTMLFormElement
-        ? event.target
-        : event.target?.closest?.(NETLIFY_FORM_SELECTOR);
+    function bindForm(form, label) {
+      if (!form || form.dataset.ajaxSubmitBound === 'true') return;
+      form.dataset.ajaxSubmitBound = 'true';
+      boundForms.add(form);
+      form.addEventListener('submit', event => {
+        event.preventDefault();
+        submitNetlifyForm(form, event.submitter);
+      });
 
-      if (!form || !form.matches(NETLIFY_FORM_SELECTOR)) return;
+      if (label === 'flights') console.log('bound flights form');
+      if (label === 'holidays') console.log('bound holidays form');
+      console.log('[Aaradhya forms] bound form:', label || form.name, form.className);
+    }
 
-      event.preventDefault();
-      submitNetlifyForm(form, event.submitter);
-    }, true);
+    HOMEPAGE_FORM_SELECTORS.forEach(selector => {
+      document.querySelectorAll(selector).forEach(form => {
+        bindForm(form, form.name);
+      });
+    });
+
+    document.querySelectorAll(NETLIFY_FORM_SELECTOR).forEach(form => {
+      if (!boundForms.has(form)) bindForm(form, form.name);
+    });
 
     console.log('[Aaradhya forms] submit handler bound:', document.querySelectorAll(NETLIFY_FORM_SELECTOR).length);
   }
