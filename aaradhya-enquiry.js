@@ -7,6 +7,7 @@
     'form[name="contact"].enquiry-form'
   ];
   const DATE_FIELD_NAMES = new Set(['departure_date', 'return_date', 'travel_date', 'preferred_date']);
+  const GUEST_FIELD_NAMES = new Set(['guests', 'persons', 'passengers', 'travellers', 'travelers']);
   const pendingSubmits = new WeakSet();
 
   function isNepaliPage() {
@@ -226,12 +227,26 @@
     const value = field.value.trim();
     if (!value && field.required && revealRequired) return copy('Please enter your phone number.', 'कृपया फोन नम्बर लेख्नुहोस्।');
     if (!value) return '';
-    if (!/^\+?[\d\s().-]+$/.test(value)) return copy('Use digits and an optional + only.', 'फोनमा अंक र सुरुमा + मात्र प्रयोग गर्नुहोस्।');
+    if (!/^\+?\d+$/.test(value)) return copy('Use digits and an optional + only.', 'फोनमा अंक र सुरुमा + मात्र प्रयोग गर्नुहोस्।');
 
     const digits = value.replace(/\D/g, '');
     if (digits.length < 7) return copy('Phone number is too short.', 'फोन नम्बर धेरै छोटो भयो।');
     if (digits.length > 15) return copy('Phone number is too long.', 'फोन नम्बर धेरै लामो भयो।');
     if (/^(\d)\1+$/.test(digits)) return copy('Please enter a valid phone number.', 'कृपया सही फोन नम्बर लेख्नुहोस्।');
+    return '';
+  }
+
+  function validateGuests(field, revealRequired) {
+    const value = field.value.trim();
+    if (!value && field.required && revealRequired) return copy('Please choose the number of guests.', 'कृपया यात्रु संख्या छान्नुहोस्।');
+    if (!value) return '';
+    if (field.tagName === 'SELECT') return '';
+    if (!/^\d+$/.test(value)) return copy('Use numbers only.', 'अंक मात्र प्रयोग गर्नुहोस्।');
+
+    const count = Number(value);
+    if (!Number.isInteger(count) || count < 1 || count > 99) {
+      return copy('Please enter a realistic guest count.', 'कृपया सही यात्रु संख्या लेख्नुहोस्।');
+    }
     return '';
   }
 
@@ -257,6 +272,7 @@
     if (field.name === 'name') message = validateName(field, revealRequired);
     if (!message && field.name === 'phone') message = validatePhone(field, revealRequired);
     if (!message && DATE_FIELD_NAMES.has(field.name)) message = validateDate(field, revealRequired);
+    if (!message && GUEST_FIELD_NAMES.has(field.name)) message = validateGuests(field, revealRequired);
     if (!message && field.type === 'email') message = validateEmail(field);
     if (!message && field.validity.patternMismatch) {
       message = copy('Please use the requested format.', 'कृपया सही ढाँचा प्रयोग गर्नुहोस्।');
@@ -315,11 +331,19 @@
 
         if (field.name === 'phone') {
           field.type = 'tel';
-          field.inputMode = 'tel';
+          field.inputMode = 'numeric';
           field.minLength = 7;
-          field.maxLength = 18;
-          field.pattern = '^\\+?[0-9\\s().-]{7,18}$';
+          field.maxLength = 16;
+          field.pattern = '^\\+?[0-9]{7,15}$';
           field.autocomplete = field.autocomplete || 'tel';
+        }
+
+        if (GUEST_FIELD_NAMES.has(field.name) && field.tagName !== 'SELECT') {
+          field.type = 'number';
+          field.inputMode = 'numeric';
+          field.min = field.min || '1';
+          field.max = field.max || '99';
+          field.step = field.step || '1';
         }
 
         if (field.name === 'name') {
@@ -411,6 +435,19 @@
 
   function initNetlifyAjaxForms() {
     const boundForms = new Set();
+    if (document.documentElement.dataset.netlifyCaptureBound !== 'true') {
+      document.documentElement.dataset.netlifyCaptureBound = 'true';
+      document.addEventListener('submit', event => {
+        const form = event.target instanceof HTMLFormElement
+          ? event.target
+          : event.target?.closest?.(NETLIFY_FORM_SELECTOR);
+
+        if (!form || !form.matches(NETLIFY_FORM_SELECTOR)) return;
+        event.preventDefault();
+        if (form.dataset.ajaxSubmitBound === 'true') return;
+        submitNetlifyForm(form, event.submitter);
+      }, true);
+    }
 
     function bindForm(form, label) {
       if (!form || form.dataset.ajaxSubmitBound === 'true') return;
