@@ -1447,6 +1447,75 @@
     nav.nav-open .nav-cta { display: inline-flex; }
   }
 
+  @media (max-width: 768px) {
+    .booking-pane[data-booking-pane="holidays"] form[name="holidays"].quick-search {
+      display: grid !important;
+      grid-template-columns: minmax(0, 1fr) !important;
+      gap: 18px !important;
+      width: 100%;
+      max-width: 100%;
+      padding: 14px !important;
+      align-items: stretch;
+      overflow: visible;
+    }
+
+    .booking-pane[data-booking-pane="holidays"] form[name="holidays"].quick-search > .qs-field {
+      width: 100%;
+      min-width: 0;
+      grid-column: 1 / -1 !important;
+      min-height: 96px;
+      padding: 17px;
+      align-items: flex-start;
+      gap: 12px;
+      overflow: visible;
+    }
+
+    .booking-pane[data-booking-pane="holidays"] form[name="holidays"].quick-search > .qs-field:nth-of-type(1) { order: 1; }
+    .booking-pane[data-booking-pane="holidays"] form[name="holidays"].quick-search > .qs-field:nth-of-type(2) { order: 2; }
+    .booking-pane[data-booking-pane="holidays"] form[name="holidays"].quick-search > .qs-field:nth-of-type(3) { order: 3; }
+    .booking-pane[data-booking-pane="holidays"] form[name="holidays"].quick-search > .qs-field:nth-of-type(4) { order: 4; }
+    .booking-pane[data-booking-pane="holidays"] form[name="holidays"].quick-search > .qs-field:nth-of-type(5) { order: 7; }
+    .booking-pane[data-booking-pane="holidays"] form[name="holidays"].quick-search > .qs-field:nth-of-type(6) { order: 5; }
+    .booking-pane[data-booking-pane="holidays"] form[name="holidays"].quick-search > .qs-field:nth-of-type(7) { order: 6; }
+    .booking-pane[data-booking-pane="holidays"] form[name="holidays"].quick-search > .qs-field:nth-of-type(8) { order: 8; }
+
+    .booking-pane[data-booking-pane="holidays"] form[name="holidays"].quick-search .qs-inner {
+      width: 100%;
+      min-width: 0;
+      gap: 10px;
+    }
+
+    .booking-pane[data-booking-pane="holidays"] form[name="holidays"].quick-search .qs-label {
+      color: #fbe8c8;
+      font-size: 0.82rem;
+      line-height: 1.45;
+      letter-spacing: 0.08em;
+    }
+
+    .booking-pane[data-booking-pane="holidays"] form[name="holidays"].quick-search .qs-value {
+      width: 100%;
+      min-width: 0;
+      min-height: 56px;
+      padding: 14px 15px;
+      font-size: 1rem;
+    }
+
+    .booking-pane[data-booking-pane="holidays"] form[name="holidays"].quick-search .qs-textarea,
+    .booking-pane[data-booking-pane="holidays"] form[name="holidays"].quick-search textarea.qs-value {
+      min-height: 148px;
+    }
+
+    .booking-pane[data-booking-pane="holidays"] form[name="holidays"].quick-search > .qs-btn {
+      order: 9;
+      width: 100%;
+      grid-column: 1 / -1 !important;
+      min-height: 62px;
+      margin-top: 2px;
+      padding: 16px 18px;
+      white-space: normal;
+    }
+  }
+
   html[lang="ne"] body,
   html[lang="ne"] input,
   html[lang="ne"] select,
