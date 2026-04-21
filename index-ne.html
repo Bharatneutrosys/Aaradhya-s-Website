@@ -357,7 +357,12 @@
     background: rgba(255,250,240,0.24);
     display: flex; align-items: center; gap: 12px;
     min-width: 0; min-height: 66px; position: relative;
-    transition: border-color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+    transition: border-color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+  }
+  .qs-field:hover {
+    border-color: rgba(216,185,129,0.94);
+    background: rgba(255,250,240,0.28);
+    box-shadow: 0 0 0 1px rgba(216,185,129,0.14), 0 14px 34px rgba(0,0,0,0.14);
   }
   .qs-field:focus-within {
     border-color: rgba(216,185,129,0.95);
@@ -369,7 +374,7 @@
   }
   .qs-inner { display: flex; flex-direction: column; justify-content: center; gap: 10px; min-width: 0; width: 100%; }
   .qs-label {
-    font-size: 0.56rem; font-weight: 700; letter-spacing: 0.18em;
+    font-size: 0.66rem; font-weight: 800; letter-spacing: 0.12em;
     text-transform: uppercase; color: #f3dec1; opacity: 1;
     line-height: 1;
   }
@@ -497,6 +502,13 @@
     border-radius: 8px;
     padding: 28px;
     box-shadow: 0 18px 54px rgba(34,56,47,0.14);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+  }
+  .package-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(184,148,94,0.5);
+    background: rgba(255,250,240,0.9);
+    box-shadow: 0 0 0 1px rgba(216,185,129,0.18), 0 26px 68px rgba(34,56,47,0.2);
   }
   .package-card h3 {
     font-family: 'Playfair Display', serif;
@@ -1023,7 +1035,7 @@
   .modal-form { display: flex; flex-direction: column; gap: 20px; }
   .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
   .form-field { display: flex; flex-direction: column; gap: 12px; }
-  .form-label { font-size: 0.6rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #f3dec1; }
+  .form-label { font-size: 0.7rem; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #f8e7c9; }
   .form-input {
     background: rgba(255,250,240,0.24); border: 1.5px solid rgba(216,185,129,0.78);
     border-radius: 6px;
@@ -1119,9 +1131,15 @@
     display: inline-flex; align-items: center; justify-content: center; min-height: 44px;
     padding: 13px 22px; border-radius: 6px; text-decoration: none;
     font-size: 0.68rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease, border-color 0.25s ease;
   }
   .primary-link { background: var(--gold); color: var(--slate); }
   .secondary-link { border: 1px solid rgba(216,185,129,0.55); color: var(--gold-light); }
+  .primary-link:hover, .secondary-link:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 0 0 1px rgba(255,250,240,0.36), 0 16px 36px rgba(184,148,94,0.24);
+  }
+  .secondary-link:hover { background: rgba(255,250,240,0.08); border-color: rgba(216,185,129,0.78); }
 
   a:focus-visible,
   button:focus-visible,
@@ -1325,6 +1343,11 @@
   html[lang="ne"] .footer-heading {
     letter-spacing: 0.02em;
   }
+  html[lang="ne"] .nav-links a { font-size: 0.92rem; font-weight: 700; }
+  html[lang="ne"] .nav-cta,
+  html[lang="ne"] .lang-switch a { font-size: 0.84rem; }
+  html[lang="ne"] .qs-label,
+  html[lang="ne"] .form-label { font-size: 0.84rem; font-weight: 800; color: #fbe8c8; }
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
@@ -1406,7 +1429,7 @@
     <li><a href="international-tours-ne.html">अन्तर्राष्ट्रिय</a></li><li><a href="adventure-trips-ne.html">साहसिक</a></li>
     <li><a href="pilgrimage-ne.html">तीर्थयात्रा</a></li>
     <li><a href="services-ne.html">सेवाहरू</a></li>
-    <li><a href="offers-ne.html">अफरहरू</a></li>
+    <li><a href="educational-tours-ne.html">शैक्षिक भ्रमण</a></li>
     <li><a href="about-ne.html">हाम्रो बारेमा</a></li>
     <li><a href="contact-ne.html">सम्पर्क</a></li>
   </ul>
@@ -1865,7 +1888,7 @@
     <h3>नेपाल यात्राका लागि अग्रिम योजना लाभ</h3>
     <p>नेपाल प्याकेज अग्रिम माग्नुहोस्; हाम्रो टोलीले विमानस्थल सहयोग, निजी ब्रिफिङ र मार्ग संयोजन जस्ता सम्भावित थप लाभ जाँच्नेछ।</p>
   </div>
-  <a class="primary-link" href="offers-ne.html">अफरहरू हेर्नुहोस्</a>
+  <a class="primary-link" href="educational-tours-ne.html">शैक्षिक भ्रमण हेर्नुहोस्</a>
 </div>
 
 <!-- GLOBAL GATEWAY -->
@@ -2092,7 +2115,7 @@
   </div>
   <div class="section-actions" style="margin-top:0">
     <a class="primary-link" href="#enquiry">योजना माग्नुहोस्</a>
-    <a class="secondary-link" href="offers-ne.html">हालका अफरहरू हेर्नुहोस्</a>
+    <a class="secondary-link" href="educational-tours-ne.html">हालका अफरहरू हेर्नुहोस्</a>
   </div>
 </section>
 
@@ -2118,7 +2141,7 @@
         <li><a href="services-ne.html">हाम्रा सेवाहरू</a></li>
         <li><a href="pilgrimage-ne.html">तीर्थयात्रा</a></li>
         
-        <li><a href="offers-ne.html">अफरहरू</a></li>
+        <li><a href="educational-tours-ne.html">शैक्षिक भ्रमण</a></li>
         <li><a href="about-ne.html">हाम्रो बारेमा</a></li>
         <li><a href="contact-ne.html">सम्पर्क</a></li>
       </ul>
