@@ -523,28 +523,6 @@
     if (!hero || !booking || document.body.dataset.mobileHomeReady === 'true') return;
     document.body.dataset.mobileHomeReady = 'true';
 
-    const shortcutCopy = isNepaliPage()
-      ? [
-          ['नेपाल', '#nepal'],
-          ['अन्तर्राष्ट्रिय', '#global'],
-          ['तीर्थयात्रा', '#pilgrimage'],
-          ['सेवाहरू', '#services']
-        ]
-      : [
-          ['Nepal', '#nepal'],
-          ['International', '#global'],
-          ['Pilgrimage', '#pilgrimage'],
-          ['Services', '#services']
-        ];
-
-    const shortcuts = document.createElement('nav');
-    shortcuts.className = 'mobile-home-shortcuts';
-    shortcuts.setAttribute('aria-label', copy('Homepage shortcuts', 'मुख्य पृष्ठ छोटकरी लिंकहरू'));
-    shortcuts.innerHTML = shortcutCopy
-      .map(([label, href]) => `<a href="${href}">${label}</a>`)
-      .join('');
-    hero.insertAdjacentElement('afterend', shortcuts);
-
     const collapsibles = [
       ['#nepal', copy('Nepal Highlights', 'नेपाल हाइलाइट्स'), true],
       ['.package-section:not(.alt):not(#pilgrimage)', copy('Featured Packages', 'विशेष प्याकेजहरू'), false],

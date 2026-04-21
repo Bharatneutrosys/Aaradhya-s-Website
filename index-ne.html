@@ -1382,31 +1382,6 @@
       line-height: 1.5;
     }
 
-    .mobile-home-shortcuts {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 10px;
-      padding: 18px 20px 10px;
-      background: linear-gradient(180deg, #20372f, #f7efe1);
-    }
-
-    .mobile-home-shortcuts a {
-      min-height: 46px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 8px;
-      border: 1px solid rgba(216,185,129,0.42);
-      background: rgba(255,250,240,0.12);
-      color: #fffaf0;
-      text-decoration: none;
-      font-size: 0.68rem;
-      font-weight: 800;
-      letter-spacing: 0.02em;
-      text-transform: none;
-      box-shadow: 0 14px 34px rgba(0,0,0,0.12);
-    }
-
     .mobile-collapsible {
       padding: 12px 20px !important;
       background: #f7efe1;
@@ -1601,8 +1576,6 @@
       display: none !important;
     }
   }
-
-  .mobile-home-shortcuts,
   .mobile-collapse-toggle {
     display: none;
   }
@@ -1612,7 +1585,6 @@
   }
 
   @media (max-width: 768px) {
-    .mobile-home-shortcuts { display: grid; }
     .mobile-collapse-toggle { display: flex; }
     .mobile-collapse-body { display: none; }
     .mobile-open > .mobile-collapse-body { display: block; }
