@@ -517,11 +517,82 @@
     });
   }
 
+  function initMobileHomepageSimplifier() {
+    const hero = document.querySelector('.hero#home');
+    const booking = document.querySelector('.booking-panel#booking');
+    if (!hero || !booking || document.body.dataset.mobileHomeReady === 'true') return;
+    document.body.dataset.mobileHomeReady = 'true';
+
+    const shortcutCopy = isNepaliPage()
+      ? [
+          ['नेपाल', '#nepal'],
+          ['अन्तर्राष्ट्रिय', '#global'],
+          ['तीर्थयात्रा', '#pilgrimage'],
+          ['सेवाहरू', '#services']
+        ]
+      : [
+          ['Nepal', '#nepal'],
+          ['International', '#global'],
+          ['Pilgrimage', '#pilgrimage'],
+          ['Services', '#services']
+        ];
+
+    const shortcuts = document.createElement('nav');
+    shortcuts.className = 'mobile-home-shortcuts';
+    shortcuts.setAttribute('aria-label', copy('Homepage shortcuts', 'मुख्य पृष्ठ छोटकरी लिंकहरू'));
+    shortcuts.innerHTML = shortcutCopy
+      .map(([label, href]) => `<a href="${href}">${label}</a>`)
+      .join('');
+    hero.insertAdjacentElement('afterend', shortcuts);
+
+    const collapsibles = [
+      ['#nepal', copy('Nepal Highlights', 'नेपाल हाइलाइट्स'), true],
+      ['.package-section:not(.alt):not(#pilgrimage)', copy('Featured Packages', 'विशेष प्याकेजहरू'), false],
+      ['.package-section.alt', copy('Offers & Ideas', 'अफर र यात्रा विचार'), false],
+      ['#pilgrimage', copy('Pilgrimage Journeys', 'तीर्थयात्रा'), false],
+      ['.offer-strip', copy('Guest Benefits', 'यात्रु लाभहरू'), false],
+      ['#global', copy('International Highlights', 'अन्तर्राष्ट्रिय हाइलाइट्स'), false],
+      ['#services', copy('Travel Services', 'यात्रा सेवाहरू'), false],
+      ['.testimonials-section', copy('Traveller Trust', 'यात्रु विश्वास'), false],
+      ['#enquiry', copy('Detailed Enquiry Form', 'विस्तृत सोधपुछ फारम'), false],
+      ['.final-cta', copy('Start Planning', 'योजना सुरु गर्नुहोस्'), false]
+    ];
+
+    const seen = new Set();
+    collapsibles.forEach(([selector, title, openByDefault]) => {
+      document.querySelectorAll(selector).forEach((section, index) => {
+        if (seen.has(section)) return;
+        seen.add(section);
+
+        const body = document.createElement('div');
+        body.className = 'mobile-collapse-body';
+        while (section.firstChild) body.appendChild(section.firstChild);
+
+        const button = document.createElement('button');
+        button.className = 'mobile-collapse-toggle';
+        button.type = 'button';
+        const sectionTitle = index ? `${title} ${index + 1}` : title;
+        button.innerHTML = `<span>${sectionTitle}</span><strong>${copy('Tap to view', 'हेर्न ट्याप गर्नुहोस्')}</strong>`;
+        button.setAttribute('aria-expanded', String(openByDefault));
+
+        section.classList.add('mobile-collapsible');
+        if (openByDefault) section.classList.add('mobile-open');
+        section.append(button, body);
+
+        button.addEventListener('click', () => {
+          const isOpen = section.classList.toggle('mobile-open');
+          button.setAttribute('aria-expanded', String(isOpen));
+        });
+      });
+    });
+  }
+
   function init() {
     initMobileNav();
     prepareValidationFields();
     initNetlifyAjaxForms();
     initActionButtons();
+    initMobileHomepageSimplifier();
   }
 
   if (document.readyState === 'loading') {

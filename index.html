@@ -1347,6 +1347,165 @@
   }
 
   @media (max-width: 768px) {
+    .hero {
+      min-height: auto;
+      padding: 104px 0 34px;
+      align-items: flex-start;
+    }
+
+    .hero-content {
+      width: 100%;
+      padding: 0 14px;
+    }
+
+    .hero-eyebrow {
+      margin-bottom: 10px;
+      font-size: 0.58rem;
+    }
+
+    .hero-title {
+      margin-bottom: 12px;
+      line-height: 1.08;
+    }
+
+    .hero-sub {
+      margin-bottom: 10px;
+      font-size: 0.78rem;
+      line-height: 1.58;
+    }
+
+    .hero-support {
+      margin-bottom: 18px;
+      font-size: 0.62rem;
+      letter-spacing: 0.1em;
+      line-height: 1.5;
+    }
+
+    .mobile-home-shortcuts {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      padding: 18px 20px 10px;
+      background: linear-gradient(180deg, #20372f, #f7efe1);
+    }
+
+    .mobile-home-shortcuts a {
+      min-height: 46px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+      border: 1px solid rgba(216,185,129,0.42);
+      background: rgba(255,250,240,0.12);
+      color: #fffaf0;
+      text-decoration: none;
+      font-size: 0.68rem;
+      font-weight: 800;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      box-shadow: 0 14px 34px rgba(0,0,0,0.12);
+    }
+
+    .mobile-collapsible {
+      padding: 12px 20px !important;
+      background: #f7efe1;
+    }
+
+    .mobile-collapsible.offer-strip,
+    .mobile-collapsible.final-cta,
+    .mobile-collapsible.enquiry-section {
+      background: linear-gradient(135deg, var(--slate) 0%, var(--evergreen) 100%);
+    }
+
+    .mobile-collapsible + .mobile-collapsible {
+      padding-top: 0 !important;
+    }
+
+    .mobile-collapse-toggle {
+      width: 100%;
+      min-height: 62px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 15px 16px;
+      border: 1px solid rgba(184,148,94,0.28);
+      border-radius: 8px;
+      background: rgba(255,250,240,0.92);
+      color: var(--slate);
+      box-shadow: 0 16px 42px rgba(34,56,47,0.12);
+      text-align: left;
+      cursor: pointer;
+    }
+
+    .mobile-collapse-toggle span {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.08rem;
+      font-weight: 600;
+      line-height: 1.2;
+    }
+
+    .mobile-collapse-toggle strong {
+      flex: 0 0 auto;
+      color: #735522;
+      font-size: 0.58rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .mobile-collapse-toggle::after {
+      content: "+";
+      width: 26px;
+      height: 26px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: var(--gold);
+      color: var(--slate);
+      font-weight: 800;
+      flex: 0 0 auto;
+    }
+
+    .mobile-open > .mobile-collapse-toggle::after {
+      content: "-";
+    }
+
+    .mobile-collapse-body {
+      display: none;
+      padding-top: 22px;
+    }
+
+    .mobile-open > .mobile-collapse-body {
+      display: block;
+    }
+
+    .mobile-collapsible .nepal-header,
+    .mobile-collapsible .global-header,
+    .mobile-collapsible .services-inner > div:first-child {
+      margin-bottom: 22px !important;
+    }
+
+    .mobile-collapsible .section-title {
+      font-size: clamp(1.55rem, 9vw, 2.25rem);
+    }
+
+    .mobile-collapsible .cards-grid,
+    .mobile-collapsible .package-grid,
+    .mobile-collapsible .destinations-row,
+    .mobile-collapsible .services-grid,
+    .mobile-collapsible .testimonials-grid {
+      margin-top: 22px;
+      gap: 16px;
+    }
+
+    .mobile-collapsible .package-card,
+    .mobile-collapsible .service-item,
+    .mobile-collapsible .testimonial-card {
+      padding: 22px;
+    }
+
     .quick-search,
     .booking-pane[data-booking-pane="flights"] .quick-search,
     .booking-pane[data-booking-pane="holidays"] .quick-search,
@@ -1440,6 +1599,22 @@
     .pilgrimage-badge {
       display: none !important;
     }
+  }
+
+  .mobile-home-shortcuts,
+  .mobile-collapse-toggle {
+    display: none;
+  }
+
+  .mobile-collapse-body {
+    display: contents;
+  }
+
+  @media (max-width: 768px) {
+    .mobile-home-shortcuts { display: grid; }
+    .mobile-collapse-toggle { display: flex; }
+    .mobile-collapse-body { display: none; }
+    .mobile-open > .mobile-collapse-body { display: block; }
   }
 
   @media (max-width: 520px) {
@@ -2473,6 +2648,6 @@
 
   carouselTimer = setInterval(nextSlide, 5500);
  </script>
-<script src="aaradhya-enquiry.js?v=netlify-relaxed-travel-forms-20260421"></script>
+<script src="aaradhya-enquiry.js?v=mobile-home-accordion-20260421"></script>
 </body>
 </html>
