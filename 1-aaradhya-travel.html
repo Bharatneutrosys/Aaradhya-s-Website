@@ -975,6 +975,73 @@
     footer { padding: 64px 24px 32px; }
   }
 
+  @media (max-width: 768px) {
+    .quick-search,
+    .form-grid,
+    .form-row,
+    .enquiry-form {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 18px;
+      width: 100%;
+    }
+
+    .booking-panel {
+      width: min(100%, 560px);
+      padding: 12px;
+    }
+
+    .qs-field,
+    .form-field,
+    .form-group,
+    .wide-field,
+    .preference-field {
+      width: 100%;
+      min-width: 0;
+      grid-column: auto;
+    }
+
+    .qs-field {
+      min-height: 76px;
+      padding: 16px 14px;
+    }
+
+    .qs-label,
+    .form-label,
+    .form-group label {
+      color: #f8e7c9;
+      font-size: 0.76rem;
+      line-height: 1.45;
+    }
+
+    .qs-value,
+    .form-input,
+    .form-group input,
+    .form-group select {
+      width: 100%;
+      min-height: 52px;
+      padding: 13px 14px;
+      font-size: 1rem;
+    }
+
+    .qs-textarea,
+    textarea.form-input {
+      min-height: 132px;
+    }
+
+    .qs-btn {
+      width: 100%;
+      min-height: 58px;
+      grid-column: auto;
+    }
+
+    .tirtaFloat,
+    .tirtha-float,
+    .pilgrimage-badge {
+      display: none !important;
+    }
+  }
+
   @media (max-width: 520px) {
     .nav-cta { display: none; }
     nav.nav-open .nav-cta { display: inline-flex; }

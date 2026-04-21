@@ -641,6 +641,57 @@ footer a { color: var(--text-light); }
   .form-row { grid-template-columns: 1fr; }
 }
 
+@media (max-width: 768px) {
+  .form,
+  .form-grid,
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 18px;
+    width: 100%;
+  }
+
+  .form-field,
+  .form-group {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .form-label,
+  .form-group label {
+    color: #3f2a0f;
+    font-size: 0.82rem;
+    line-height: 1.45;
+  }
+
+  input,
+  select,
+  textarea,
+  .form-group input,
+  .form-group select {
+    width: 100%;
+    min-height: 52px;
+    padding: 14px 15px;
+    font-size: 1rem;
+  }
+
+  textarea {
+    min-height: 140px;
+  }
+
+  .contact-card,
+  .service-card,
+  .offer {
+    overflow: hidden;
+  }
+
+  .tirtaFloat,
+  .tirtha-float,
+  .pilgrimage-badge {
+    display: none !important;
+  }
+}
+
 html[lang="ne"] body,
 html[lang="ne"] input,
 html[lang="ne"] select,
