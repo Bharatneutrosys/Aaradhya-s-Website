@@ -2,6 +2,7 @@
   const NETLIFY_FORM_SELECTOR = 'form[data-netlify="true"], form[netlify]';
   const DATE_FIELD_NAMES = new Set(['departure_date', 'return_date', 'travel_date', 'preferred_date']);
   const pendingSubmits = new WeakSet();
+  let submitHandlerBound = false;
 
   function isNepaliPage() {
     return document.documentElement.lang === 'ne';
@@ -205,6 +206,7 @@
 
   function prepareValidationFields() {
     document.querySelectorAll(NETLIFY_FORM_SELECTOR).forEach(form => {
+      console.log('[Aaradhya forms] validation prepared:', form.name, form.className);
       form.querySelectorAll('input, select, textarea').forEach(field => {
         if (!field.name) return;
 
@@ -255,6 +257,8 @@
   }
 
   async function submitNetlifyForm(form, submitter) {
+    console.log('[Aaradhya forms] submit intercepted:', form.name, form.className);
+
     if (!validateForm(form)) {
       showToast(copy('Please correct the highlighted fields.', 'कृपया देखाइएका विवरण सच्याउनुहोस्।'), 'error');
       return;
@@ -279,6 +283,7 @@
 
       if (!response.ok) throw new Error(`Netlify form post failed: ${response.status}`);
 
+      console.log('[Aaradhya forms] Netlify AJAX post succeeded:', form.name);
       form.reset();
       form.querySelectorAll('.field-error-message').forEach(error => error.remove());
       form.querySelectorAll('[aria-invalid="true"]').forEach(field => field.removeAttribute('aria-invalid'));
@@ -296,14 +301,21 @@
   }
 
   function initNetlifyAjaxForms() {
-    document.querySelectorAll(NETLIFY_FORM_SELECTOR).forEach(form => {
-      if (form.dataset.ajaxSubmitBound === 'true') return;
-      form.dataset.ajaxSubmitBound = 'true';
-      form.addEventListener('submit', event => {
-        event.preventDefault();
-        submitNetlifyForm(form, event.submitter);
-      });
-    });
+    if (submitHandlerBound) return;
+    submitHandlerBound = true;
+
+    document.addEventListener('submit', event => {
+      const form = event.target instanceof HTMLFormElement
+        ? event.target
+        : event.target?.closest?.(NETLIFY_FORM_SELECTOR);
+
+      if (!form || !form.matches(NETLIFY_FORM_SELECTOR)) return;
+
+      event.preventDefault();
+      submitNetlifyForm(form, event.submitter);
+    }, true);
+
+    console.log('[Aaradhya forms] submit handler bound:', document.querySelectorAll(NETLIFY_FORM_SELECTOR).length);
   }
 
   function initActionButtons() {
