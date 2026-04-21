@@ -27,6 +27,7 @@ body {
   background: linear-gradient(180deg, #f5ead4 0%, #dfe9dd 48%, #f7efe1 100%);
   overflow-x: hidden;
 }
+img, svg, video { max-width: 100%; }
 a { color: inherit; }
 
 nav {
@@ -593,14 +594,14 @@ footer a { color: var(--text-light); }
 @media (max-width: 640px) {
   nav { padding: 8px max(12px, env(safe-area-inset-right)) 8px max(12px, env(safe-area-inset-left)); gap: 8px; justify-content: flex-start; }
   .nav-links {
-    top: calc(100% + 56px);
-    max-height: calc(100vh - 132px);
+    top: calc(100% + 52px);
+    max-height: calc(100svh - 124px);
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
   }
-  .nav-logo { flex: 1 1 auto; font-size: 0.95rem; line-height: 1.2; gap: 12px; margin-right: 0; min-width: 0; max-width: none; overflow: hidden; }
-  .nav-logo .brand-lines { min-width: 112px; }
-  .brand-mark { flex: 0 0 auto; width: 60px; height: 60px; padding: 0; }
+  .nav-logo { flex: 1 1 auto; font-size: 0.95rem; line-height: 1.2; gap: 10px; margin-right: 0; min-width: 0; max-width: calc(100% - 122px); overflow: hidden; }
+  .nav-logo .brand-lines { min-width: 104px; max-width: 124px; }
+  .brand-mark { flex: 0 0 auto; width: 56px; height: 56px; padding: 0; }
   footer .brand-mark, footer .nav-logo .brand-mark { width: 52px; height: 52px; }
   .nav-logo .brand-primary,
   .nav-logo .brand-secondary { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
@@ -622,14 +623,20 @@ footer a { color: var(--text-light); }
     white-space: nowrap;
   }
   nav.nav-open .nav-cta { display: inline-flex; }
-  .lang-switch { margin-left: auto; padding: 3px; gap: 2px; }
-  .lang-switch a { min-height: 26px; padding: 0 7px; font-size: 0.6rem; letter-spacing: 0.01em; }
-  .nav-toggle { width: 42px; height: 42px; margin-left: 0; }
+  .lang-switch { margin-left: auto; padding: 3px; gap: 2px; flex: 0 0 auto; }
+  .lang-switch a { min-height: 28px; padding: 0 7px; font-size: 0.62rem; letter-spacing: 0.01em; }
+  .nav-toggle { width: 42px; height: 42px; margin-left: 0; flex: 0 0 42px; }
   h1 { font-size: 2.65rem; }
   h1, h2, h3, .btn, .nav-cta { overflow-wrap: anywhere; }
   .btn, .nav-cta { max-width: 100%; white-space: normal; }
+  .category-nav { gap: 8px; }
+  .category-nav a { width: 100%; justify-content: center; min-height: 44px; text-align: center; }
   .form-label { font-size: 0.74rem; line-height: 1.45; }
   input, select, textarea { min-height: 52px; }
+  .card img { aspect-ratio: 4 / 3; }
+  .split-head { margin-bottom: 36px; }
+  .band .btn, .section-actions .btn { width: 100%; }
+  .content-note { padding: 20px; }
   .card-body, .offer, .service-card, .contact-card { padding: 24px; }
   .form-row { grid-template-columns: 1fr; }
 }
@@ -668,7 +675,7 @@ html[lang="ne"] .footer-heading {
   text-transform: none !important;
 }
 html[lang="ne"] .nav-links {
-  gap: clamp(7px, 0.62vw, 13px);
+  gap: clamp(10px, 0.92vw, 18px);
 }
 html[lang="ne"] .nav-links a {
   font-size: 1rem;
@@ -691,6 +698,25 @@ html[lang="ne"] .section-copy,
 html[lang="ne"] .hero-copy,
 html[lang="ne"] .meta {
   line-height: 1.95;
+}
+
+@media (max-width: 1180px) {
+  html[lang="ne"] .nav-links {
+    gap: 0;
+  }
+  html[lang="ne"] .nav-links a {
+    font-size: 0.98rem;
+    min-height: 50px;
+  }
+}
+
+@media (max-width: 640px) {
+  html[lang="ne"] .lang-switch a {
+    font-size: 0.74rem;
+  }
+  html[lang="ne"] .nav-logo .brand-lines {
+    min-width: 104px;
+  }
 }
 
 @media (max-width: 520px) {

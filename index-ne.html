@@ -44,6 +44,7 @@
     color: var(--text-on-light);
     overflow-x: hidden;
   }
+  img, svg, video { max-width: 100%; }
 
   /* NAV */
   nav {
@@ -1249,14 +1250,14 @@
     nav { gap: 8px; padding: 6px max(12px, env(safe-area-inset-right)) 6px max(12px, env(safe-area-inset-left)); justify-content: flex-start; }
     nav.scrolled { padding: 6px max(12px, env(safe-area-inset-right)) 6px max(12px, env(safe-area-inset-left)); }
     .nav-links {
-      top: calc(100% + 56px);
-      max-height: calc(100vh - 132px);
+      top: calc(100% + 52px);
+      max-height: calc(100svh - 124px);
       overflow-y: auto;
       -webkit-overflow-scrolling: touch;
     }
-    .nav-logo { flex: 1 1 auto; font-size: 0.95rem; line-height: 1.2; min-width: 0; max-width: none; gap: 8px; margin-right: 0; overflow: hidden; }
-    .nav-logo .brand-lines { min-width: 112px; }
-    .brand-mark { flex: 0 0 auto; width: 58px; height: 58px; padding: 0; clip-path: none; }
+    .nav-logo { flex: 1 1 auto; font-size: 0.95rem; line-height: 1.2; min-width: 0; max-width: calc(100% - 122px); gap: 8px; margin-right: 0; overflow: hidden; }
+    .nav-logo .brand-lines { min-width: 104px; max-width: 124px; }
+    .brand-mark { flex: 0 0 auto; width: 56px; height: 56px; padding: 0; clip-path: none; }
     footer .brand-mark { width: 54px; height: 54px; }
     .nav-logo .brand-primary,
     .nav-logo .brand-secondary { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
@@ -1278,9 +1279,9 @@
       white-space: nowrap;
     }
     nav.nav-open .nav-cta { display: inline-flex; }
-    .lang-switch { margin-left: auto; padding: 3px; gap: 2px; }
-    .lang-switch a { min-height: 26px; padding: 0 7px; font-size: 0.6rem; letter-spacing: 0.01em; }
-    .nav-toggle { width: 42px; height: 42px; margin-left: 0; }
+    .lang-switch { margin-left: auto; padding: 3px; gap: 2px; flex: 0 0 auto; }
+    .lang-switch a { min-height: 28px; padding: 0 7px; font-size: 0.62rem; letter-spacing: 0.01em; }
+    .nav-toggle { width: 42px; height: 42px; margin-left: 0; flex: 0 0 42px; }
     .booking-tab,
     .nav-cta,
     .qs-btn,
@@ -1311,6 +1312,12 @@
     .nepal-header-right, .nepal-header-right .section-desc { text-align: left !important; }
     .services-grid, .stats-bar, .footer-top { grid-template-columns: 1fr; }
     .package-grid { grid-template-columns: 1fr; }
+    .section-actions { width: 100%; }
+    .section-actions .primary-link,
+    .section-actions .secondary-link,
+    .offer-strip .primary-link,
+    .final-cta .primary-link,
+    .final-cta .secondary-link { width: 100%; }
     .stats-bar { padding: 28px 20px; }
     .stat-item { border-right: none; }
     .dest-content, .card-glass { padding: 28px 22px 24px; }
@@ -1344,7 +1351,7 @@
   html[lang="ne"] .footer-heading {
     letter-spacing: 0.02em;
   }
-  html[lang="ne"] .nav-links { gap: clamp(7px, 0.62vw, 13px); }
+  html[lang="ne"] .nav-links { gap: clamp(10px, 0.92vw, 18px); }
   html[lang="ne"] .nav-links a { font-size: 1rem; font-weight: 800; line-height: 1.2; }
   html[lang="ne"] .nav-cta,
   html[lang="ne"] .lang-switch a { font-size: 0.9rem; font-weight: 800; }
@@ -1367,6 +1374,14 @@
     line-height: 1.7;
     letter-spacing: 0;
     text-transform: none;
+  }
+  @media (max-width: 1180px) {
+    html[lang="ne"] .nav-links { gap: 0; }
+    html[lang="ne"] .nav-links a { font-size: 0.98rem; min-height: 50px; }
+  }
+  @media (max-width: 640px) {
+    html[lang="ne"] .lang-switch a { font-size: 0.74rem; }
+    html[lang="ne"] .nav-logo .brand-lines { min-width: 104px; }
   }
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600&display=swap" rel="stylesheet">
