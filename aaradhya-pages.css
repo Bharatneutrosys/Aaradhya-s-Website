@@ -230,6 +230,14 @@ nav.nav-open .nav-toggle span:nth-child(3) { transform: translateY(-7px) rotate(
 .deal-spotlight .eyebrow::before { background: var(--gold-light); }
 h1, h2, h3 { font-family: 'Playfair Display', serif; font-weight: 500; line-height: 1.12; }
 h1 { font-size: clamp(2.25rem, 5.25vw, 4.5rem); max-width: 980px; }
+
+@media (min-width: 900px) {
+  .page-hero h1 {
+    font-size: clamp(1.8rem, 3.95vw, 3.6rem);
+    line-height: 1.08;
+    max-width: 900px;
+  }
+}
 h2 { font-size: clamp(2.2rem, 4vw, 3.8rem); color: var(--slate); margin-bottom: 18px; }
 h3 { font-size: 1.55rem; color: var(--slate); }
 .hero-copy, .section-copy { font-size: 0.97rem; line-height: 1.82; max-width: 680px; color: var(--off-white); margin-top: 22px; }
