@@ -213,7 +213,7 @@ nav.nav-open .nav-toggle span:nth-child(3) { transform: translateY(-7px) rotate(
 }
 .page-hero::before {
   content: ""; position: absolute; inset: 0;
-  background: linear-gradient(180deg, rgba(34,56,47,0.7), rgba(34,56,47,0.96));
+  background: linear-gradient(180deg, rgba(34,56,47,0.54), rgba(34,56,47,0.84));
 }
 .hero-inner { position: relative; max-width: 920px; text-shadow: 0 2px 18px rgba(0,0,0,0.26); }
 .eyebrow {
