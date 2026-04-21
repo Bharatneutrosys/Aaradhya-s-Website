@@ -31,53 +31,53 @@ a { color: inherit; }
 
 nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-  padding: 6px 34px; display: flex; justify-content: space-between; align-items: center;
-  gap: 18px;
-  background: rgba(249, 244, 233, 0.97);
+  padding: 8px 30px; display: flex; justify-content: space-between; align-items: center;
+  gap: 14px;
+  background: rgba(247, 239, 225, 0.94);
   backdrop-filter: blur(18px) saturate(1.18);
   -webkit-backdrop-filter: blur(18px) saturate(1.18);
-  border-bottom: 1px solid rgba(184, 148, 94, 0.22);
-  box-shadow: 0 16px 42px rgba(34, 56, 47, 0.12);
+  border-bottom: 1px solid rgba(184, 148, 94, 0.18);
+  box-shadow: 0 14px 34px rgba(34, 56, 47, 0.09);
 }
 .nav-logo {
   font-family: 'Playfair Display', serif; font-size: 1.25rem; letter-spacing: 0.05em;
-  color: var(--slate); text-decoration: none; display: flex; gap: 12px; align-items: center;
-  margin-right: 16px;
+  color: var(--slate); text-decoration: none; display: flex; gap: 14px; align-items: center;
+  margin-right: 18px;
   flex: 0 0 auto;
 }
 .brand-mark {
-  width: 76px;
-  height: 76px;
+  width: 64px;
+  height: 64px;
   max-height: none;
   max-width: none;
-  object-fit: cover;
-  object-position: 26% 50%;
-  clip-path: none;
+  object-fit: contain;
+  object-position: center;
   display: block;
-  background: transparent;
-  border: 0;
-  border-radius: 8px;
-  box-shadow: none;
+  padding: 7px;
+  background: linear-gradient(145deg, rgba(255,250,240,0.95), rgba(237,227,211,0.9));
+  border: 1px solid rgba(184, 148, 94, 0.18);
+  border-radius: 12px;
+  box-shadow: 0 10px 24px rgba(34, 56, 47, 0.09);
 }
 .nav-logo .brand-lines {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 2px;
-  line-height: 0.96;
+  gap: 3px;
+  line-height: 0.98;
 }
 .nav-logo .brand-primary {
   color: var(--slate);
-  font-size: 1.42rem;
+  font-size: 1.46rem;
   font-weight: 600;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.025em;
 }
 .nav-logo .brand-secondary {
   color: #8d6933;
   font-family: 'Montserrat', sans-serif;
-  font-size: 0.73rem;
+  font-size: 0.68rem;
   font-weight: 700;
-  letter-spacing: 0.09em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 .nav-links { display: flex; list-style: none; gap: clamp(9px, 0.82vw, 18px); align-items: center; justify-content: center; flex: 1 1 auto; }
@@ -141,7 +141,7 @@ nav {
 footer .lang-switch { background: rgba(255,250,240,0.1); border-color: rgba(216,185,129,0.3); }
 footer .lang-switch a { color: var(--off-white); }
 footer .lang-switch a.active { color: var(--slate); }
-footer .nav-logo .brand-mark { width: 68px; height: 68px; }
+footer .nav-logo .brand-mark { width: 60px; height: 60px; }
 .nav-toggle {
   display: none;
   width: 44px;
@@ -463,7 +463,7 @@ footer a { color: var(--text-light); }
 .footer-note { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 24px; font-size: 0.72rem; }
 
 @media (max-width: 1180px) {
-  nav { padding: 6px 24px; gap: 18px; }
+  nav { padding: 8px 22px; gap: 12px; }
   .nav-links {
     position: absolute;
     top: calc(100% + 1px);
@@ -514,21 +514,21 @@ footer a { color: var(--text-light); }
 }
 
 @media (max-width: 640px) {
-  nav { padding: 6px max(12px, env(safe-area-inset-right)) 6px max(12px, env(safe-area-inset-left)); gap: 8px; justify-content: flex-start; }
+  nav { padding: 8px max(12px, env(safe-area-inset-right)) 8px max(12px, env(safe-area-inset-left)); gap: 8px; justify-content: flex-start; }
   .nav-links {
     top: calc(100% + 56px);
     max-height: calc(100vh - 132px);
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
   }
-  .nav-logo { flex: 1 1 auto; font-size: 0.95rem; line-height: 1.2; gap: 8px; margin-right: 0; min-width: 0; max-width: none; overflow: hidden; }
+  .nav-logo { flex: 1 1 auto; font-size: 0.95rem; line-height: 1.2; gap: 10px; margin-right: 0; min-width: 0; max-width: none; overflow: hidden; }
   .nav-logo .brand-lines { min-width: 0; }
-  .brand-mark { flex: 0 0 auto; width: 58px; height: 58px; padding: 0; clip-path: none; }
-  footer .brand-mark, footer .nav-logo .brand-mark { width: 54px; height: 54px; }
+  .brand-mark { flex: 0 0 auto; width: 52px; height: 52px; padding: 6px; }
+  footer .brand-mark, footer .nav-logo .brand-mark { width: 48px; height: 48px; }
   .nav-logo .brand-primary,
   .nav-logo .brand-secondary { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .nav-logo .brand-primary { font-size: 1.08rem; }
-  .nav-logo .brand-secondary { font-size: 0.58rem; letter-spacing: 0.025em; }
+  .nav-logo .brand-primary { font-size: 1.04rem; }
+  .nav-logo .brand-secondary { font-size: 0.56rem; letter-spacing: 0.08em; }
   .nav-cta {
     display: none;
     position: absolute;
