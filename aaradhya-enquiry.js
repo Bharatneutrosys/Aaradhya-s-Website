@@ -147,6 +147,31 @@
     field.setCustomValidity('');
   }
 
+  function getFieldLabel(field) {
+    const shell = getFieldShell(field);
+    const label = shell?.querySelector('.qs-label, label');
+    const text = label?.textContent?.replace('*', '').trim();
+    return text || field.getAttribute('aria-label') || field.placeholder || field.name.replace(/[_-]+/g, ' ');
+  }
+
+  function validateRequired(field) {
+    if (!field.required) return '';
+    const value = field.value.trim();
+    if (field.type === 'checkbox' || field.type === 'radio') {
+      return field.checked ? '' : copy('Please select this option.', 'कृपया यो विकल्प छान्नुहोस्।');
+    }
+    if (value) return '';
+    return copy(`Please complete ${getFieldLabel(field)}.`, `कृपया ${getFieldLabel(field)} भर्नुहोस्।`);
+  }
+
+  function validateEmail(field) {
+    const value = field.value.trim();
+    if (!value) return '';
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)
+      ? ''
+      : copy('Please enter a valid email address.', 'कृपया सही इमेल ठेगाना लेख्नुहोस्।');
+  }
+
   function validateName(field) {
     const value = field.value.trim();
     if (!value && field.required) return copy('Please enter your name.', 'कृपया आफ्नो नाम लेख्नुहोस्।');
@@ -188,10 +213,20 @@
   function validateField(field) {
     clearFieldError(field);
 
-    let message = '';
+    let message = validateRequired(field);
     if (field.name === 'name') message = validateName(field);
-    if (field.name === 'phone') message = validatePhone(field);
-    if (DATE_FIELD_NAMES.has(field.name)) message = validateDate(field);
+    if (!message && field.name === 'phone') message = validatePhone(field);
+    if (!message && DATE_FIELD_NAMES.has(field.name)) message = validateDate(field);
+    if (!message && field.type === 'email') message = validateEmail(field);
+    if (!message && field.validity.patternMismatch) {
+      message = copy('Please use the requested format.', 'कृपया सही ढाँचा प्रयोग गर्नुहोस्।');
+    }
+    if (!message && field.validity.tooShort) {
+      message = copy(`Please enter at least ${field.minLength} characters.`, `कृपया कम्तीमा ${field.minLength} अक्षर लेख्नुहोस्।`);
+    }
+    if (!message && field.validity.tooLong) {
+      message = copy(`Please keep this under ${field.maxLength} characters.`, `कृपया यसलाई ${field.maxLength} अक्षरभित्र राख्नुहोस्।`);
+    }
 
     if (message) {
       setFieldError(field, message);
@@ -203,14 +238,20 @@
 
   function validateForm(form) {
     const fields = [...form.querySelectorAll('input, select, textarea')].filter(field => field.name);
-    const customValid = fields.map(validateField).every(Boolean);
-    const browserValid = form.checkValidity();
-    if (!browserValid) form.reportValidity();
-    return customValid && browserValid;
+    const invalidFields = fields.filter(field => !validateField(field));
+
+    if (invalidFields.length) {
+      invalidFields[0].focus({ preventScroll: true });
+      invalidFields[0].scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return false;
+    }
+
+    return true;
   }
 
   function prepareValidationFields() {
     document.querySelectorAll(NETLIFY_FORM_SELECTOR).forEach(form => {
+      form.noValidate = true;
       console.log('[Aaradhya forms] validation prepared:', form.name, form.className);
       form.querySelectorAll('input, select, textarea').forEach(field => {
         if (!field.name) return;
@@ -240,6 +281,7 @@
         }
 
         field.addEventListener('input', () => validateField(field));
+        field.addEventListener('change', () => validateField(field));
         field.addEventListener('blur', () => validateField(field));
       });
     });
