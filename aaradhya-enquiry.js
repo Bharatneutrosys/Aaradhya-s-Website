@@ -172,6 +172,18 @@
     field.setCustomValidity('');
   }
 
+  function clearFormValidationState(form) {
+    if (!form) return;
+    delete form.dataset.validationSubmitted;
+
+    form.querySelectorAll('input, select, textarea').forEach(field => {
+      clearFieldError(field);
+    });
+
+    form.querySelectorAll('.field-error-message').forEach(error => error.remove());
+    form.querySelectorAll('.field-shell-invalid').forEach(shell => shell.classList.remove('field-shell-invalid'));
+  }
+
   function getFieldLabel(field) {
     const shell = getFieldShell(field);
     const label = shell?.querySelector('.qs-label, label');
@@ -267,7 +279,11 @@
   function validateForm(form) {
     const fields = [...form.querySelectorAll('input, select, textarea')].filter(field => field.name);
     form.dataset.validationSubmitted = 'true';
-    const invalidFields = fields.filter(field => !validateField(field, { revealRequired: true }));
+    const invalidFields = [];
+
+    fields.forEach(field => {
+      if (!validateField(field, { revealRequired: true })) invalidFields.push(field);
+    });
 
     if (invalidFields.length) {
       invalidFields[0].focus({ preventScroll: true });
@@ -284,8 +300,18 @@
     document.querySelectorAll(NETLIFY_FORM_SELECTOR).forEach(form => {
       form.noValidate = true;
       console.log('[Aaradhya forms] validation prepared:', form.name, form.className);
+
+      if (form.dataset.validationResetBound !== 'true') {
+        form.dataset.validationResetBound = 'true';
+        form.addEventListener('reset', () => {
+          window.setTimeout(() => clearFormValidationState(form), 0);
+        });
+      }
+
       form.querySelectorAll('input, select, textarea').forEach(field => {
         if (!field.name) return;
+        if (field.dataset.validationPrepared === 'true') return;
+        field.dataset.validationPrepared = 'true';
 
         if (field.name === 'phone') {
           field.type = 'tel';
@@ -369,10 +395,7 @@
 
       console.log('[Aaradhya forms] Netlify AJAX post succeeded:', form.name);
       form.reset();
-      delete form.dataset.validationSubmitted;
-      form.querySelectorAll('.field-error-message').forEach(error => error.remove());
-      form.querySelectorAll('.field-shell-invalid').forEach(shell => shell.classList.remove('field-shell-invalid'));
-      form.querySelectorAll('[aria-invalid="true"]').forEach(field => field.removeAttribute('aria-invalid'));
+      clearFormValidationState(form);
       showToast(
         copy('Your submission has been sent. We’ll get back to you shortly.', 'तपाईंको विवरण पठाइयो। हामी चाँडै सम्पर्क गर्नेछौं।'),
         'success'
