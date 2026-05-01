@@ -297,7 +297,7 @@
   }
 
   function validateForm(form) {
-    const fields = [...form.querySelectorAll('input, select, textarea')].filter(field => field.name);
+    const fields = [...form.querySelectorAll('input, select, textarea')].filter(field => field.name && !field.disabled);
     form.dataset.validationSubmitted = 'true';
     const invalidFields = [];
 
@@ -395,6 +395,130 @@
     });
   }
 
+  function collectFlightLegs(form) {
+    return [...form.querySelectorAll('[data-flight-leg]')].map((leg, index) => {
+      const from = leg.querySelector('[data-leg-from]')?.value.trim() || '';
+      const to = leg.querySelector('[data-leg-to]')?.value.trim() || '';
+      const date = leg.querySelector('[data-leg-date]')?.value.trim() || '';
+      return { leg: index + 1, from, to, date };
+    }).filter(leg => leg.from || leg.to || leg.date);
+  }
+
+  function syncFlightMultiCitySummary(form) {
+    const summary = form.querySelector('[data-multi-city-summary]');
+    if (!summary) return;
+    const tripType = form.querySelector('[data-trip-type]')?.value || '';
+    summary.value = tripType === 'Multi City'
+      ? collectFlightLegs(form).map(leg => `Leg ${leg.leg}: ${leg.from || '-'} to ${leg.to || '-'} on ${leg.date || '-'}`).join(' | ')
+      : '';
+  }
+
+  function initFlightTripForms() {
+    document.querySelectorAll('form[name="flights"].quick-search').forEach(form => {
+      if (form.dataset.flightTripReady === 'true') return;
+      form.dataset.flightTripReady = 'true';
+
+      const tripType = form.querySelector('[data-trip-type]');
+      const standardRoute = form.querySelector('[data-standard-route]');
+      const returnField = form.querySelector('[data-return-date-field]');
+      const returnInput = form.querySelector('[data-return-date]');
+      const multiCity = form.querySelector('[data-multi-city-section]');
+      const legList = form.querySelector('[data-leg-list]');
+      const addButton = form.querySelector('[data-add-leg]');
+      if (!tripType || !returnField || !multiCity || !legList || !addButton) return;
+
+      const standardRouteInputs = [
+        form.querySelector('[name="flight_from"]'),
+        form.querySelector('[name="flight_to"]'),
+        form.querySelector('[name="departure_date"]')
+      ].filter(Boolean);
+
+      const refreshLegControls = () => {
+        [...legList.children].forEach((leg, index) => {
+          leg.dataset.flightLeg = String(index + 1);
+          const title = leg.querySelector('[data-leg-title]');
+          if (title) title.textContent = copy(`Leg ${index + 1}`, `चरण ${index + 1}`);
+          const remove = leg.querySelector('[data-remove-leg]');
+          if (remove) remove.hidden = index < 2;
+        });
+      };
+
+      const makeLeg = () => {
+        const number = legList.children.length + 1;
+        const leg = document.createElement('div');
+        leg.className = 'flight-leg';
+        leg.dataset.flightLeg = String(number);
+        leg.innerHTML = `
+          <div class="flight-leg-title" data-leg-title>${copy(`Leg ${number}`, `चरण ${number}`)}</div>
+          <div class="qs-inner">
+            <span class="qs-label">${copy('From', 'कहाँबाट')}</span>
+            <input class="qs-value" name="multi_city_leg_${number}_from" placeholder="${copy('City or airport', 'शहर वा एयरपोर्ट')}" autocomplete="off" data-leg-from />
+          </div>
+          <div class="qs-inner">
+            <span class="qs-label">${copy('To', 'कहाँ जाने')}</span>
+            <input class="qs-value" name="multi_city_leg_${number}_to" placeholder="${copy('City or airport', 'शहर वा एयरपोर्ट')}" autocomplete="off" data-leg-to />
+          </div>
+          <div class="qs-inner">
+            <span class="qs-label">${copy('Date', 'मिति')}</span>
+            <input class="qs-value" name="multi_city_leg_${number}_date" placeholder="${copy('Date', 'मिति')}" autocomplete="off" data-leg-date />
+          </div>
+          <button class="flight-leg-remove" type="button" data-remove-leg>${copy('Remove', 'हटाउनुहोस्')}</button>
+        `;
+        leg.querySelectorAll('input').forEach(input => {
+          input.addEventListener('input', () => syncFlightMultiCitySummary(form));
+          input.addEventListener('change', () => syncFlightMultiCitySummary(form));
+        });
+        leg.querySelector('[data-remove-leg]').addEventListener('click', () => {
+          leg.remove();
+          if (!legList.children.length) legList.appendChild(makeLeg());
+          refreshLegControls();
+          syncFlightMultiCitySummary(form);
+        });
+        window.setTimeout(refreshLegControls, 0);
+        return leg;
+      };
+
+      const ensureLegs = () => {
+        if (legList.children.length) return;
+        legList.appendChild(makeLeg());
+        legList.appendChild(makeLeg());
+      };
+
+      const updateTripType = () => {
+        const value = tripType.value;
+        const isReturn = value === 'Return';
+        const isMultiCity = value === 'Multi City';
+
+        standardRoute?.classList.toggle('multi-city-mode', isMultiCity);
+        standardRouteInputs.forEach(input => {
+          input.disabled = isMultiCity;
+          if (isMultiCity) clearFieldError(input);
+        });
+
+        returnField.hidden = !isReturn;
+        returnField.classList.toggle('flight-hidden', !isReturn);
+        if (returnInput) {
+          returnInput.disabled = !isReturn;
+          if (!isReturn) returnInput.value = '';
+        }
+
+        multiCity.hidden = !isMultiCity;
+        multiCity.classList.toggle('flight-hidden', !isMultiCity);
+        if (isMultiCity) ensureLegs();
+        syncFlightMultiCitySummary(form);
+      };
+
+      tripType.addEventListener('change', updateTripType);
+      addButton.addEventListener('click', () => {
+        legList.appendChild(makeLeg());
+        refreshLegControls();
+        syncFlightMultiCitySummary(form);
+      });
+      form.addEventListener('reset', () => window.setTimeout(updateTripType, 0));
+      updateTripType();
+    });
+  }
+
   function setButtonState(button, isSending) {
     if (!button) return;
 
@@ -414,6 +538,7 @@
   async function submitNetlifyForm(form, submitter) {
     console.log('intercepted submit', form.name, form.className);
     console.log('[Aaradhya forms] submit intercepted:', form.name, form.className);
+    if (form.name === 'flights') syncFlightMultiCitySummary(form);
 
     if (!validateForm(form)) {
       showToast(copy('Please correct the highlighted fields.', 'कृपया देखाइएका विवरण सच्याउनुहोस्।'), 'error');
@@ -567,6 +692,7 @@
 
   function init() {
     initMobileNav();
+    initFlightTripForms();
     prepareValidationFields();
     initNetlifyAjaxForms();
     initActionButtons();

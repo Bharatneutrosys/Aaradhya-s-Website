@@ -303,6 +303,8 @@
     backdrop-filter: blur(28px) saturate(1.35);
     -webkit-backdrop-filter: blur(28px) saturate(1.35);
     box-shadow: 0 28px 90px rgba(0,0,0,0.36), inset 0 1px 0 rgba(255,255,255,0.1);
+    position: relative;
+    z-index: 20;
     opacity: 0; animation: fadeUp 1s 1.05s ease forwards;
   }
   .booking-tabs {
@@ -438,21 +440,161 @@
   }
   .qs-btn:hover { background: var(--gold-light); transform: translateY(-1px) scale(1.02); box-shadow: 0 12px 32px rgba(194,163,111,0.38); }
   .qs-btn svg { flex-shrink: 0; }
-  .booking-pane[data-booking-pane="flights"] .quick-search { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .booking-pane[data-booking-pane="flights"] .flight-form {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    padding: 12px;
+    background: rgba(12, 24, 20, 0.3);
+    border-color: rgba(216,185,129,0.34);
+  }
+  .flight-form-section {
+    display: grid;
+    gap: 8px;
+    width: 100%;
+  }
+  .flight-trip-row {
+    display: flex;
+    justify-content: flex-start;
+    align-items: end;
+  }
+  .flight-trip-control {
+    display: grid;
+    gap: 6px;
+    width: min(100%, 240px);
+  }
+  .flight-trip-control .qs-label { color: var(--gold-light); }
+  .flight-trip-control .qs-value {
+    min-height: 40px;
+    background: rgba(255,250,240,0.16);
+  }
+  .flight-route-row {
+    display: grid;
+    grid-template-columns: minmax(180px, 1.35fr) minmax(180px, 1.35fr) minmax(150px, 0.95fr) minmax(128px, 0.72fr);
+    gap: 9px;
+    align-items: stretch;
+  }
+  .flight-standard-route.multi-city-mode .flight-route-row {
+    grid-template-columns: minmax(128px, 220px);
+  }
+  .flight-standard-route.multi-city-mode .flight-route-field,
+  .flight-standard-route.multi-city-mode .flight-date-field {
+    display: none;
+  }
+  .flight-contact-row {
+    display: grid;
+    grid-template-columns: minmax(190px, 1.25fr) minmax(150px, 0.82fr) minmax(220px, 1.35fr);
+    gap: 9px;
+    align-items: stretch;
+  }
+  .flight-return-row {
+    display: grid;
+    grid-template-columns: minmax(150px, 0.95fr) minmax(0, 3.42fr);
+    gap: 9px;
+    align-items: stretch;
+  }
+  .flight-message-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(190px, auto);
+    gap: 9px;
+    align-items: end;
+  }
+  .booking-pane[data-booking-pane="flights"] .qs-field {
+    min-height: 66px;
+    padding: 9px 11px;
+    align-items: center;
+    gap: 9px;
+    border-width: 1px;
+    background: linear-gradient(180deg, rgba(255,250,240,0.2), rgba(255,250,240,0.13));
+  }
+  .booking-pane[data-booking-pane="flights"] .qs-label {
+    font-size: 0.58rem;
+    letter-spacing: 0.085em;
+  }
+  .booking-pane[data-booking-pane="flights"] .qs-inner { gap: 5px; }
+  .booking-pane[data-booking-pane="flights"] .qs-value {
+    min-height: 38px;
+    padding: 8px 10px;
+    font-size: 0.86rem;
+  }
+  .booking-pane[data-booking-pane="flights"] .flight-hidden { display: none !important; }
+  .flight-multicity {
+    border: 1px solid rgba(216,185,129,0.58);
+    border-radius: 8px;
+    background: rgba(255,250,240,0.1);
+    padding: 12px;
+    display: grid;
+    gap: 10px;
+  }
+  .flight-multicity-head {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    align-items: center;
+    color: #f8e7c9;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    line-height: 1.45;
+    text-transform: uppercase;
+  }
+  .flight-leg-list { display: grid; gap: 10px; }
+  .flight-leg {
+    display: grid;
+    grid-template-columns: 72px minmax(160px, 1.15fr) minmax(160px, 1.15fr) minmax(140px, 0.82fr) auto;
+    gap: 8px;
+    align-items: end;
+  }
+  .flight-leg-title {
+    min-height: 40px;
+    display: flex;
+    align-items: center;
+    color: var(--gold-light);
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    line-height: 1.35;
+    text-transform: uppercase;
+  }
+  .flight-leg .qs-inner { gap: 8px; }
+  .flight-leg-remove,
+  .flight-add-leg {
+    border: 1px solid rgba(216,185,129,0.6);
+    border-radius: 6px;
+    background: rgba(255,250,240,0.12);
+    color: var(--off-white);
+    cursor: pointer;
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    min-height: 40px;
+    padding: 0 12px;
+    text-transform: uppercase;
+  }
+  .flight-leg-remove:hover,
+  .flight-add-leg:hover { background: rgba(216,185,129,0.2); }
+  .flight-add-leg { justify-self: start; color: var(--gold-light); }
   .booking-pane[data-booking-pane="flights"] .preference-field {
-    grid-column: span 3;
-    min-height: 142px;
+    min-height: 96px;
     align-items: flex-start;
   }
   .booking-pane[data-booking-pane="flights"] .preference-field .qs-inner { height: 100%; }
   .booking-pane[data-booking-pane="flights"] .qs-textarea {
-    min-height: 82px;
+    min-height: 58px;
     flex: 1;
   }
   .booking-pane[data-booking-pane="flights"] .qs-btn {
-    grid-column: span 1;
-    min-height: 142px;
-    align-self: stretch;
+    width: min(100%, 238px);
+    min-height: 50px;
+    align-self: end;
+    justify-self: end;
+    padding: 0 22px;
+    border-radius: 7px;
+    box-shadow: 0 12px 26px rgba(184,153,106,0.26), inset 0 1px 0 rgba(255,255,255,0.24);
+  }
+  .booking-pane[data-booking-pane="flights"] .qs-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 16px 34px rgba(194,163,111,0.36), 0 0 0 1px rgba(255,250,240,0.16);
   }
   .booking-pane[data-booking-pane="holidays"] .quick-search {
     grid-template-columns: 1.15fr 1fr 1fr 0.78fr;
@@ -588,7 +730,7 @@
     position: fixed;
     right: 54px;
     top: 148px;
-    z-index: 1600;
+    z-index: 12;
     width: 198px;
     min-height: 198px;
     display: flex;
@@ -1237,14 +1379,42 @@
     .booking-helper { flex-direction: column; margin: 4px 4px 14px; }
     .quick-search,
     .booking-pane[data-booking-pane="flights"] .quick-search { width: 100%; grid-template-columns: 1fr; border-radius: 8px; padding: 10px; }
+    .booking-pane[data-booking-pane="flights"] .flight-form { gap: 10px; padding: 10px; }
+    .flight-route-row,
+    .flight-contact-row,
+    .flight-return-row,
+    .flight-message-row,
+    .flight-standard-route.multi-city-mode .flight-route-row {
+      grid-template-columns: 1fr;
+    }
+    .flight-trip-row { display: grid; }
+    .flight-trip-control { width: 100%; }
     .booking-pane[data-booking-pane="flights"] .qs-btn { grid-column: auto; }
     .booking-pane[data-booking-pane="holidays"] .quick-search { grid-template-columns: 1fr; gap: 10px; padding: 10px; }
     .booking-pane[data-booking-pane="holidays"] .qs-field { min-height: 88px; }
     .booking-pane[data-booking-pane="holidays"] .preference-field { grid-column: auto; min-height: 150px; }
     .booking-pane[data-booking-pane="holidays"] .qs-btn { grid-column: auto; min-height: 66px; padding: 14px 28px; }
     .qs-field, .preference-field, .wide-field { min-width: 100%; width: 100%; grid-column: auto; padding: 16px 14px; }
+    .booking-pane[data-booking-pane="flights"] .flight-route-field,
+    .booking-pane[data-booking-pane="flights"] .flight-date-field,
+    .booking-pane[data-booking-pane="flights"] .flight-passengers-field,
+    .booking-pane[data-booking-pane="flights"] .flight-trip-field,
+    .booking-pane[data-booking-pane="flights"] .flight-return-field,
+    .booking-pane[data-booking-pane="flights"] .flight-name-field,
+    .booking-pane[data-booking-pane="flights"] .flight-phone-field,
+    .booking-pane[data-booking-pane="flights"] .flight-email-field,
+    .booking-pane[data-booking-pane="flights"] .flight-multicity { grid-column: auto; }
+    .flight-leg { grid-template-columns: 1fr; }
+    .flight-multicity-head { align-items: flex-start; flex-direction: column; }
+    .flight-add-leg,
+    .flight-leg-remove { width: 100%; }
     .qs-value { min-width: 0; font-size: 0.9rem; }
     .qs-btn { justify-content: center; width: 100%; border-radius: 6px; margin-top: 4px; }
+    .booking-pane[data-booking-pane="flights"] .qs-field { min-height: 68px; padding: 10px 11px; }
+    .booking-pane[data-booking-pane="flights"] .qs-value { min-height: 40px; padding: 8px 10px; font-size: 0.9rem; }
+    .booking-pane[data-booking-pane="flights"] .preference-field { min-height: 104px; }
+    .booking-pane[data-booking-pane="flights"] .qs-textarea { min-height: 62px; }
+    .booking-pane[data-booking-pane="flights"] .qs-btn { width: 100%; min-height: 52px; justify-self: stretch; margin-top: 0; }
     .tirtha-float { right: 16px; top: auto; bottom: 22px; width: 136px; min-height: 136px; padding: 22px 16px; }
     .tirtha-float strong { font-size: 1rem; }
     .tirtha-float small { display: none; }
@@ -1494,6 +1664,28 @@
       width: 100%;
     }
 
+    .booking-pane[data-booking-pane="flights"] .flight-form {
+      padding: 12px !important;
+      gap: 10px;
+    }
+
+    .flight-route-row,
+    .flight-contact-row,
+    .flight-return-row,
+    .flight-message-row,
+    .flight-standard-route.multi-city-mode .flight-route-row {
+      grid-template-columns: minmax(0, 1fr) !important;
+      gap: 9px;
+    }
+
+    .flight-trip-row {
+      display: grid;
+    }
+
+    .flight-trip-control {
+      width: 100%;
+    }
+
     .booking-panel {
       width: min(100%, 560px);
       padding: 14px;
@@ -1570,6 +1762,36 @@
       grid-column: auto;
     }
 
+    .booking-pane[data-booking-pane="flights"] .qs-field {
+      min-height: 68px;
+      padding: 10px 11px;
+    }
+
+    .booking-pane[data-booking-pane="flights"] .qs-label {
+      font-size: 0.64rem;
+    }
+
+    .booking-pane[data-booking-pane="flights"] .qs-value {
+      min-height: 40px;
+      padding: 8px 10px;
+      font-size: 0.92rem;
+    }
+
+    .booking-pane[data-booking-pane="flights"] .preference-field {
+      min-height: 104px;
+    }
+
+    .booking-pane[data-booking-pane="flights"] .qs-textarea {
+      min-height: 62px;
+    }
+
+    .booking-pane[data-booking-pane="flights"] .qs-btn {
+      min-height: 52px;
+      justify-self: stretch;
+      margin-top: 0;
+      padding: 0 18px;
+    }
+
     .tirtaFloat,
     .tirtha-float,
     .pilgrimage-badge {
@@ -1605,6 +1827,23 @@
       padding: 14px !important;
       align-items: stretch;
       overflow: visible;
+    }
+
+    .booking-pane[data-booking-pane="flights"] .flight-route-field,
+    .booking-pane[data-booking-pane="flights"] .flight-date-field,
+    .booking-pane[data-booking-pane="flights"] .flight-passengers-field,
+    .booking-pane[data-booking-pane="flights"] .flight-trip-field,
+    .booking-pane[data-booking-pane="flights"] .flight-return-field,
+    .booking-pane[data-booking-pane="flights"] .flight-name-field,
+    .booking-pane[data-booking-pane="flights"] .flight-phone-field,
+    .booking-pane[data-booking-pane="flights"] .flight-email-field,
+    .booking-pane[data-booking-pane="flights"] .flight-multicity {
+      grid-column: 1 / -1 !important;
+    }
+
+    .flight-leg {
+      grid-template-columns: 1fr;
+      gap: 12px;
     }
 
     .booking-pane[data-booking-pane="holidays"] form[name="holidays"].quick-search > .qs-field {
@@ -1861,84 +2100,112 @@
           <span><strong>उडान भाडा सोधपुछ</strong> आन्तरिक, अन्तर्राष्ट्रिय, समूह र व्यावसायिक मार्गका लागि।</span>
           <span>यात्रा विवरण पठाउनुहोस्, हाम्रो टोलीले उपलब्ध उत्तम भाडा विकल्पहरू पठाउनेछ।</span>
         </div>
-        <form name="flights" method="POST" data-netlify="true" class="quick-search">
+        <form name="flights" method="POST" data-netlify="true" class="quick-search flight-form">
           <input type="hidden" name="form-name" value="flights" />
           <input type="hidden" name="subject" value="New Flight Enquiry — Aaradhya Travels and Tours" />
           <input type="hidden" name="page_context" value="Nepali homepage flight fare enquiry" />
-          <div class="qs-field">
-            <svg class="qs-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-            <div class="qs-inner">
-              <span class="qs-label">पूरा नाम *</span>
-              <input class="qs-value" name="name" placeholder="तपाईंको नाम" autocomplete="name" required />
-            </div>
-          </div>
-          <div class="qs-field">
-            <svg class="qs-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 16l20-8-8 20-3-9-9-3z"/></svg>
-            <div class="qs-inner">
-              <span class="qs-label">कहाँबाट उड्ने *</span>
-              <input class="qs-value" id="flightFrom" name="flight_from" placeholder="काठमाडौं" autocomplete="off" required />
-            </div>
-          </div>
-          <div class="qs-field">
-            <svg class="qs-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            <div class="qs-inner">
-              <span class="qs-label">कहाँ जाने *</span>
-              <input class="qs-value" id="flightTo" name="flight_to" placeholder="दुबई, दिल्ली, लन्डन" autocomplete="off" required />
-            </div>
-          </div>
-          <div class="qs-field">
-            <svg class="qs-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-            <div class="qs-inner">
-              <span class="qs-label">प्रस्थान *</span>
-              <input type="text" class="qs-value" id="flightDeparture" name="departure_date" placeholder="मिति" required />
-            </div>
-          </div>
-          <div class="qs-field">
-            <svg class="qs-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M8 2v4M16 2v4M3 10h18M8 16h8"/></svg>
-            <div class="qs-inner">
-              <span class="qs-label">फिर्ता</span>
-              <input type="text" class="qs-value" id="flightReturn" name="return_date" placeholder="वैकल्पिक" />
-            </div>
-          </div>
-          <div class="qs-field">
-            <svg class="qs-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
-            <div class="qs-inner">
-              <span class="qs-label">यात्रु *</span>
-              <select class="qs-value" id="flightPassengers" name="passengers" required>
-                <option value="" disabled selected hidden></option>
-                <option>१ यात्रु</option>
-                <option>२ यात्रु</option>
-                <option>३-५ यात्रु</option>
-                <option>६-१० यात्रु</option>
-                <option>१०+ समूह भाडा</option>
+          <div class="flight-form-section flight-trip-row">
+            <div class="flight-trip-control">
+              <span class="qs-label">यात्रा प्रकार *</span>
+              <select class="qs-value" id="flightTripType" name="trip_type" required data-trip-type>
+                <option value="One Way" selected>एकतर्फी</option>
+                <option value="Return">फिर्ता</option>
+                <option value="Multi City">मल्टि सिटी</option>
               </select>
             </div>
           </div>
-          <div class="qs-field">
-            <svg class="qs-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.08 4.18 2 2 0 0 1 4.06 2h3a2 2 0 0 1 2 1.72c.12.9.34 1.77.66 2.6a2 2 0 0 1-.45 2.11L8 9.7a16 16 0 0 0 6.3 6.3l1.27-1.27a2 2 0 0 1 2.11-.45c.83.32 1.7.54 2.6.66a2 2 0 0 1 1.72 1.98z"/></svg>
-            <div class="qs-inner">
-              <span class="qs-label">फोन / ह्वाट्सएप *</span>
-              <input class="qs-value" id="flightPhone" name="phone" type="tel" autocomplete="tel" required />
+          <div class="flight-form-section flight-standard-route" data-standard-route>
+            <div class="flight-route-row">
+              <div class="qs-field flight-route-field">
+                <svg class="qs-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 16l20-8-8 20-3-9-9-3z"/></svg>
+                <div class="qs-inner">
+                  <span class="qs-label">कहाँबाट उड्ने *</span>
+                  <input class="qs-value" id="flightFrom" name="flight_from" placeholder="काठमाडौं" autocomplete="off" required />
+                </div>
+              </div>
+              <div class="qs-field flight-route-field">
+                <svg class="qs-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                <div class="qs-inner">
+                  <span class="qs-label">कहाँ जाने *</span>
+                  <input class="qs-value" id="flightTo" name="flight_to" placeholder="दुबई, दिल्ली, लन्डन" autocomplete="off" required />
+                </div>
+              </div>
+              <div class="qs-field flight-date-field">
+                <svg class="qs-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                <div class="qs-inner">
+                  <span class="qs-label">प्रस्थान मिति *</span>
+                  <input type="text" class="qs-value" id="flightDeparture" name="departure_date" placeholder="मिति" required />
+                </div>
+              </div>
+              <div class="qs-field flight-passengers-field">
+                <svg class="qs-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+                <div class="qs-inner">
+                  <span class="qs-label">यात्रु *</span>
+                  <select class="qs-value" id="flightPassengers" name="passengers" required>
+                    <option value="" disabled selected hidden></option>
+                    <option>१ यात्रु</option>
+                    <option>२ यात्रु</option>
+                    <option>३-५ यात्रु</option>
+                    <option>६-१० यात्रु</option>
+                    <option>१०+ समूह भाडा</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="flight-return-row flight-hidden" data-return-date-field hidden>
+              <div class="qs-field flight-return-field">
+                <svg class="qs-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M8 2v4M16 2v4M3 10h18M8 16h8"/></svg>
+                <div class="qs-inner">
+                  <span class="qs-label">फिर्ता मिति</span>
+                  <input type="text" class="qs-value" id="flightReturn" name="return_date" placeholder="वैकल्पिक" data-return-date disabled />
+                </div>
+              </div>
             </div>
           </div>
-          <div class="qs-field">
-            <svg class="qs-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16v16H4z"/><path d="m22 6-10 7L2 6"/></svg>
-            <div class="qs-inner">
-              <span class="qs-label">इमेल</span>
-              <input class="qs-value" id="flightEmail" name="email" type="email" autocomplete="email" />
+          <section class="flight-multicity flight-hidden" data-multi-city-section hidden>
+            <div class="flight-multicity-head">
+              <span>मल्टि सिटी चरणहरू</span>
+              <button class="flight-add-leg" type="button" data-add-leg>अर्को शहर थप्नुहोस्</button>
+            </div>
+            <input type="hidden" name="multi_city_legs" data-multi-city-summary />
+            <div class="flight-leg-list" data-leg-list></div>
+          </section>
+          <div class="flight-form-section flight-contact-row">
+            <div class="qs-field flight-name-field">
+              <svg class="qs-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              <div class="qs-inner">
+                <span class="qs-label">पूरा नाम *</span>
+                <input class="qs-value" name="full_name" placeholder="तपाईंको नाम" autocomplete="name" required />
+              </div>
+            </div>
+            <div class="qs-field flight-phone-field">
+              <svg class="qs-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.08 4.18 2 2 0 0 1 4.06 2h3a2 2 0 0 1 2 1.72c.12.9.34 1.77.66 2.6a2 2 0 0 1-.45 2.11L8 9.7a16 16 0 0 0 6.3 6.3l1.27-1.27a2 2 0 0 1 2.11-.45c.83.32 1.7.54 2.6.66a2 2 0 0 1 1.72 1.98z"/></svg>
+              <div class="qs-inner">
+                <span class="qs-label">फोन / ह्वाट्सएप *</span>
+                <input class="qs-value" id="flightPhone" name="phone" type="tel" autocomplete="tel" required />
+              </div>
+            </div>
+            <div class="qs-field flight-email-field">
+              <svg class="qs-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16v16H4z"/><path d="m22 6-10 7L2 6"/></svg>
+              <div class="qs-inner">
+                <span class="qs-label">इमेल</span>
+                <input class="qs-value" id="flightEmail" name="email" type="email" autocomplete="email" />
+              </div>
             </div>
           </div>
-          <div class="qs-field preference-field">
-            <svg class="qs-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
-            <div class="qs-inner">
-              <span class="qs-label">सन्देश / विशेष अनुरोध</span>
-              <textarea class="qs-value qs-textarea" name="message" placeholder="मार्ग, एयरलाइन, सामान, समय वा विशेष अनुरोध..." autocomplete="off"></textarea>
+          <div class="flight-form-section flight-message-row">
+            <div class="qs-field preference-field">
+              <svg class="qs-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
+              <div class="qs-inner">
+                <span class="qs-label">सन्देश / विशेष अनुरोध</span>
+                <textarea class="qs-value qs-textarea" name="message" placeholder="मार्ग, एयरलाइन, सामान, समय वा विशेष अनुरोध..." autocomplete="off"></textarea>
+              </div>
             </div>
+            <button class="qs-btn" type="submit">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              भाडा विवरण माग्नुहोस्
+            </button>
           </div>
-          <button class="qs-btn" type="submit">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            भाडा विवरण माग्नुहोस्
-          </button>
         </form>
         <div class="booking-note">सोधपुछ मात्र: Aaradhya ले वेबसाइटबाट तुरुन्त प्रत्यक्ष भाडा जारी गर्दैन। हाम्रो टोलीले उपलब्धता जाँचेर विकल्प पठाउनेछ।</div>
       </div>
