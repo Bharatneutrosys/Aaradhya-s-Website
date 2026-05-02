@@ -211,16 +211,16 @@
     position: absolute; inset: 0;
     background: linear-gradient(
       180deg,
-      rgba(34,56,47,0.32) 0%,
-      rgba(34,56,47,0.48) 42%,
-      rgba(34,56,47,0.7) 78%,
-      rgba(34,56,47,0.86) 100%
+      rgba(34,56,47,0.16) 0%,
+      rgba(34,56,47,0.28) 42%,
+      rgba(34,56,47,0.5) 78%,
+      rgba(34,56,47,0.66) 100%
     );
   }
   .carousel-slide::before {
     content: '';
     position: absolute; inset: 0;
-    background: linear-gradient(90deg, rgba(34,56,47,0.28), transparent 35%, rgba(34,56,47,0.18));
+    background: linear-gradient(90deg, rgba(34,56,47,0.16), transparent 38%, rgba(255,230,166,0.08));
   }
 
   /* Carousel dots */
@@ -253,7 +253,7 @@
   .hero-content {
     position: relative; z-index: 2; text-align: center;
     max-width: 900px; padding: 0 24px;
-    filter: drop-shadow(0 18px 42px rgba(0,0,0,0.34));
+    filter: drop-shadow(0 16px 34px rgba(0,0,0,0.24));
   }
   .hero-eyebrow {
     font-size: 0.68rem; font-weight: 600; letter-spacing: 0.3em;
@@ -276,7 +276,7 @@
   .hero-title em { font-style: italic; color: var(--gold-light); }
   .hero-sub {
     font-size: 0.84rem; font-weight: 400; letter-spacing: 0.045em;
-    color: var(--text-mid); max-width: 640px; margin: 0 auto 14px;
+    color: rgba(255,250,240,0.92); max-width: 640px; margin: 0 auto 14px;
     line-height: 1.62;
     text-shadow: 0 2px 14px rgba(0,0,0,0.24);
     opacity: 0; animation: fadeUp 1s 0.8s ease forwards;
@@ -297,12 +297,12 @@
     width: min(1040px, 100%);
     margin: 0 auto;
     padding: 14px;
-    background: linear-gradient(180deg, rgba(34, 56, 47, 0.84), rgba(20, 34, 29, 0.78));
-    border: 1px solid rgba(216,185,129,0.46);
+    background: linear-gradient(180deg, rgba(255,250,240,0.58), rgba(225,241,231,0.48));
+    border: 1px solid rgba(216,185,129,0.34);
     border-radius: 8px;
     backdrop-filter: blur(28px) saturate(1.35);
     -webkit-backdrop-filter: blur(28px) saturate(1.35);
-    box-shadow: 0 28px 90px rgba(0,0,0,0.36), inset 0 1px 0 rgba(255,255,255,0.1);
+    box-shadow: 0 24px 72px rgba(26,64,52,0.22), inset 0 1px 0 rgba(255,255,255,0.44);
     position: relative;
     z-index: 20;
     opacity: 0; animation: fadeUp 1s 1.05s ease forwards;
@@ -313,15 +313,15 @@
     padding: 5px;
     margin-bottom: 14px;
     border-radius: 8px;
-    background: rgba(255,250,240,0.08);
-    border: 1px solid rgba(216,185,129,0.18);
+    background: rgba(255,250,240,0.46);
+    border: 1px solid rgba(141,105,51,0.18);
   }
   .booking-tab {
     border: 0;
     border-radius: 6px;
     padding: 11px 20px;
     background: transparent;
-    color: var(--off-white);
+    color: var(--slate);
     cursor: pointer;
     font-size: 0.66rem;
     font-weight: 700;
@@ -343,7 +343,7 @@
     justify-content: space-between;
     gap: 16px;
     margin: 2px 8px 16px;
-    color: rgba(255,250,240,0.94);
+    color: rgba(34,56,47,0.9);
     font-size: 0.78rem;
     line-height: 1.6;
     text-align: left;
@@ -352,19 +352,24 @@
   .quick-search {
     display: grid; align-items: stretch;
     grid-template-columns: repeat(4, minmax(0, 1fr)) auto;
-    background: rgba(12, 24, 20, 0.34);
-    border: 1px solid rgba(216,185,129,0.46);
+    background: rgba(255,250,240,0.34);
+    border: 1px solid rgba(216,185,129,0.34);
     border-radius: 8px;
     padding: 10px;
     gap: 12px;
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.36);
   }
   .qs-field {
     padding: 16px;
     border: 1.5px solid rgba(216,185,129,0.78);
     border-radius: 6px;
     background: linear-gradient(180deg, rgba(255,250,240,0.28), rgba(255,250,240,0.18));
-    display: flex; align-items: center; gap: 12px;
+    display: grid;
+    grid-template-columns: 18px minmax(0, 1fr);
+    grid-template-areas: "icon label" "control control";
+    align-items: center;
+    column-gap: 8px;
+    row-gap: 7px;
     min-width: 0; min-height: 78px; position: relative;
     transition: border-color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
   }
@@ -381,20 +386,24 @@
     transform: translateY(-1px);
   }
   .qs-icon {
+    grid-area: icon;
     color: var(--gold); flex-shrink: 0; opacity: 0.9;
   }
   .qs-inner { display: flex; flex-direction: column; justify-content: center; gap: 10px; min-width: 0; width: 100%; }
+  .qs-field > .qs-inner { display: contents; }
   .qs-label {
+    grid-area: label;
     font-size: 0.72rem; font-weight: 800; letter-spacing: 0.12em;
-    text-transform: uppercase; color: #f8e7c9; opacity: 1;
+    text-transform: uppercase; color: #355145; opacity: 1;
     line-height: 1.35;
   }
   .qs-value {
+    grid-area: control;
     font-size: 0.96rem; font-weight: 600;
     background: rgba(255,250,240,0.2);
     border: 1px solid rgba(216,185,129,0.68);
     border-radius: 6px;
-    color: #fffdf7;
+    color: var(--slate);
     font-family: 'Montserrat', sans-serif; cursor: text; outline: none;
     padding: 12px 13px; line-height: 1.35;
     width: 100%; min-width: 0; min-height: 48px;
@@ -402,6 +411,7 @@
     transition: border-color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
     -webkit-appearance: none; appearance: none;
   }
+  .field-error-message { grid-column: 1 / -1; }
   .qs-value:hover {
     border-color: rgba(216,185,129,0.86);
     background: rgba(255,250,240,0.24);
@@ -422,8 +432,8 @@
     align-items: flex-start;
   }
   select.qs-value { cursor: pointer; }
-  .qs-value::placeholder { color: rgba(255,250,240,0.74); opacity: 1; }
-  .qs-value:focus::placeholder { color: rgba(255,250,240,0.86); }
+  .qs-value::placeholder { color: rgba(34,56,47,0.56); opacity: 1; }
+  .qs-value:focus::placeholder { color: rgba(34,56,47,0.68); }
   .qs-value option { background: var(--slate); color: var(--off-white); }
   .qs-btn {
     display: flex; align-items: center; justify-content: center; gap: 10px;
@@ -442,10 +452,10 @@
   .qs-btn svg { flex-shrink: 0; }
   .booking-pane[data-booking-pane="flights"] .flight-form {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(142px, 0.62fr) minmax(0, 3.8fr);
     gap: 10px;
     padding: 12px;
-    background: rgba(12, 24, 20, 0.3);
+    background: rgba(255,250,240,0.24);
     border-color: rgba(216,185,129,0.34);
   }
   .flight-form-section {
@@ -457,6 +467,7 @@
     display: flex;
     justify-content: flex-start;
     align-items: end;
+    grid-column: 1;
   }
   .flight-trip-control {
     display: grid;
@@ -470,7 +481,7 @@
   }
   .flight-route-row {
     display: grid;
-    grid-template-columns: minmax(180px, 1.35fr) minmax(180px, 1.35fr) minmax(150px, 0.95fr) minmax(128px, 0.72fr);
+    grid-template-columns: minmax(150px, 1.25fr) minmax(150px, 1.25fr) minmax(125px, 0.82fr) minmax(125px, 0.82fr) minmax(112px, 0.62fr);
     gap: 9px;
     align-items: stretch;
   }
@@ -486,6 +497,7 @@
     grid-template-columns: minmax(190px, 1.25fr) minmax(150px, 0.82fr) minmax(220px, 1.35fr);
     gap: 9px;
     align-items: stretch;
+    grid-column: 1 / -1;
   }
   .flight-return-row {
     display: grid;
@@ -498,9 +510,14 @@
     grid-template-columns: minmax(0, 1fr) minmax(190px, auto);
     gap: 9px;
     align-items: end;
+    grid-column: 1 / -1;
+  }
+  .flight-standard-route,
+  .flight-multicity {
+    grid-column: 2;
   }
   .booking-pane[data-booking-pane="flights"] .qs-field {
-    min-height: 66px;
+    min-height: 62px;
     padding: 9px 11px;
     align-items: center;
     gap: 9px;
@@ -508,20 +525,20 @@
     background: linear-gradient(180deg, rgba(255,250,240,0.2), rgba(255,250,240,0.13));
   }
   .booking-pane[data-booking-pane="flights"] .qs-label {
-    font-size: 0.58rem;
+    font-size: 0.56rem;
     letter-spacing: 0.085em;
   }
   .booking-pane[data-booking-pane="flights"] .qs-inner { gap: 5px; }
   .booking-pane[data-booking-pane="flights"] .qs-value {
     min-height: 38px;
-    padding: 8px 10px;
+    padding: 7px 10px;
     font-size: 0.86rem;
   }
   .booking-pane[data-booking-pane="flights"] .flight-hidden { display: none !important; }
   .flight-multicity {
     border: 1px solid rgba(216,185,129,0.58);
     border-radius: 8px;
-    background: rgba(255,250,240,0.1);
+    background: rgba(255,250,240,0.24);
     padding: 12px;
     display: grid;
     gap: 10px;
@@ -629,7 +646,7 @@
   }
   .booking-note {
     margin: 14px 8px 2px;
-    color: rgba(255,250,240,0.94);
+    color: rgba(34,56,47,0.84);
     font-size: 0.72rem;
     line-height: 1.6;
     text-align: left;
@@ -1380,6 +1397,7 @@
     .quick-search,
     .booking-pane[data-booking-pane="flights"] .quick-search { width: 100%; grid-template-columns: 1fr; border-radius: 8px; padding: 10px; }
     .booking-pane[data-booking-pane="flights"] .flight-form { gap: 10px; padding: 10px; }
+    .booking-pane[data-booking-pane="flights"] .flight-form { grid-template-columns: 1fr; }
     .flight-route-row,
     .flight-contact-row,
     .flight-return-row,
@@ -1404,6 +1422,7 @@
     .booking-pane[data-booking-pane="flights"] .flight-phone-field,
     .booking-pane[data-booking-pane="flights"] .flight-email-field,
     .booking-pane[data-booking-pane="flights"] .flight-multicity { grid-column: auto; }
+    .booking-pane[data-booking-pane="flights"] .flight-standard-route { grid-column: auto; }
     .flight-leg { grid-template-columns: 1fr; }
     .flight-multicity-head { align-items: flex-start; flex-direction: column; }
     .flight-add-leg,
@@ -1667,6 +1686,7 @@
     .booking-pane[data-booking-pane="flights"] .flight-form {
       padding: 12px !important;
       gap: 10px;
+      grid-template-columns: 1fr;
     }
 
     .flight-route-row,
@@ -1730,10 +1750,11 @@
     .qs-label,
     .form-label,
     .form-group label {
-      color: #f8e7c9;
+      color: #355145;
       font-size: 0.78rem;
       line-height: 1.45;
     }
+    .flight-trip-control .qs-label { color: var(--gold-light); }
 
     .qs-value,
     .form-input,
@@ -1840,6 +1861,9 @@
     .booking-pane[data-booking-pane="flights"] .flight-multicity {
       grid-column: 1 / -1 !important;
     }
+    .booking-pane[data-booking-pane="flights"] .flight-standard-route {
+      grid-column: 1 / -1 !important;
+    }
 
     .flight-leg {
       grid-template-columns: 1fr;
@@ -1873,7 +1897,7 @@
     }
 
     .booking-pane[data-booking-pane="holidays"] form[name="holidays"].quick-search .qs-label {
-      color: #fbe8c8;
+      color: #355145;
       font-size: 0.82rem;
       line-height: 1.45;
       letter-spacing: 0.08em;
@@ -1929,7 +1953,7 @@
   html[lang="ne"] .nav-cta,
   html[lang="ne"] .lang-switch a { font-size: 0.9rem; font-weight: 800; }
   html[lang="ne"] .qs-label,
-  html[lang="ne"] .form-label { font-size: 0.84rem; font-weight: 800; color: #fbe8c8; }
+  html[lang="ne"] .form-label { font-size: 0.84rem; font-weight: 800; color: #355145; }
   html[lang="ne"] .hero-title {
     font-size: clamp(2.03rem, 4.16vw, 3.75rem);
     line-height: 1.1;
@@ -2108,8 +2132,8 @@
             <div class="flight-trip-control">
               <span class="qs-label">यात्रा प्रकार *</span>
               <select class="qs-value" id="flightTripType" name="trip_type" required data-trip-type>
-                <option value="One Way" selected>एकतर्फी</option>
-                <option value="Return">फिर्ता</option>
+                <option value="One Way">एकतर्फी</option>
+                <option value="Return" selected>फिर्ता</option>
                 <option value="Multi City">मल्टि सिटी</option>
               </select>
             </div>
@@ -2137,6 +2161,13 @@
                   <input type="text" class="qs-value" id="flightDeparture" name="departure_date" placeholder="मिति" required />
                 </div>
               </div>
+              <div class="qs-field flight-return-field" data-return-date-field>
+                <svg class="qs-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M8 2v4M16 2v4M3 10h18M8 16h8"/></svg>
+                <div class="qs-inner">
+                  <span class="qs-label">फिर्ता मिति</span>
+                  <input type="text" class="qs-value" id="flightReturn" name="return_date" placeholder="वैकल्पिक" data-return-date />
+                </div>
+              </div>
               <div class="qs-field flight-passengers-field">
                 <svg class="qs-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
                 <div class="qs-inner">
@@ -2149,15 +2180,6 @@
                     <option>६-१० यात्रु</option>
                     <option>१०+ समूह भाडा</option>
                   </select>
-                </div>
-              </div>
-            </div>
-            <div class="flight-return-row flight-hidden" data-return-date-field hidden>
-              <div class="qs-field flight-return-field">
-                <svg class="qs-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M8 2v4M16 2v4M3 10h18M8 16h8"/></svg>
-                <div class="qs-inner">
-                  <span class="qs-label">फिर्ता मिति</span>
-                  <input type="text" class="qs-value" id="flightReturn" name="return_date" placeholder="वैकल्पिक" data-return-date disabled />
                 </div>
               </div>
             </div>
