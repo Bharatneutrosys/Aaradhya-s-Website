@@ -451,8 +451,8 @@
   .qs-btn svg { flex-shrink: 0; }
   .booking-pane[data-booking-pane="flights"] .flight-form {
     display: grid;
-    grid-template-columns: minmax(142px, 0.62fr) minmax(0, 3.8fr);
-    gap: 10px;
+    grid-template-columns: minmax(118px, 0.52fr) minmax(0, 4.15fr);
+    gap: 8px;
     padding: 12px;
     background: rgba(12, 24, 20, 0.3);
     border-color: rgba(216,185,129,0.34);
@@ -480,8 +480,8 @@
   }
   .flight-route-row {
     display: grid;
-    grid-template-columns: minmax(150px, 1.25fr) minmax(150px, 1.25fr) minmax(130px, 0.86fr) minmax(125px, 0.82fr) minmax(125px, 0.82fr);
-    gap: 9px;
+    grid-template-columns: minmax(0, 1.28fr) minmax(0, 1.28fr) minmax(0, 0.74fr) minmax(0, 0.82fr) minmax(0, 0.82fr);
+    gap: 7px;
     align-items: stretch;
   }
   .flight-standard-route.multi-city-mode .flight-route-row {
@@ -520,6 +520,7 @@
   .flight-standard-route,
   .flight-multicity {
     grid-column: 2;
+    min-width: 0;
   }
   .booking-pane[data-booking-pane="flights"] .qs-field {
     min-height: 62px;
