@@ -481,7 +481,7 @@
   }
   .flight-route-row {
     display: grid;
-    grid-template-columns: minmax(150px, 1.25fr) minmax(150px, 1.25fr) minmax(125px, 0.82fr) minmax(125px, 0.82fr) minmax(112px, 0.62fr);
+    grid-template-columns: minmax(150px, 1.25fr) minmax(150px, 1.25fr) minmax(130px, 0.86fr) minmax(125px, 0.82fr) minmax(125px, 0.82fr);
     gap: 9px;
     align-items: stretch;
   }
@@ -507,10 +507,16 @@
   }
   .flight-message-row {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(190px, auto);
+    grid-template-columns: minmax(0, 1fr);
     gap: 9px;
     align-items: end;
     grid-column: 1 / -1;
+  }
+  .flight-actions-row {
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   .flight-standard-route,
   .flight-multicity {
@@ -601,10 +607,10 @@
     flex: 1;
   }
   .booking-pane[data-booking-pane="flights"] .qs-btn {
-    width: min(100%, 238px);
-    min-height: 50px;
-    align-self: end;
-    justify-self: end;
+    width: min(100%, 380px);
+    min-height: 52px;
+    align-self: center;
+    justify-self: center;
     padding: 0 22px;
     border-radius: 7px;
     box-shadow: 0 12px 26px rgba(184,153,106,0.26), inset 0 1px 0 rgba(255,255,255,0.24);
@@ -2154,20 +2160,6 @@
                   <input class="qs-value" id="flightTo" name="flight_to" placeholder="दुबई, दिल्ली, लन्डन" autocomplete="off" required />
                 </div>
               </div>
-              <div class="qs-field flight-date-field">
-                <svg class="qs-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-                <div class="qs-inner">
-                  <span class="qs-label">प्रस्थान मिति *</span>
-                  <input type="text" class="qs-value" id="flightDeparture" name="departure_date" placeholder="मिति" required />
-                </div>
-              </div>
-              <div class="qs-field flight-return-field" data-return-date-field>
-                <svg class="qs-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M8 2v4M16 2v4M3 10h18M8 16h8"/></svg>
-                <div class="qs-inner">
-                  <span class="qs-label">फिर्ता मिति</span>
-                  <input type="text" class="qs-value" id="flightReturn" name="return_date" placeholder="वैकल्पिक" data-return-date />
-                </div>
-              </div>
               <div class="qs-field flight-passengers-field">
                 <svg class="qs-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
                 <div class="qs-inner">
@@ -2180,6 +2172,20 @@
                     <option>६-१० यात्रु</option>
                     <option>१०+ समूह भाडा</option>
                   </select>
+                </div>
+              </div>
+              <div class="qs-field flight-date-field">
+                <svg class="qs-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                <div class="qs-inner">
+                  <span class="qs-label">प्रस्थान मिति *</span>
+                  <input type="text" class="qs-value" id="flightDeparture" name="departure_date" placeholder="मिति" required />
+                </div>
+              </div>
+              <div class="qs-field flight-return-field" data-return-date-field>
+                <svg class="qs-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M8 2v4M16 2v4M3 10h18M8 16h8"/></svg>
+                <div class="qs-inner">
+                  <span class="qs-label">फिर्ता मिति</span>
+                  <input type="text" class="qs-value" id="flightReturn" name="return_date" placeholder="वैकल्पिक" data-return-date />
                 </div>
               </div>
             </div>
@@ -2223,6 +2229,8 @@
                 <textarea class="qs-value qs-textarea" name="message" placeholder="मार्ग, एयरलाइन, सामान, समय वा विशेष अनुरोध..." autocomplete="off"></textarea>
               </div>
             </div>
+          </div>
+          <div class="flight-form-section flight-actions-row">
             <button class="qs-btn" type="submit">
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
               भाडा विवरण माग्नुहोस्
