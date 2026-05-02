@@ -297,12 +297,12 @@
     width: min(1040px, 100%);
     margin: 0 auto;
     padding: 14px;
-    background: linear-gradient(180deg, rgba(255,250,240,0.58), rgba(225,241,231,0.48));
-    border: 1px solid rgba(216,185,129,0.34);
+    background: linear-gradient(180deg, rgba(34, 56, 47, 0.84), rgba(20, 34, 29, 0.78));
+    border: 1px solid rgba(216,185,129,0.46);
     border-radius: 8px;
     backdrop-filter: blur(28px) saturate(1.35);
     -webkit-backdrop-filter: blur(28px) saturate(1.35);
-    box-shadow: 0 24px 72px rgba(26,64,52,0.22), inset 0 1px 0 rgba(255,255,255,0.44);
+    box-shadow: 0 28px 90px rgba(0,0,0,0.36), inset 0 1px 0 rgba(255,255,255,0.1);
     position: relative;
     z-index: 20;
     opacity: 0; animation: fadeUp 1s 1.05s ease forwards;
@@ -313,15 +313,15 @@
     padding: 5px;
     margin-bottom: 14px;
     border-radius: 8px;
-    background: rgba(255,250,240,0.46);
-    border: 1px solid rgba(141,105,51,0.18);
+    background: rgba(255,250,240,0.08);
+    border: 1px solid rgba(216,185,129,0.18);
   }
   .booking-tab {
     border: 0;
     border-radius: 6px;
     padding: 11px 20px;
     background: transparent;
-    color: var(--slate);
+    color: var(--off-white);
     cursor: pointer;
     font-size: 0.66rem;
     font-weight: 700;
@@ -343,7 +343,7 @@
     justify-content: space-between;
     gap: 16px;
     margin: 2px 8px 16px;
-    color: rgba(34,56,47,0.9);
+    color: rgba(255,250,240,0.94);
     font-size: 0.78rem;
     line-height: 1.6;
     text-align: left;
@@ -352,12 +352,12 @@
   .quick-search {
     display: grid; align-items: stretch;
     grid-template-columns: repeat(4, minmax(0, 1fr)) auto;
-    background: rgba(255,250,240,0.34);
-    border: 1px solid rgba(216,185,129,0.34);
+    background: rgba(12, 24, 20, 0.34);
+    border: 1px solid rgba(216,185,129,0.46);
     border-radius: 8px;
     padding: 10px;
     gap: 12px;
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.36);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
   }
   .qs-field {
     padding: 16px;
@@ -394,7 +394,7 @@
   .qs-label {
     grid-area: label;
     font-size: 0.72rem; font-weight: 800; letter-spacing: 0.12em;
-    text-transform: uppercase; color: #355145; opacity: 1;
+    text-transform: uppercase; color: #f8e7c9; opacity: 1;
     line-height: 1.35;
   }
   .qs-value {
@@ -403,7 +403,7 @@
     background: rgba(255,250,240,0.2);
     border: 1px solid rgba(216,185,129,0.68);
     border-radius: 6px;
-    color: var(--slate);
+    color: #fffdf7;
     font-family: 'Montserrat', sans-serif; cursor: text; outline: none;
     padding: 12px 13px; line-height: 1.35;
     width: 100%; min-width: 0; min-height: 48px;
@@ -432,8 +432,8 @@
     align-items: flex-start;
   }
   select.qs-value { cursor: pointer; }
-  .qs-value::placeholder { color: rgba(34,56,47,0.56); opacity: 1; }
-  .qs-value:focus::placeholder { color: rgba(34,56,47,0.68); }
+  .qs-value::placeholder { color: rgba(255,250,240,0.74); opacity: 1; }
+  .qs-value:focus::placeholder { color: rgba(255,250,240,0.86); }
   .qs-value option { background: var(--slate); color: var(--off-white); }
   .qs-btn {
     display: flex; align-items: center; justify-content: center; gap: 10px;
@@ -455,7 +455,7 @@
     grid-template-columns: minmax(142px, 0.62fr) minmax(0, 3.8fr);
     gap: 10px;
     padding: 12px;
-    background: rgba(255,250,240,0.24);
+    background: rgba(12, 24, 20, 0.3);
     border-color: rgba(216,185,129,0.34);
   }
   .flight-form-section {
@@ -538,7 +538,7 @@
   .flight-multicity {
     border: 1px solid rgba(216,185,129,0.58);
     border-radius: 8px;
-    background: rgba(255,250,240,0.24);
+    background: rgba(255,250,240,0.1);
     padding: 12px;
     display: grid;
     gap: 10px;
@@ -646,7 +646,7 @@
   }
   .booking-note {
     margin: 14px 8px 2px;
-    color: rgba(34,56,47,0.84);
+    color: rgba(255,250,240,0.94);
     font-size: 0.72rem;
     line-height: 1.6;
     text-align: left;
@@ -1750,7 +1750,7 @@
     .qs-label,
     .form-label,
     .form-group label {
-      color: #355145;
+      color: #f8e7c9;
       font-size: 0.78rem;
       line-height: 1.45;
     }
@@ -1897,7 +1897,7 @@
     }
 
     .booking-pane[data-booking-pane="holidays"] form[name="holidays"].quick-search .qs-label {
-      color: #355145;
+      color: #fbe8c8;
       font-size: 0.82rem;
       line-height: 1.45;
       letter-spacing: 0.08em;
@@ -1953,7 +1953,7 @@
   html[lang="ne"] .nav-cta,
   html[lang="ne"] .lang-switch a { font-size: 0.9rem; font-weight: 800; }
   html[lang="ne"] .qs-label,
-  html[lang="ne"] .form-label { font-size: 0.84rem; font-weight: 800; color: #355145; }
+  html[lang="ne"] .form-label { font-size: 0.84rem; font-weight: 800; color: #fbe8c8; }
   html[lang="ne"] .hero-title {
     font-size: clamp(2.03rem, 4.16vw, 3.75rem);
     line-height: 1.1;
